@@ -8,6 +8,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework.reverse import reverse
 from django.contrib.auth.hashers import make_password
+from pptx import Presentation
 
 
 # changes
@@ -28,7 +29,7 @@ from .models import (  # PasswordReset,; PasswordResetConfirm,
 
 from PyPDF2 import PdfReader
 from docx import Document
-
+from io import BytesIO
 
 class ForgetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -147,8 +148,8 @@ class ProjectSerializer1(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 10:
-                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+                if num_pages >= 15:
+                    raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
 
@@ -170,6 +171,7 @@ class ProjectSerializer1(serializers.ModelSerializer):
     def create(self, validated_data):
         pdf_file = validated_data.pop('pdf')
         word_file = validated_data.pop('word')
+
 
         project = Project1(pdf=pdf_file, word=word_file, **validated_data)
         project.save()
@@ -188,8 +190,8 @@ class ProjectSerializer2(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 10:
-                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+                if num_pages >= 15:
+                    raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
 
@@ -212,9 +214,10 @@ class ProjectSerializer2(serializers.ModelSerializer):
         pdf_file = validated_data.pop('pdf')
         word_file = validated_data.pop('word')
 
-        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project = Project2(pdf=pdf_file, word=word_file, **validated_data)
         project.save()
         return project
+
 
 
 class ProjectSerializer3(serializers.ModelSerializer):
@@ -227,15 +230,37 @@ class ProjectSerializer3(serializers.ModelSerializer):
     def validate_pdf(self, value):
         if value:
             try:
+                # Check if the file is a PDF
+                if value.name.endswith('.pdf'):
+                    pdf_reader = PdfReader(value)
+                    num_pages = len(pdf_reader.pages)
+                    if num_pages >= 15:
+                        raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
+                # Check if the file is a PowerPoint presentation
+                elif value.name.endswith('.pptx') or value.name.endswith('.ppt'):
+                    # Validate PowerPoint file using file extension
+                    prs = Presentation(value)
+                    num_slides = len(prs.slides)
+                    if num_slides >= 15:
+                        raise serializers.ValidationError("PowerPoint file must have at most 10 slides.")
+                else:
+                    raise serializers.ValidationError("Unsupported file format.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing file: {e}")
+
+        return value
+
+    def validate_pdf_only(self, value):
+        if value:
+            try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 10:
-                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+                if num_pages >= 15:
+                    raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
 
         return value
-
 
     def validate_word(self, value):
         if value:
@@ -251,9 +276,10 @@ class ProjectSerializer3(serializers.ModelSerializer):
 
     def create(self, validated_data):
         pdf_file = validated_data.pop('pdf')
+        pdf_only_file = validated_data.pop('pdf_only')
         word_file = validated_data.pop('word')
 
-        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project = Project3(pdf=pdf_file, pdf_only=pdf_only_file, word=word_file, **validated_data)
         project.save()
         return project
 
@@ -269,15 +295,37 @@ class ProjectSerializer4(serializers.ModelSerializer):
     def validate_pdf(self, value):
         if value:
             try:
+                # Check if the file is a PDF
+                if value.name.endswith('.pdf'):
+                    pdf_reader = PdfReader(value)
+                    num_pages = len(pdf_reader.pages)
+                    if num_pages >= 15:
+                        raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
+                # Check if the file is a PowerPoint presentation
+                elif value.name.endswith('.pptx') or value.name.endswith('.ppt'):
+                    # Validate PowerPoint file using file extension
+                    prs = Presentation(value)
+                    num_slides = len(prs.slides)
+                    if num_slides >= 15:
+                        raise serializers.ValidationError("PowerPoint file must have at most 10 slides.")
+                else:
+                    raise serializers.ValidationError("Unsupported file format.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing file: {e}")
+
+        return value
+
+    def validate_pdf_only(self, value):
+        if value:
+            try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 10:
-                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+                if num_pages >= 15:
+                    raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
 
         return value
-
 
     def validate_word(self, value):
         if value:
@@ -293,9 +341,10 @@ class ProjectSerializer4(serializers.ModelSerializer):
 
     def create(self, validated_data):
         pdf_file = validated_data.pop('pdf')
+        pdf_only_file = validated_data.pop('pdf_only')
         word_file = validated_data.pop('word')
 
-        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project = Project4(pdf=pdf_file, pdf_only=pdf_only_file, word=word_file, **validated_data)
         project.save()
         return project
 

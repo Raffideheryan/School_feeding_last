@@ -131,6 +131,9 @@ class Project1(models.Model):
         verbose_name = "Առողջ Ապրելակերպը խաղի ձևով"
         verbose_name_plural = "Առողջ Ապրելակերպը խաղի ձևով"
 
+
+        
+
 class Project2(models.Model):
     team = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
     

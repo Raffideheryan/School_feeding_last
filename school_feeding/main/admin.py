@@ -26,6 +26,8 @@ class ProjectAdmin1(admin.ModelAdmin):
 
 
 
+
+
 class ProjectAdmin2(admin.ModelAdmin):
     list_display = ["id", "team", "name1", "name2", "name3", "name4"]
     list_display_links = ["id","team", "name1", "name2", "name3", "name4"]
