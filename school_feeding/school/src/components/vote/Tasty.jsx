@@ -107,14 +107,14 @@ export const Tasty = () => {
     const letterRegex3 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name3);
     const letterRegex4 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name4);
     if (name1 === "" || name2 === "" || name3 === "" || name4 === "") {
-      toast.warning("Մասնակիցների անունները պարտադիրէ");
+      toast.warning("Մասնակիցների անունները պարտադիր է");
       errorValidate = false;
       setError1(true);
       setError2(true);
       setError3(true);
       setError4(true);
     } else if (!letterRegex1 || name1.trim() === "") {
-      toast.warning("Մասնակիցների անունները պետք է լինեն հայատառ...");
+      toast.warning("Մասնակիցների անունները պետք է լինեն հայատառ");
       errorValidate = false;
       setError1(true);
     } else if (!letterRegex2 || name2.trim() === "") {
@@ -173,10 +173,13 @@ export const Tasty = () => {
   const validationUploadMS =  (file, buttonId) => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
-    const fileExtension = file.name
-      ? file.name.split(".").pop().toLowerCase()
-      : toast.warning("Ներբեռնեք Փաստաթուղթը");
-    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
@@ -197,7 +200,7 @@ export const Tasty = () => {
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (!allowedExtensions.includes(fileExtension)) {
+        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG  տեսակի նկարներ"
           );
@@ -225,9 +228,13 @@ export const Tasty = () => {
     const allowedExtensions = ["pdf"];
     file = file[0];
 
-    const fileExtension = file.name?file.name.split(".").pop().toLowerCase():toast.warning(
-      "Ներբեռնեք Փաստաթուղթը"
-    );;    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }  
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
@@ -249,7 +256,7 @@ export const Tasty = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (!allowedFormats.includes(file.type)) {
+    if (file.type===undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -547,7 +554,7 @@ export const Tasty = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return <p key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
                 })}
             </div>
 
@@ -713,7 +720,7 @@ export const Tasty = () => {
           <span>Համաձայն եմ </span>
         </div>
         <div className="term">
-          <a href="javascript:void(0)" onClick={userActions.toggleModal}>
+          <a href="#" onClick={userActions.toggleModal}>
             Պայմաններ
           </a>
           <Terms />

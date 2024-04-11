@@ -287,8 +287,8 @@ class Registration(models.Model):
 class Message(models.Model):
     name = models.CharField("Անուն", max_length=50)
     email = models.EmailField("Էլ․ հասցե")
-    message = models.CharField("Նամակ", max_length=255)
-    
+    message = models.CharField("Նամակ", max_length=255)  
+    phone = models.BigIntegerField("Հեռախոսահամար")
 
     class Meta:
         verbose_name = "Նամակ"

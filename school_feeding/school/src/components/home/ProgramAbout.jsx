@@ -211,11 +211,11 @@ const ProgramAbout = () => {
   return (
     <div className="programAbout">
       {userState.logeOut ? (
-        <div className="seeMoreInfo">
+        <div className="seeMoreInfo loginButton" >
           <button  onClick={handleSubmitLogin}>Մուտք/Գրանցվել</button>
         </div>
       ) : (
-        <div className="seeMoreInfo">
+        <div className="seeMoreInfo loginButton">
           <button onClick={handleSubmitLogeOut}>Դուրս Գալ </button>
         </div>
       )}
@@ -718,7 +718,7 @@ const ProgramAbout = () => {
                   onClick={toggleModalAboutProgramClose}
                   className="close-btn close-btn-program"
                 >
-                  <img src={closeImg} />
+                  <img src={closeImg} alt={""} />
                 </button>
                 <h2>
                   «Համեղ և առողջարար. իմ սիրելի առողջ բաղադրատոմսը»․ ստեղծել
@@ -844,7 +844,7 @@ const ProgramAbout = () => {
             առողջ ապրելակերպի ճամբարում: Այստեղ նրանք կսովորեն ամեն ինչ առողջ
             ապրելու մասին, որ հետագայում իրենց ձեռք բերած գիտելիքով կիսվեն
             ընկերների և մտերիմների հետ՝ դառնալով  առողջ ապրելակերպի իսկական
-            դեսպաններ։  
+            դեսպաններ։ 
           </p>
 
           <p className="participateRulle">
@@ -859,20 +859,18 @@ const ProgramAbout = () => {
 
           <p className="participateRulle">
             <span>
-              Փուլ 2. Նախագծի ներկայացում` հայտադիմումը լրացնելու միջոցով:{" "}
-            </span>
-            Թիմերից ակնկալվում է մշակել իրենց նախագծերը և դրանք ներկայացնել
+              Փուլ 2. Նախագծի ներկայացում` հայտադիմումը լրացնելու միջոցով:
+            </span>Թիմերից ակնկալվում է մշակել իրենց նախագծերը և դրանք ներկայացնել
             համապատասխան ձևաչափով՝ լրացնելով հայտադիմումը մինչև 2024 թվականի
             հունիսի 10-ը (23:59):
           </p>
           <p className="participateRulle">
-            <span>Փուլ 3. Որակավորման փուլ :</span>
-            Ընտրող հանձնաժողովը կդիտարկի ստացված նախագծերը և կհայտարարի
+            <span>Փուլ 3. Որակավորման փուլ:</span>Ընտրող հանձնաժողովը կդիտարկի ստացված նախագծերը և կհայտարարի
             յուրաքանչյուր անվանակարգում 5 լավագույններին (ընդամենը 20 թիմ) մինչև
             2024 թվականի հունիսի 24-ը։
           </p>
           <p className="participateRulle">
-            <span>Փուլ 4. Քվեարկության փուլ։</span>
+            <span>Փուլ 4. Քվեարկության փուլ։</span> 
             Որակավորված նախագծերը կհրապարակվեն մրցույթի վեբկայքում և  Հայաստանի
             բոլոր դպրոցականները կկարողանան առցանց քվեարկել իրենց նախընտրած
             նախագծի համար։ Քվեարկությունը կանցկացվի ըստ Առցանց քվեարկության

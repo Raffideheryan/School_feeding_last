@@ -264,7 +264,7 @@ input[type="radio"]:checked ~ .check::before {
 .programAboutRow {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .programAboutRowItem {
@@ -963,6 +963,10 @@ body.active-moidal {
   background-color: #ffb300;
 }
 
+.touch form{
+  margin-top: 50px;
+}
+
 form textarea {
   width: 97%;
   height: 40px;
@@ -974,10 +978,33 @@ form textarea {
   margin-bottom: 10px;
   padding-left: 10px;
   height: 150px;
+  padding-top: 10px;
 }
 
 form textarea:focus {
   border: 1px solid rgba(255, 179, 0, 1);
+}
+
+.sendmessages{
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 20px;
+}
+
+.sendmessages a{
+  color: rgba(255, 179, 0, 1);
+}
+
+.sendmessages p{
+  line-height: 30px;
+}
+
+.sendmessages a:hover{
+  color: rgba(236, 126, 0, 1);
 }
 
 /* error */
@@ -1011,6 +1038,19 @@ form textarea:focus {
   .touch .back {
     top: 5px;
     left: 5px;
+  }
+
+  .sendmessages{
+    padding: 0 5px;
+  }
+  .sendmessages p{
+    line-height: 30px;
+    line-height: 25px;
+    font-size: 13px;
+  }
+
+  .sendmessages a{
+    font-size: 13px;
   }
 }
 
@@ -1103,6 +1143,14 @@ form textarea:focus {
 .seeMoreInfo button:hover {
   background-color: #feb100;
   transition: all 0.5s linear;
+}
+
+.loginButton{
+  justify-content: end;
+}
+
+.loginButton button{
+  width: 200px;
 }
 /* scedule */
 
@@ -1280,4 +1328,22 @@ form textarea:focus {
     font-size: 13px;
     line-height: 15px;
 }
+.loginButton{
+  justify-content: end;
+  flex-direction: row;
+}
+
+.loginButton button{
+  width: 150px;
+  font-size: 15px;
+  padding: 2px 2px;
+  height: 50px;
+}
+}
+
+
+textarea::placeholder {
+  font-size: 11px;
+  color: rgba(172, 164, 164, 1);
+
 }

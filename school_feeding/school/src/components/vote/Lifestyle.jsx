@@ -69,13 +69,14 @@ export const Lifestyle = () => {
       formData.append("word", files);
       formData.append("pdf", filesPdf);
       formData.append("video", filesVideo);
+      
 
       fetch("http://127.0.0.1:8000/info/projects1/", {
         method: "POST",
         body: formData,
       })
         .then((res) => {
-          if (res.status === 201) {
+          if (res.status===201) {
             toast.success("Հաջողությամբ Դիմել եք ծրագրին ");
 
             if (userState.voteAgain.project_cat2) {
@@ -103,6 +104,8 @@ export const Lifestyle = () => {
 
   const validationNames = () => {
     let errorValidate = true;
+   
+
     const letterRegex1 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name1);
     const letterRegex2 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name2);
     const letterRegex3 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name3);
@@ -181,7 +184,41 @@ export const Lifestyle = () => {
       setErrorFilesVideo(false);
     }
 
-    // return errorValidate;
+    return errorValidate;
+
+
+    if (
+      files.length === 0 &&
+      filesPhotos.length === 0 &&
+      filesPdf.length === 0 &&
+      filesVideo.length === 0
+    ) {
+      toast.warning("Վերբեռնեք բոլոր ֆայլերը");
+      setErrorFiles(true);
+      setErrorFilesPdf(true);
+      setErrorFilesPhotos(true);
+      setErrorFilesVideo(true);
+      errorValidate = false;
+    } else if (files.length === 0) {
+      setErrorFiles(true);
+      errorValidate = false;
+    } else if (filesPhotos.length === 0) {
+      setErrorFilesPhotos(true);
+      errorValidate = false;
+    } else if (filesPdf.length === 0) {
+      setErrorFilesPdf(true);
+      errorValidate = false;
+    } else if (filesVideo.length === 0) {
+      setErrorFilesVideo(true);
+      errorValidate = false;
+    } else {
+      setErrorFiles(false);
+      setErrorFilesPdf(false);
+      setErrorFilesPhotos(false);
+      setErrorFilesVideo(false);
+    }
+
+   
     return errorValidate;
   };
 
@@ -190,10 +227,14 @@ export const Lifestyle = () => {
   const validationUploadMS = (file, buttonId) => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
-    const fileExtension = file.name
-      ? file.name.split(".").pop().toLowerCase()
-      : toast.warning("Ներբեռնեք Փաստաթուղթը");
-    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
+  
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
@@ -214,7 +255,7 @@ export const Lifestyle = () => {
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (!allowedExtensions.includes(fileExtension)) {
+        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG ձևաչափով նկարներ․․."
           );
@@ -241,11 +282,14 @@ export const Lifestyle = () => {
   const validationPdf = (file, buttonId) => {
     const allowedExtensions = ["pdf"];
     file = file[0];
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
 
-    const fileExtension = file.name
-      ? file.name.split(".").pop().toLowerCase()
-      : toast.warning("Ներբեռնեք Փաստաթուղթը");
-    if (!allowedExtensions.includes(fileExtension)) {
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
@@ -267,7 +311,7 @@ export const Lifestyle = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (!allowedFormats.includes(file.type)) {
+    if (file.type===undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -522,7 +566,7 @@ export const Lifestyle = () => {
           <h2>Պահանջվող իրերի/ռեկվիզիտի լուսանկարներ</h2>
           <span>
             (Այն ամենն, ինչ անհրաժեշտ կլինի խաղի համար, խաղադաշտի
-            դասավորությունը, խաղաքարտեր կամ խաղի օրինակ)։  
+            դասավորությունը, խաղաքարտեր կամ խաղի օրինակ)։
           </span>
         </div>
 
@@ -545,7 +589,7 @@ export const Lifestyle = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return <p key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
                 })}
             </div>
 
@@ -708,7 +752,7 @@ export const Lifestyle = () => {
           <span>Համաձայն եմ</span>
         </div>
         <div className="term">
-          <a href="javascript:void(0)" onClick={userActions.toggleModal}>
+          <a href="#" onClick={userActions.toggleModal}>
             Պայմաններ
           </a>
           <Terms />

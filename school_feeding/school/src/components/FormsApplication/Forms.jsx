@@ -333,7 +333,7 @@ export default function Forms() {
             setErroremail(true);
           }
         } catch (error) {
-          toast.warning("Չհաջողվեց");
+          toast.warning("Չհաջողվեցցց");
         }
       }
       submitInfoForm();
