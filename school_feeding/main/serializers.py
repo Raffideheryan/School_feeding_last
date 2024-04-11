@@ -26,6 +26,9 @@ from .models import (  # PasswordReset,; PasswordResetConfirm,
     Vote,
 )
 
+from PyPDF2 import PdfReader
+from docx import Document
+
 
 class ForgetPasswordSerializer(serializers.Serializer):
     email = serializers.EmailField()
@@ -139,12 +142,79 @@ class ProjectSerializer1(serializers.ModelSerializer):
         model = Project1
         fields = "__all__"
 
+    def validate_pdf(self, value):
+        if value:
+            try:
+                pdf_reader = PdfReader(value)
+                num_pages = len(pdf_reader.pages)
+                if num_pages > 10:
+                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing PDF file: {e}")
+
+        return value
+
+
+    def validate_word(self, value):
+        if value:
+            try:
+                doc = Document(value)
+                num_pages = len(doc.paragraphs)
+                if num_pages > 3:
+                    raise serializers.ValidationError("Word file must have at most 3 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing Word file: {e}")
+
+        return value
+
+    def create(self, validated_data):
+        pdf_file = validated_data.pop('pdf')
+        word_file = validated_data.pop('word')
+
+        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project.save()
+        return project
+
 
 class ProjectSerializer2(serializers.ModelSerializer):
 
     class Meta:
         model = Project2
         fields = "__all__"
+
+    
+    def validate_pdf(self, value):
+        if value:
+            try:
+                pdf_reader = PdfReader(value)
+                num_pages = len(pdf_reader.pages)
+                if num_pages > 10:
+                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing PDF file: {e}")
+
+        return value
+
+
+    def validate_word(self, value):
+        if value:
+            try:
+                doc = Document(value)
+                num_pages = len(doc.paragraphs)
+                if num_pages > 3:
+                    raise serializers.ValidationError("Word file must have at most 3 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing Word file: {e}")
+
+        return value
+
+    def create(self, validated_data):
+        pdf_file = validated_data.pop('pdf')
+        word_file = validated_data.pop('word')
+
+        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project.save()
+        return project
 
 
 class ProjectSerializer3(serializers.ModelSerializer):
@@ -153,12 +223,81 @@ class ProjectSerializer3(serializers.ModelSerializer):
         model = Project3
         fields = "__all__"
 
+    
+    def validate_pdf(self, value):
+        if value:
+            try:
+                pdf_reader = PdfReader(value)
+                num_pages = len(pdf_reader.pages)
+                if num_pages > 10:
+                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing PDF file: {e}")
+
+        return value
+
+
+    def validate_word(self, value):
+        if value:
+            try:
+                doc = Document(value)
+                num_pages = len(doc.paragraphs)
+                if num_pages > 3:
+                    raise serializers.ValidationError("Word file must have at most 3 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing Word file: {e}")
+
+        return value
+
+    def create(self, validated_data):
+        pdf_file = validated_data.pop('pdf')
+        word_file = validated_data.pop('word')
+
+        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project.save()
+        return project
+
 
 class ProjectSerializer4(serializers.ModelSerializer):
 
     class Meta:
         model = Project4
         fields = "__all__"
+
+    
+
+    def validate_pdf(self, value):
+        if value:
+            try:
+                pdf_reader = PdfReader(value)
+                num_pages = len(pdf_reader.pages)
+                if num_pages > 10:
+                    raise serializers.ValidationError("PDF file cannot have more than 10 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing PDF file: {e}")
+
+        return value
+
+
+    def validate_word(self, value):
+        if value:
+            try:
+                doc = Document(value)
+                num_pages = len(doc.paragraphs)
+                if num_pages > 3:
+                    raise serializers.ValidationError("Word file must have at most 3 pages.")
+            except Exception as e:
+                raise serializers.ValidationError(f"Error processing Word file: {e}")
+
+        return value
+
+    def create(self, validated_data):
+        pdf_file = validated_data.pop('pdf')
+        word_file = validated_data.pop('word')
+
+        project = Project1(pdf=pdf_file, word=word_file, **validated_data)
+        project.save()
+        return project
 
 
 class RegistrationSerializer(serializers.ModelSerializer):

@@ -19,7 +19,8 @@ RUN python -m pip install --upgrade pip && \
 
 RUN poetry config virtualenvs.create false \
     && poetry install --no-root --no-interaction --no-ansi \
-    && poetry add django-cors-headers
+    && poetry add django-cors-headers \
+    && poetry add django-3-jet
   
 COPY . /app
 

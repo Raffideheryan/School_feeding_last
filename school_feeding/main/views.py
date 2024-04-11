@@ -22,6 +22,9 @@ from django.http import (
     JsonResponse,
 )
 
+from datetime import timedelta
+from django.utils import timezone
+
 # changes
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
@@ -36,6 +39,10 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from threading import Timer
+from datetime import timedelta
+from django.utils import timezone
 
 from .forms import EmailAuthenticationForm, NewUserForm
 from PyPDF2 import PdfReader
@@ -136,38 +143,63 @@ def new_password(request, uidb64, token):
         )
 
 
+
+
+
 class UserView(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-
+ 
     def create(self, request, *args, **kwargs):
         print("created")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        self.send_verification_email(
-            user
-        )
+        self.send_verification_email(user)
+        
+        # Schedule user deletion after 2 minutes
+        deletion_timer = Timer(10, self.delete_unverified_user, args=[user.id])
+        deletion_timer.start()
+        
         headers = self.get_success_headers(serializer.data)
-        return Response(
-            serializer.data, status=status.HTTP_201_CREATED, headers=headers
-        )
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def send_verification_email(self, user):
         print("sending verification email...")
         subject = "Email Verification"
         verification_url = reverse("verify-email", kwargs={"user_id": user.id})
         message = f"Click the link to verify your email: http://127.0.0.1:8000{verification_url}"
-        from_email = "armanghandilyan977@gmail.com"
+        from_email = settings.EMAIL_HOST_USER  # Change this to your sender email
         recipient_list = [user.email]
         try:
             print("sending mail")
             send_mail(subject, message, from_email, recipient_list)
             print("sent")
         except smtplib.SMTPRecipientsRefused:
-            raise ValidationError(
-                "Email address does not exist. Please provide a valid email address."
-            )
+            raise ValidationError("Email address does not exist. Please provide a valid email address.")
+
+    def delete_unverified_user(self, user_id):
+        try:
+            user = CustomUser.objects.get(id=user_id, email_verified=False)
+            user.delete()
+            print(f"Deleted unverified user with id: {user_id}")
+        except CustomUser.DoesNotExist:
+            print(f"User with id {user_id} does not exist or is already verified.")
+        
+    
+
+
+class VerifyEmailView(APIView):
+    def get(self, request, user_id):
+        try:
+            user = CustomUser.objects.get(id=user_id)
+            user.email_verified = True
+            user.save()
+            return redirect("http://127.0.0.1:3000/login")
+        except CustomUser.DoesNotExist:
+            return HttpResponse("User not found.", status=status.HTTP_404_NOT_FOUND)
+
+
 
 
 class LoginView(APIView):
@@ -207,168 +239,64 @@ class TeamView(viewsets.ModelViewSet):
 class ProjectView1(viewsets.ModelViewSet):
     queryset = Project1.objects.all()
     serializer_class = ProjectSerializer1
-    
-    def create(self, request, *args, **kwargs):
-        pdf_file = request.data.get('pdf')
-        word_file = request.data.get('word')
 
-        if pdf_file:
-            try:
-                with pdf_file.open('rb') as f:
-                    pdf_reader = PdfReader(f)
-                    num_pages = len(pdf_reader.pages)
-                if num_pages > 10:
-                    return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
-                else:
-                    return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
+ 
 
-        if word_file:
-            try:
-                with open('/tmp/uploaded_word.docx', 'wb') as destination:
-                    for chunk in word_file.chunks():
-                        destination.write(chunk)
-
-                doc = Document('/tmp/uploaded_word.docx')
-
-                num_pages = len(doc.paragraphs)
-                if num_pages <= 3:
-                    return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
-
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-            finally:
-                os.remove('/tmp/uploaded_word.docx')
-
-        return super().create(request, *args, **kwargs)
 
 class ProjectView2(viewsets.ModelViewSet):
     queryset = Project2.objects.all()
     serializer_class = ProjectSerializer2
 
-    def create(self, request, *args, **kwargs):
-        pdf_file = request.data.get('pdf')
-        word_file = request.data.get('word')
-
-        if pdf_file:
-            try:
-                with pdf_file.open('rb') as f:
-                    pdf_reader = PdfReader(f)
-                    num_pages = len(pdf_reader.pages)
-                if num_pages > 10:
-                    return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
-                else:
-                    return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-
-        if word_file:
-            try:
-                with open('/tmp/uploaded_word.docx', 'wb') as destination:
-                    for chunk in word_file.chunks():
-                        destination.write(chunk)
-
-                doc = Document('/tmp/uploaded_word.docx')
-
-                num_pages = len(doc.paragraphs)
-                if num_pages <= 3:
-                    return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
-
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-            finally:
-                os.remove('/tmp/uploaded_word.docx')
-
-        return super().create(request, *args, **kwargs)
+    
 
 
 class ProjectView3(viewsets.ModelViewSet):
     queryset = Project3.objects.all()
     serializer_class = ProjectSerializer3
 
-    def create(self, request, *args, **kwargs):
-        pdf_file = request.data.get('pdf')
-        word_file = request.data.get('word')
 
-        if pdf_file:
-            try:
-                with pdf_file.open('rb') as f:
-                    pdf_reader = PdfReader(f)
-                    num_pages = len(pdf_reader.pages)
-                if num_pages > 10:
-                    return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
-                else:
-                    return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-
-        if word_file:
-            try:
-                with open('/tmp/uploaded_word.docx', 'wb') as destination:
-                    for chunk in word_file.chunks():
-                        destination.write(chunk)
-
-                doc = Document('/tmp/uploaded_word.docx')
-
-                num_pages = len(doc.paragraphs)
-                if num_pages <= 3:
-                    return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
-
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-            finally:
-                os.remove('/tmp/uploaded_word.docx')
-
-        return super().create(request, *args, **kwargs)
 
 
 class ProjectView4(viewsets.ModelViewSet):
     queryset = Project4.objects.all()
     serializer_class = ProjectSerializer4
 
-    def create(self, request, *args, **kwargs):
-        pdf_file = request.data.get('pdf')
-        word_file = request.data.get('word')
+    # def create(self, request, *args, **kwargs):
+    #     pdf_file = request.data.get('pdf')
+    #     word_file = request.data.get('word')
 
-        if pdf_file:
-            try:
-                with pdf_file.open('rb') as f:
-                    pdf_reader = PdfReader(f)
-                    num_pages = len(pdf_reader.pages)
-                if num_pages > 10:
-                    return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
-                else:
-                    return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
+    #     if pdf_file:
+    #         try:
+    #             with pdf_file.open('rb') as f:
+    #                 pdf_reader = PdfReader(f)
+    #                 num_pages = len(pdf_reader.pages)
+    #             if num_pages > 10:
+    #                 return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
+    #             else:
+    #                 return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
+    #         except Exception as e:
+    #             return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
 
-        if word_file:
-            try:
-                with open('/tmp/uploaded_word.docx', 'wb') as destination:
-                    for chunk in word_file.chunks():
-                        destination.write(chunk)
+    #     if word_file:
+    #         try:
+    #             with open('/tmp/uploaded_word.docx', 'wb') as destination:
+    #                 for chunk in word_file.chunks():
+    #                     destination.write(chunk)
 
-                doc = Document('/tmp/uploaded_word.docx')
+    #             doc = Document('/tmp/uploaded_word.docx')
 
-                num_pages = len(doc.paragraphs)
-                if num_pages <= 3:
-                    return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
-                else:
-                    return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
+    #             num_pages = len(doc.paragraphs)
+    #             if num_pages <= 3:
+    #                 return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
+    #             else:
+    #                 return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
 
-            except Exception as e:
-                return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-            finally:
-                os.remove('/tmp/uploaded_word.docx')
+    #         except Exception as e:
+    #             return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
+    #         finally:
+    #             os.remove('/tmp/uploaded_word.docx')
 
-        return super().create(request, *args, **kwargs)
+    #     return super().create(request, *args, **kwargs)
 
 
 class RegistrationView(viewsets.ModelViewSet):
@@ -381,15 +309,7 @@ class MessageView(viewsets.ModelViewSet):
     serializer_class = MessageSerializer
 
 
-class VerifyEmailView(APIView):
-    def get(self, request, user_id):
-        try:
-            user = CustomUser.objects.get(id=user_id)
-            user.email_verified = True
-            user.save()
-            return redirect("http://127.0.0.1:3000/login")
-        except CustomUser.DoesNotExist:
-            return HttpResponse("User not found.", status=status.HTTP_404_NOT_FOUND)
+
 
 
 def download_pdf(request):
@@ -432,15 +352,17 @@ def register_request(request):
 
 # changes
 def send_verification_email(user):
-    print("inside func 'send_verification_email'")
-    token = get_random_string(length=32)
-    user.verification_token = token
-    user.save()
-    subject = "Email Verification"
-    message = f"Please click the following link to verify your email: http://127.0.0.1:8000/verify/{token}"
-    sender = "testfirst0303@gmail.com"
-    recipient = user.email
-    send_mail(subject, message, sender, [recipient])
+    # user = CustomUser.objects.get(email=email_)
+    # if user.email_verified = False
+        print("inside func 'send_verification_email'")
+        token = get_random_string(length=32)
+        user.verification_token = token
+        user.save()
+        subject = "Email Verification"
+        message = f"Please click the following link to verify your email: http://127.0.0.1:8000/verify/{token}"
+        sender = "testfirst0303@gmail.com"
+        recipient = user.email
+        send_mail(subject, message, sender, [recipient])
 
 
 def verify_email(request, verification_token):

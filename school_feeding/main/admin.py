@@ -13,14 +13,16 @@ from .models import (
 )
 
 
+
+
+
 # class TeamAdmin(admin.ModelAdmin):
 #     list_display = ["email", "school_name", "project_cat", "team_cat"]
 #     list_display_links = ["email", "school_name", "project_cat", "team_cat"]
-
-
 class ProjectAdmin1(admin.ModelAdmin):
     list_display = ["id", "team", "name1", "name2", "name3", "name4"]
     list_display_links = ["id","team", "name1", "name2", "name3", "name4"]
+
 
 
 
@@ -59,14 +61,14 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(ApplicationForm)
 class AppAdmin(admin.ModelAdmin):
-    list_display = ["contact_person", "email", "phone", "age_cat", "project_cat1"]
-    list_filter = ["contact_person", "age_cat", "project_cat1"]
-    search_fields = ["contact_person", "email", "age_cat", "project_cat1"]
+    list_display = ["contact_person", "email", "phone", "age_cat", "project_cat1","project_cat2", "project_cat3", "project_cat4"]
+    list_filter = ["contact_person", "age_cat", "project_cat1","project_cat2", "project_cat3", "project_cat4"]
+    search_fields = ["contact_person", "email", "age_cat", "project_cat1","project_cat2", "project_cat3", "project_cat4"]
     ordering = ["phone"]
 
 
 # admin.site.register(Team, TeamAdmin)
-admin.site.register(Project1, ProjectAdmin1)
+admin.site.register(Project1, ProjectAdmin2)
 admin.site.register(Project2, ProjectAdmin2)
 admin.site.register(Project3, ProjectAdmin3)
 admin.site.register(Project4, ProjectAdmin4)

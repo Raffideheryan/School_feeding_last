@@ -212,11 +212,11 @@ const ProgramAbout = () => {
     <div className="programAbout">
       {userState.logeOut ? (
         <div className="seeMoreInfo">
-          <button  onClick={handleSubmitLogin}>Login</button>
+          <button  onClick={handleSubmitLogin}>Մուտք/Գրանցվել</button>
         </div>
       ) : (
         <div className="seeMoreInfo">
-          <button onClick={handleSubmitLogeOut}>Loge Out </button>
+          <button onClick={handleSubmitLogeOut}>Դուրս Գալ </button>
         </div>
       )}
 

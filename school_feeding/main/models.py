@@ -84,7 +84,7 @@ class ApplicationForm(models.Model):
         verbose_name_plural = "Ծրագրի գրանցումներ"
         
     def __str__(self) -> str:
-        return self.email
+        return f"{self.school_name +' ' + '(' + self.age_cat + ')' }"
 
 
 class Project1(models.Model):
@@ -125,7 +125,6 @@ class Project1(models.Model):
             FileExtensionValidator(allowed_extensions=["mp4", "avi", "wmv", "mov"]),
         ],
     )
-
     
     
     class Meta:

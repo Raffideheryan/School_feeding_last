@@ -35,7 +35,9 @@ const UserContextProvider = ({ children }) => {
 
 const [logeOut, setLogeOut] = useState(true);
 
+// voting
 
+const[votingSchool,setVotingSchool] = useState("")
 
 
   const navigate = useNavigate();
@@ -411,7 +413,8 @@ const [logeOut, setLogeOut] = useState(true);
           voteAgain,
           remember,
           communityUpload,
-          logeOut
+          logeOut,
+          votingSchool
           
         },
         userActions: {
@@ -434,8 +437,8 @@ const [logeOut, setLogeOut] = useState(true);
           togleModalHome,
           setVoteAgain,
           setRememberMe,
-          setLogeOut
-          
+          setLogeOut,
+          setVotingSchool
         },
       }}
     >

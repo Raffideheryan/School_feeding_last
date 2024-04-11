@@ -14,6 +14,7 @@ import { Community } from "./components/vote/Community";
 import ProgramAbout from "./components/home/ProgramAbout";
 import { Touch } from "./components/home/Touch";
 import Forms from "./components/FormsApplication/Forms";
+import { VotingParticipate } from './components/votingParticipate/VotingParticipate';
 // WDS_SOCKET_HOST=127.0.0.1 CHOKIDAR_USEPOLLING=true WATCHPACK_POLLING=true
 
 function App() {
