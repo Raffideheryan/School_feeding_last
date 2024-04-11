@@ -10,7 +10,6 @@ import { Lifestyle } from "./components/vote/Lifestyle";
 import { Tasty } from "./components/vote/Tasty";
 import { Discovering } from "./components/vote/Discovering";
 import { Community } from "./components/vote/Community";
-// import AplicationForm from "./components/aplicationform/AplicationForm";
 import ProgramAbout from "./components/home/ProgramAbout";
 import { Touch } from "./components/home/Touch";
 import Forms from "./components/FormsApplication/Forms";
@@ -27,7 +26,6 @@ function App() {
           {/* <Route path="/" element={<VotingParticipate />} /> */}
           <Route path="/" element={<ProgramAbout />} />
           <Route path="/forms" element={<Forms />} />
-          {/* <Route path="/application" element={<AplicationForm />} /> */}
           <Route path="/lifestyle" element={<Lifestyle />} />
           <Route path="/tasty" element={<Tasty />} />
           <Route path="/discovering" element={<Discovering />} />

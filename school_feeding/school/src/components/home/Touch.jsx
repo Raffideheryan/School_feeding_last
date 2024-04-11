@@ -6,10 +6,12 @@ export const Touch = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [phone, setPhone] = useState("");
   
     const [errorName, setErrorName] = useState(true);
     const [errorEmail, setErrorEmail] = useState(true);
     const [errorMessage, setErrorMessage] = useState(true);
+    const [errorPhone, setErrorPhone] = useState(true);
 
   const navigate = useNavigate();
 
@@ -21,6 +23,10 @@ export const Touch = () => {
       );
       const usernameRegexArmenianLetter = /^[\u0531-\u0556\u0561-\u0587]+$/u.test(
         name
+      );
+      const phoneRegex =
+      /^(091|097|096|099|043|077|093|094|098|055|095|041|033|044)\d{6}$/.test(
+        phone
       );
     
       if (name === null || name === "") {
@@ -50,6 +56,20 @@ export const Touch = () => {
       } else {
         setErrorEmail(true);
       }
+
+      if (phone === null || phone === "") {
+        isproccesd = false;
+        toast.warning(" Հեռախոսահմար դաշտը պարտադիր է․․․ ");
+        setErrorPhone(false);
+      } else if (!phoneRegex) {
+        isproccesd = false;
+        toast.warning(
+          " Հեռախոսահամարը պետք է լինի oրինակին համապատասխան: 094555657"
+        );
+        setErrorPhone(false);
+      } else {
+        setErrorPhone(true);
+      }
   
       if (message.length >= 155) {
         toast.warning(" Ձեր հաղորդագրությունը երկար է․․․");
@@ -68,6 +88,7 @@ export const Touch = () => {
       let obj = {
         name,
         email,
+        phone,
         message,
       };
   
@@ -101,7 +122,7 @@ export const Touch = () => {
                 <label>Անուն</label>
                 <input
                   type="text"
-                  placeholder="Անուն*"
+                  placeholder="Մուտքագրեք Ձեր Անունը"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
                   className={errorName ? "" : "error"}
@@ -111,16 +132,27 @@ export const Touch = () => {
                 <label>Էլեկտրոնային հասցե</label>
                 <input
                   type="text"
-                  placeholder="Էլ-փոստ․․․"
+                  placeholder="Մուտքագրեք Ձեր Էլեկտրոնային Հասցեն"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   className={errorEmail ? "" : "error"}
                 />
               </div>
+              <div className="phone">
+            <label>Հեռախոսահամար <small>Օրինակ: 094555555</small></label>
+            <input
+              type="tel"
+              placeholder="Մուտքագրեք Ձեր Հեռախոսահամարը"
+              onChange={(e) => setPhone(e.target.value)}
+              value={(phone)}
+              className={errorPhone?'':'error'}
+
+            />
+          </div>
 
               <div className="textarea">
                 <textarea
-                  placeholder="Ձեր հաղորդագրությունը` պարտադիր նշելով Ձեր հեռախոսահամարը"
+                  placeholder="Մուտքագրեք Ձեր Հաղորդագրությունը`"
                   onChange={(e) => setMessage(e.target.value)}
                   value={message}
                   className={errorMessage?"":'error'}
@@ -129,6 +161,10 @@ export const Touch = () => {
 
               <button type={"submit"}>Ուղարկել</button>
             </form>
+
+            <div className='sendmessages'>
+              <p>Կարող եք նաև կապ հաստատել մեզ հետ <a href="mailto:robkocharyan20@gmail.com">aroxjaprelakerpidespan@gmail.com</a>  էլեկտրոնային հասցեով:</p>
+            </div>
           </div>
         </div>
   )

@@ -172,10 +172,13 @@ export const Community = () => {
   const validationUploadMS =  (file, buttonId) => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
-    const fileExtension = file.name
-      ? file.name.split(".").pop().toLowerCase()
-      : toast.warning("Ներբեռնեք Փաստաթուղթը");
-    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
@@ -191,9 +194,13 @@ export const Community = () => {
     const allowedExtensions = ["pdf", "ppt"];
     file = file[0];
 
-    const fileExtension = file.name?file.name.split(".").pop().toLowerCase():toast.warning(
-      "Ներբեռնեք Փաստաթուղթը"
-    );;    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF կամ PPT ձևաչափերով  ֆայլեր"
       );
@@ -212,7 +219,7 @@ export const Community = () => {
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (!allowedExtensions.includes(fileExtension)) {
+        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG  ձևաչափով  նկարներ"
           );
@@ -240,9 +247,13 @@ export const Community = () => {
     const allowedExtensions = ["pdf"];
     file = file[0];
 
-    const fileExtension = file.name?file.name.split(".").pop().toLowerCase():toast.warning(
-      "Ներբեռնեք Փաստաթուղթը"
-    );;    if (!allowedExtensions.includes(fileExtension)) {
+    let fileExtension;
+    if(file.name===undefined){
+      toast.warning("Ներբեռնեք Փաստաթուղթը");
+    }else{
+      fileExtension =file.name.split(".").pop().toLowerCase()
+    }
+    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
@@ -264,7 +275,7 @@ export const Community = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (!allowedFormats.includes(file.type)) {
+    if (file.type===undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -562,9 +573,6 @@ export const Community = () => {
               </h4>
             </div>
 
-            <div>
-              <h4>Ընտրեք ֆայլը և ներբեռնեք</h4>
-            </div>
           </div>
 
           <div>
@@ -621,7 +629,7 @@ export const Community = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return <p key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
                 })}
             </div>
 
@@ -804,7 +812,7 @@ export const Community = () => {
           <span>Համաձայն եմ</span>
         </div>
         <div className="term">
-          <a href="javascript:void(0)" onClick={userActions.toggleModal}>
+          <a href="#" onClick={userActions.toggleModal}>
             Պայմաններ
           </a>
           <Terms />

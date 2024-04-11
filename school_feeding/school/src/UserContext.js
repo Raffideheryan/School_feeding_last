@@ -44,6 +44,10 @@ const[votingSchool,setVotingSchool] = useState("")
 
   const [voteAgain, setVoteAgain] = useState();
 
+  // loading
+
+
+  
   // add localstorage user info
 
   const isValidate = () => {
@@ -216,7 +220,7 @@ const[votingSchool,setVotingSchool] = useState("")
     return isproccesd;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     let obj = {
       username,
@@ -227,34 +231,37 @@ const[votingSchool,setVotingSchool] = useState("")
     };
 
     if (isValidate()) {
-      fetch("http://127.0.0.1:8000/info/users/", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(obj),
-      })
-        .then((res) => {
-          if (res.ok) {
-            toast.success(
-              "Մուտք գործեք էլեկտրոնային հասցեն եվ անցեք վերիֆիկացում․․․"
-            );
-            localStorage.removeItem("email");
-            localStorage.removeItem("password");
-            localStorage.setItem("name", JSON.stringify(username));
+      try {
 
-            setEmail("")
-            setPassword("")
-            setComfirmPassword("")
-            setName("")
-            setPhone("")
-            navigate("/");
-          } else if (res.status === 400) {
-            toast.warning("Այս Էլ-հասցեն գոյություն ունի համակարգում․․․");
-            setErrorEmail(true);
-          }
-        })
-        .catch((err) => {
-          toast.warning("Չհաջողվեց");
+        const response = await fetch("http://127.0.0.1:8000/info/users/", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(obj),
         });
+      
+        if (response.ok) {
+
+          toast.success(
+            "Մուտք գործեք էլեկտրոնային հասցեն եվ անցեք վերիֆիկացում"
+          );
+          localStorage.removeItem("email");
+          localStorage.removeItem("password");
+          localStorage.setItem("name", JSON.stringify(username));
+      
+          setEmail("");
+          setPassword("");
+          setComfirmPassword("");
+          setName("");
+          setPhone("");
+          navigate("/");
+        } else if (response.status === 400) {
+          toast.warning("Այս Էլեկտրոնային հասցեն գոյություն ունի համակարգում․․․");
+          setErrorEmail(true);
+        }
+      } catch (error) {
+        toast.warning("Չհաջողվեց");
+      } 
+      
     }
   };
 
@@ -382,13 +389,16 @@ const[votingSchool,setVotingSchool] = useState("")
 
   // Modal func
 
-  const toggleModal = () => {
+  const toggleModal = (e) => {
+    e.preventDefault()
     setModal(!modal);
   };
 
   const togleModalHome = () => {
     setModalHome(!modal);
   };
+
+  
 
   return (
     <UserContext.Provider
@@ -415,7 +425,6 @@ const[votingSchool,setVotingSchool] = useState("")
           communityUpload,
           logeOut,
           votingSchool
-          
         },
         userActions: {
           setName,
