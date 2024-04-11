@@ -288,6 +288,7 @@ class Message(models.Model):
     name = models.CharField("Անուն", max_length=50)
     email = models.EmailField("Էլ․ հասցե")
     message = models.CharField("Նամակ", max_length=255)
+    
 
     class Meta:
         verbose_name = "Նամակ"
