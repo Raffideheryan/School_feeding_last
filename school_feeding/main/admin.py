@@ -46,9 +46,9 @@ class RegistrationAdmin(admin.ModelAdmin):
     list_display_links = ["contact_person"]
 
 
-# class MessageAdmin(admin.ModelAdmin):
-#     list_display = ["name", "email", "message","phone"]
-#     list_display_links = ["name"]
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "phone"]
+    list_display_links = ["name"]
 
 
 @admin.register(CustomUser)
@@ -73,4 +73,4 @@ admin.site.register(Project2, ProjectAdmin2)
 admin.site.register(Project3, ProjectAdmin3)
 admin.site.register(Project4, ProjectAdmin4)
 admin.site.register(Registration, RegistrationAdmin)
-admin.site.register(Message)
+admin.site.register(Message, MessageAdmin)
