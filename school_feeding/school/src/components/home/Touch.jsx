@@ -71,7 +71,7 @@ export const Touch = () => {
         setErrorPhone(true);
       }
   
-      if (message.length >= 155) {
+      if (message.length >= 300) {
         toast.warning(" Ձեր հաղորդագրությունը երկար է․․․");
         isproccesd = false;
         setErrorMessage(false);
