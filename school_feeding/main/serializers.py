@@ -237,8 +237,7 @@ class ProjectSerializer3(serializers.ModelSerializer):
                     if num_pages >= 15:
                         raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
                 # Check if the file is a PowerPoint presentation
-                elif value.name.endswith('.pptx') or value.name.endswith('.ppt'):
-                    # Validate PowerPoint file using file extension
+                elif value.name.endswith('.ppt') or value.name.endswith('.pptx'):
                     prs = Presentation(value)
                     num_slides = len(prs.slides)
                     if num_slides >= 15:
@@ -302,8 +301,7 @@ class ProjectSerializer4(serializers.ModelSerializer):
                     if num_pages >= 15:
                         raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
                 # Check if the file is a PowerPoint presentation
-                elif value.name.endswith('.pptx') or value.name.endswith('.ppt'):
-                    # Validate PowerPoint file using file extension
+                elif value.name.endswith('.ppt') or value.name.endswith('.pptx'):
                     prs = Presentation(value)
                     num_slides = len(prs.slides)
                     if num_slides >= 15:
