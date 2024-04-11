@@ -171,6 +171,7 @@ class ProjectSerializer1(serializers.ModelSerializer):
     def create(self, validated_data):
         pdf_file = validated_data.pop('pdf')
         word_file = validated_data.pop('word')
+        team_name = validated_data.pop('team')
 
 
         project = Project1(pdf=pdf_file, word=word_file, **validated_data)
@@ -290,7 +291,6 @@ class ProjectSerializer4(serializers.ModelSerializer):
         fields = "__all__"
 
     
-
     def validate_pdf(self, value):
         if value:
             try:
