@@ -1,0 +1,6 @@
+# .dockerignore
+.venv
+.git
+.gitignore
+*.pyc
+docker-compose/

@@ -1,0 +1,19 @@
+
+
+.App{
+    
+    height: 100vh;
+    width: 100%;
+    
+}
+
+button{
+    user-select: none;
+  }
+  
+
+.routes{
+    width: 100%;
+}
+
+/* WDS_SOCKET_HOST=127.0.0.1 CHOKIDAR_USEPOLLING=true WATCHPACK_POLLING=true */

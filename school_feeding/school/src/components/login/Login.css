@@ -1,0 +1,90 @@
+
+.login{
+  height: 100vh !important;
+}
+
+
+.rememberMe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.rememberMe div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.loginbtn{
+  margin-top: 20px;
+}
+.rememberMe input{
+    width: 10%;
+  padding: 0;
+  margin: 0;
+
+}
+
+.rememberMe a{
+    text-decoration: none;
+    color: rgba(255, 179, 0, 1);
+    font-size: 15px;
+    float: right;
+    display: contents;
+    width: 50%;
+
+}
+
+.rememberMe a:hover{
+    text-decoration: underline;
+    color: rgba(236, 126, 0, 1);
+    transition: all .5s linear;
+}
+
+.remember{
+  height: 28px ;
+  width: 28px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px !important;
+}
+.rememberMe label{
+  padding: 0 10px;
+}
+
+.signin a{
+  margin-left: 15px;
+}
+
+
+@media screen and (max-width:968px) {
+
+  .rememberMe div{
+    width: 30%;
+  }
+  
+}
+
+
+
+
+@media screen and (max-width:404px) {
+    .rememberMe label{
+      font-size: 10px;
+    }
+    .rememberMe a{
+      font-size: 10px;
+    }
+
+    .remember{
+      width: 20px !important;
+      height: 20px;
+    }
+}
+
+

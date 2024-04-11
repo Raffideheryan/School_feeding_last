@@ -1,0 +1,3 @@
+[submodule "school_feeding/school"]
+	path = school_feeding/school
+	url = https://github.com/RobQocharyan123/scool.git

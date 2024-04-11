@@ -1,0 +1,9 @@
+.register-all form {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 470px) {
+  .register-all h1 {
+    font-size: 18px;
+  }
+}

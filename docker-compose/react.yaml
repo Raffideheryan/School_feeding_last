@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  react:
+    build: ../school_feeding/school
+    container_name: react
+    ports:
+      - "3000:3000"
+    volumes:
+      - static_volume:/app/build/static
+    restart: always
+
+volumes:
+  static_volume:

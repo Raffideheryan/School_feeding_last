@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: app
+    restart: always
+    volumes:
+      - static_volume:/app/build/static
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  react:
+    build: ./school_feeding/school
+    container_name: react
+    ports:
+      - "3000:3000"
+    volumes:
+      - static_volume:/app/build/static
+    restart: always
+      
+
+volumes:
+  static_volume:
+  postgres_data:

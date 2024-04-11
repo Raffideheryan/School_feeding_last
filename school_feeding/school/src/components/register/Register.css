@@ -1,0 +1,162 @@
+.register {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(255, 179, 0, 1);
+  padding: 100px 0;
+}
+
+.register-all {
+  width: 55%;
+  padding: 30px 0px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.register-all h1 {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 13px;
+  color: rgba(0, 0, 0, 1);
+}
+
+form {
+  width: 80%;
+}
+
+form div {
+  width: 100%;
+}
+
+form input {
+  width: 97%;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgba(172, 164, 164, 1);
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+form input:focus {
+  border: 1px solid rgba(255, 179, 0, 1);
+}
+
+input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+form label {
+  padding: 0 20px;
+  font-weight: 400;
+  font-size: 15px;
+  color: rgba(172, 164, 164, 1);
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+}
+.email {
+  display: flex;
+  flex-direction: column;
+}
+
+form button {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 179, 0, 1);
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+form button:hover {
+  background-color: rgba(236, 126, 0, 1);
+}
+
+.signin p,
+a {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: rgba(13, 14, 14, 1);
+}
+
+.signin a {
+  color: rgba(255, 179, 0, 1);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.signin a:hover {
+  text-decoration: underline;
+}
+
+.password {
+  position: relative;
+}
+
+.password svg {
+  cursor: pointer;
+  position: absolute;
+  right: 14px;
+  top: 40px;
+  z-index: 5;
+}
+
+
+.signin{
+  margin-top: 20px;
+}
+/* media register */
+
+@media screen and (max-width: 768px) {
+  .register-all {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .register-all {
+    width: 95%;
+  }
+  form label {
+    font-size: 12px;
+  }
+
+  .signin p,
+  a {
+    font-size: 15px;
+  }
+}
+
+/* Validation */
+
+.error {
+  border: 1px solid red;
+}
+
+
+
+/* placholder inputs */
+
+input::placeholder{
+  font-size: 11px;
+  color: rgba(172, 164, 164, 1);
+
+}
