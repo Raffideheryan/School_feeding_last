@@ -53,7 +53,8 @@ export const Discovering = () => {
 
     if (validationNames()) {
       const formData = new FormData();
-
+      const storedEmail = localStorage.getItem("email");
+      formData.append("user", storedEmail);
       // Append text fields
       formData.append("name1", name1);
       formData.append("name2", name2);
@@ -197,7 +198,7 @@ export const Discovering = () => {
     uploadFile(file, buttonId);
   };
   const validationPresentation = (file, buttonId) => {
-    const allowedExtensions = ["pdf", "ppt"];
+    const allowedExtensions = ["pdf", "ppt", "pptx"];
     file = file[0];
 
     let fileExtension;

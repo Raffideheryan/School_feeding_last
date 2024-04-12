@@ -44,7 +44,7 @@ const[votingSchool,setVotingSchool] = useState("")
 
   const [voteAgain, setVoteAgain] = useState();
 
-  // loading
+  // loginuserid
 
 
   
@@ -424,7 +424,7 @@ const[votingSchool,setVotingSchool] = useState("")
           remember,
           communityUpload,
           logeOut,
-          votingSchool
+          votingSchool,
         },
         userActions: {
           setName,
@@ -447,7 +447,7 @@ const[votingSchool,setVotingSchool] = useState("")
           setVoteAgain,
           setRememberMe,
           setLogeOut,
-          setVotingSchool
+          setVotingSchool,
         },
       }}
     >

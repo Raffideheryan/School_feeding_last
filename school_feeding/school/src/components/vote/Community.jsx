@@ -51,12 +51,16 @@ export const Community = () => {
     e.preventDefault();
 
     if (validationNames()) {
-      const formData = new FormData();
+     
 
+      const formData = new FormData();
+      const storedEmail = localStorage.getItem("email");
+      formData.append("user", storedEmail);
       formData.append("name1", name1);
       formData.append("name2", name2);
       formData.append("name3", name3);
       formData.append("name4", name4);
+
 
       formData.append(`img1`, filesPhotos[0] ? filesPhotos[0] : "");
       formData.append(`img2`, filesPhotos[1] ? filesPhotos[1] : "");
@@ -69,7 +73,7 @@ export const Community = () => {
       formData.append("pdf_only", filesPdf);
       formData.append("video", filesVideo);
 
-      fetch("http://127.0.0.1:8000/info/projects3/", {
+      fetch("http://127.0.0.1:8000/info/projects4/", {
         method: "POST",
         body: formData,
       })
@@ -191,7 +195,7 @@ export const Community = () => {
      uploadFile(file, buttonId);
   };
   const validationPresentation =  (file, buttonId) => {
-    const allowedExtensions = ["pdf", "ppt"];
+    const allowedExtensions = ["pdf", "ppt", "pptx"];
     file = file[0];
 
     let fileExtension;

@@ -9,6 +9,8 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 export const Register = () => {
   const { userState, userActions } = useContext(UserContext);
 const [show, setShow] = useState(false);
+const navigate = useNavigate();
+
 
 useEffect(()=>{
   localStorage.removeItem('email');
@@ -19,6 +21,14 @@ useEffect(()=>{
   userActions.setName("")
   userActions.setPhone("")
 },[])
+
+const gotoRegister = (e)=>{
+  e.preventDefault()
+  userActions.setEmail("")
+  userActions.setPassword("")
+  navigate("/login")
+
+}
 
   return (
     <div className="register">
@@ -93,7 +103,7 @@ useEffect(()=>{
           <button type={"submit"}>Գրանցվել</button>
         </form>
         <div className="signin">
-          <p>ՈՒնեք հաշիվ ? <a href="/login">Մուտք</a> </p>
+          <p>ՈՒնեք հաշիվ ? <a href="#" onClick={gotoRegister}>Մուտք</a> </p>
         </div>
       </div>
     </div>

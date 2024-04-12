@@ -2,16 +2,24 @@ import "./Login.css";
 import { UserContext } from "../../UserContext";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import React, { useState, useContext,useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const { userState, userActions } = useContext(UserContext);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+
 
   useEffect(()=>{
     localStorage.removeItem('email');
     localStorage.removeItem('password');
     localStorage.removeItem('resetemail');
   },[])
+
+  const gotoRegister = (e)=>{
+    e.preventDefault()
+    navigate("/register")
+  }
 
   return (
     <div className="register login">
@@ -66,7 +74,7 @@ export const Login = () => {
         </form>
         <div className="signin">
           <p>
-            Չունե՞ք հաշիվ<a href="/register">Գրանցվել</a>{" "}
+            Չունե՞ք հաշիվ<a href="#" onClick={gotoRegister}>Գրանցվել</a>{" "}
           </p>
         </div>
       </div>

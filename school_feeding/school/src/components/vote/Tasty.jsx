@@ -48,6 +48,9 @@ export const Tasty = () => {
     if (validationNames()) {
       const formData = new FormData();
 
+      const storedEmail = localStorage.getItem("email");
+      formData.append("user", storedEmail);
+
       formData.append("name1", name1);
       formData.append("name2", name2);
       formData.append("name3", name3);

@@ -9,6 +9,8 @@ import { UserContext } from "../../UserContext";
 export default function Forms() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState({});
+  const { userState, userActions } = useContext(UserContext);
+
   const [infoForm, setInfoForm] = useState({
     region: "",
     town: "",
@@ -20,6 +22,7 @@ export default function Forms() {
     age_cat: "",
     project_cat1: "",
     project_cat2: "",
+    user:""
   });
 
   // errors
@@ -51,7 +54,6 @@ export default function Forms() {
     project_cat4: false,
   });
 
-  const { userState, userActions } = useContext(UserContext);
 
   const validete = (values) => {
     let errors = true;
@@ -305,6 +307,9 @@ export default function Forms() {
     e.preventDefault();
 
     if (validete(infoForm)) {
+    const storedEmail = localStorage.getItem("email");
+      infoForm.user = storedEmail
+      console.log(infoForm);
       setErrorMessage(true);
       async function submitInfoForm() {
         try {
