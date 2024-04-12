@@ -70,7 +70,6 @@ export const Tasty = () => {
       formData.append("word", files);
       formData.append("pdf", filesPdf);
       formData.append("video", filesVideo);
-
       fetch("http://127.0.0.1:8000/info/projects2/", {
         method: "POST",
         body: formData,
