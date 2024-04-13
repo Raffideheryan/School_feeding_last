@@ -89,6 +89,14 @@ export const Community = () => {
               "pdf,ppt կամ word  ֆայլերը  չեն համապատասխանում պահանջներին"
             );
           }
+
+          if(res.status===500){
+            toast.warning(
+              "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
+            );
+            navigate('/login')
+
+          }
         })
         .catch((err) => {
           toast.warning("Չհաջողվեց");
@@ -494,7 +502,7 @@ export const Community = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{files.name}</p>
+              <p className="fileName">{files.name}</p>
             </div>
 
             <div>
@@ -565,14 +573,14 @@ export const Community = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{filesPresentation.name}</p>
+              <p  className="fileName">{filesPresentation.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք փաստաթուղթ MS Word, *.pdf կամ *.ppt ձևաչափերով
+                  Ներբեռնեք փաստաթուղթ *.pdf կամ *.ppt ձևաչափերով
                   (առավելագույնը 10 էջ){" "}
                 </p>
               </h4>
@@ -634,7 +642,7 @@ export const Community = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
                 })}
             </div>
 
@@ -694,7 +702,7 @@ export const Community = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{filesPdf.name}</p>
+              <p  className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
@@ -765,7 +773,7 @@ export const Community = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{filesVideo.name}</p>
+              <p  className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>

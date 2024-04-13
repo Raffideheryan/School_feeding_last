@@ -496,6 +496,13 @@
   transition: all 0.5s linear;
 }
 
+/* file color ulpoad */
+
+.fileName{
+  font-weight: 600;
+  color: green;
+}
+
 /*
 @media screen and (max-width: 622px) {
   .upload-concept {

@@ -150,7 +150,7 @@ class ProjectSerializer1(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 15:
+                if num_pages >= 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -192,7 +192,7 @@ class ProjectSerializer2(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 15:
+                if num_pages >= 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -256,7 +256,7 @@ class ProjectSerializer3(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 15:
+                if num_pages >= 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -299,13 +299,13 @@ class ProjectSerializer4(serializers.ModelSerializer):
                 if value.name.endswith('.pdf'):
                     pdf_reader = PdfReader(value)
                     num_pages = len(pdf_reader.pages)
-                    if num_pages >= 15:
+                    if num_pages >= 10:
                         raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
                 # Check if the file is a PowerPoint presentation
                 elif value.name.endswith('.ppt') or value.name.endswith('.pptx'):
                     prs = Presentation(value)
                     num_slides = len(prs.slides)
-                    if num_slides >= 15:
+                    if num_slides >= 10:
                         raise serializers.ValidationError("PowerPoint file must have at most 10 slides.")
                 else:
                     raise serializers.ValidationError("Unsupported file format.")
@@ -319,7 +319,7 @@ class ProjectSerializer4(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 15:
+                if num_pages >= 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")

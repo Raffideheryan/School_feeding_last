@@ -56,7 +56,7 @@ const[votingSchool,setVotingSchool] = useState("")
 
   const isValidate = () => {
     let isproccesd = true;
-    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]+$/.test(
+    const passRegex = /^[a-zA-Z0-9]+$/.test(
       password
     );
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/.test(email);
@@ -282,7 +282,9 @@ const[votingSchool,setVotingSchool] = useState("")
         body: JSON.stringify(obj),
       })
         .then((res) => {
-          if (res.ok) {
+          const data =  res.json();
+
+           if (res.ok) {
             setLogeOut(false)
             toast.success("Հաջողվեց");
             navigate("/");
@@ -294,19 +296,22 @@ const[votingSchool,setVotingSchool] = useState("")
             }else{
               localStorage.setItem("email", JSON.stringify(email));
             }
-            return res.json()
           }else if(res.status === 401){
-            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում")
-          } else {
+            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում Կամ ստուգեք մուտքագրված տվյալների ճշտությունը")
+            setEmail("")
+            setPassword("")
+          }else if(res.status===404) {
             toast.warning(" Տվյալները սխալ են․․․ ");
             setErrorPassword(true);
             setErrorEmail(true);
+            setEmail("")
+            setPassword("")
           }
         }).then((data)=>{
           setUserId(data.user_id)
         })
         .catch((err) => {
-          toast.warning("Չհաջողվեց");
+          // toast.warning("Չհաջողվեց");
         });
     }
   };
@@ -458,7 +463,9 @@ const[votingSchool,setVotingSchool] = useState("")
           setLogeOut,
           setVotingSchool,
           setUserId,
-          setFormId
+          setFormId,
+          setErrorPassword,
+          setErrorEmail
         },
       }}
     >

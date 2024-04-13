@@ -56,7 +56,6 @@ export const ForgetPass = () => {
           </div>
 
           <button type={"submit"}>Ուղարկել</button>
-          {/* <a href="">Back</a> */}
         </form>
         <div className="signin">
           <p>

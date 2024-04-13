@@ -93,6 +93,14 @@ export const Tasty = () => {
               "pdf կամ word  ֆայլերը  չեն համապատասխանում պահանջներին"
             );
           }
+
+          if(res.status===500){
+            toast.warning(
+              "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
+            );
+            navigate('/login')
+
+          }
         })
         .catch((err) => {
           toast.warning("Չհաջողվեց");
@@ -474,7 +482,7 @@ export const Tasty = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{files.name}</p>
+              <p  className="fileName">{files.name}</p>
             </div>
 
             <div>
@@ -556,7 +564,7 @@ export const Tasty = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
                 })}
             </div>
 
@@ -608,7 +616,7 @@ export const Tasty = () => {
                 key={resetKey}
 
               />
-              <p>{filesPdf.name}</p>
+              <p  className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
@@ -676,7 +684,7 @@ export const Tasty = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p>{filesVideo.name}</p>
+              <p  className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>

@@ -20,6 +20,8 @@ useEffect(()=>{
   userActions.setComfirmPassword("")
   userActions.setName("")
   userActions.setPhone("")
+  userActions.setErrorPassword(false);
+  userActions.setErrorEmail(false);
 },[])
 
 const gotoRegister = (e)=>{

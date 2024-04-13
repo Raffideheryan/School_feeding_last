@@ -337,8 +337,14 @@ export default function Forms() {
             toast.warning("Այս Էլ-հասցեն գոյություն ունի համակարգում");
             setErroremail(true);
           }
+
+            
         } catch (error) {
-          toast.warning("Չհաջողվեց");
+          toast.warning(
+            "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
+          );
+          navigate('/login')
+
         }
       }
       submitInfoForm();

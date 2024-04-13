@@ -14,6 +14,8 @@ export const Login = () => {
     localStorage.removeItem('email');
     localStorage.removeItem('password');
     localStorage.removeItem('resetemail');
+    userActions.setEmail("")
+    userActions.setPassword("")
   },[])
 
   const gotoRegister = (e)=>{
