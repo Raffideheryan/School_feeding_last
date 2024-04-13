@@ -45,7 +45,7 @@ const[votingSchool,setVotingSchool] = useState("")
   const [voteAgain, setVoteAgain] = useState();
 
   // loginuserid
-
+   const [userId,setUserId]= useState("")
 
   
   // add localstorage user info
@@ -290,6 +290,7 @@ const[votingSchool,setVotingSchool] = useState("")
             }else{
               localStorage.setItem("email", JSON.stringify(email));
             }
+            return res.json()
           }else if(res.status === 401){
             toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում")
           } else {
@@ -297,6 +298,8 @@ const[votingSchool,setVotingSchool] = useState("")
             setErrorPassword(true);
             setErrorEmail(true);
           }
+        }).then((data)=>{
+          setUserId(data.user_id)
         })
         .catch((err) => {
           toast.warning("Չհաջողվեց");
@@ -425,6 +428,7 @@ const[votingSchool,setVotingSchool] = useState("")
           communityUpload,
           logeOut,
           votingSchool,
+          userId
         },
         userActions: {
           setName,
@@ -448,6 +452,7 @@ const[votingSchool,setVotingSchool] = useState("")
           setRememberMe,
           setLogeOut,
           setVotingSchool,
+          setUserId
         },
       }}
     >

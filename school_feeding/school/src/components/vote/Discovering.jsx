@@ -53,7 +53,8 @@ export const Discovering = () => {
 
     if (validationNames()) {
       const formData = new FormData();
-      const storedEmail = localStorage.getItem("email");
+      const storedEmail = userState.userId
+
       formData.append("user", storedEmail);
       // Append text fields
       formData.append("name1", name1);

@@ -50,7 +50,8 @@ export const Lifestyle = () => {
     if (validationNames()) {
       const formData = new FormData();
       
-      const storedEmail = localStorage.getItem("email");
+      const storedEmail = userState.userId
+
       formData.append("user", storedEmail);
 
       formData.append("name1", name1);

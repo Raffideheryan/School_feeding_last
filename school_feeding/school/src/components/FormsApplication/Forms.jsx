@@ -307,7 +307,8 @@ export default function Forms() {
     e.preventDefault();
 
     if (validete(infoForm)) {
-    const storedEmail = localStorage.getItem("email");
+    const storedEmail = userState.userId;
+    console.log(storedEmail);
       infoForm.user = storedEmail
       setErrorMessage(true);
       async function submitInfoForm() {
