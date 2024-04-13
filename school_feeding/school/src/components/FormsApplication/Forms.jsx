@@ -308,7 +308,6 @@ export default function Forms() {
 
     if (validete(infoForm)) {
     const storedEmail = userState.userId;
-    console.log(storedEmail);
       infoForm.user = storedEmail
       setErrorMessage(true);
       async function submitInfoForm() {
@@ -321,7 +320,7 @@ export default function Forms() {
               body: JSON.stringify(infoForm),
             }
           );
-
+          const data = await response.json();
           if (response.ok) {
             if (infoForm.project_cat1) {
               navigate("/lifestyle");
@@ -333,6 +332,7 @@ export default function Forms() {
               navigate("/community");
             }
             userActions.setVoteAgain(infoForm);
+            userActions.setFormId(data.id)
           } else if (response.status === 400) {
             toast.warning("Այս Էլ-հասցեն գոյություն ունի համակարգում");
             setErroremail(true);
