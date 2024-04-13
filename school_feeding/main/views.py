@@ -82,8 +82,11 @@ from .serializers import (  # PasswordChangeSerializer,
     VotableItemSerializer,
     VoteSerializer,
 )
-
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # changes
+
+@method_decorator(login_required, name='dispatch')
 class ApplicationFormView(viewsets.ModelViewSet):
 
     queryset = ApplicationForm.objects.all()
@@ -105,11 +108,12 @@ def perform_create(self, serializer):
         return Response({"message": "Form submitted successfully", 'form_id': form_id}, status=status.HTTP_201_CREATED)
 
 
+@method_decorator(login_required, name='dispatch')
 class VotableItemViewSet(viewsets.ModelViewSet):
     queryset = VotableItem.objects.all()
     serializer_class = VotableItemSerializer
 
-
+@method_decorator(login_required, name='dispatch')
 class VoteViewSet(viewsets.ModelViewSet):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
@@ -251,7 +255,7 @@ class TeamView(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
 
-
+@method_decorator(login_required, name='dispatch')
 class ProjectView1(viewsets.ModelViewSet):
     queryset = Project1.objects.all()
     serializer_class = ProjectSerializer1
@@ -268,7 +272,7 @@ class ProjectView1(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-
+@method_decorator(login_required, name='dispatch')
 class ProjectView2(viewsets.ModelViewSet):
     queryset = Project2.objects.all()
     serializer_class = ProjectSerializer2
@@ -284,7 +288,7 @@ class ProjectView2(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
     
 
-
+@method_decorator(login_required, name='dispatch')
 class ProjectView3(viewsets.ModelViewSet):
     queryset = Project3.objects.all()
     serializer_class = ProjectSerializer3
@@ -300,7 +304,7 @@ class ProjectView3(viewsets.ModelViewSet):
 
         serializer.save(user=self.request.user)
 
-
+@method_decorator(login_required, name='dispatch')
 class ProjectView4(viewsets.ModelViewSet):
     queryset = Project4.objects.all()
     serializer_class = ProjectSerializer4
