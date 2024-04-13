@@ -65,6 +65,7 @@ class Team(models.Model):
 
 
 class ApplicationForm(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.PROTECT, null=True)
     region = models.CharField("Մարզ", choices=utils.REGION_CHOICES)
     town = models.CharField("Գյուղ/Քաղաք", max_length=100)
     school_name = models.CharField("Դպրոցի անուն", max_length=250)

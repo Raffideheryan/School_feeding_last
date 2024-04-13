@@ -88,6 +88,16 @@ class ApplicationFormView(viewsets.ModelViewSet):
     queryset = ApplicationForm.objects.all()
     serializer_class = ApplicationFormSerializer
 
+    def perform_create(self, serializer):
+        _id = self.request.data.get('user', None)
+        if _id:
+            user_instance = CustomUser.objects.get(pk=_id)
+            if user_instance:
+                serializer.save(user=user_instance)
+                return
+
+        serializer.save(user=self.request.user)
+
 
 class VotableItemViewSet(viewsets.ModelViewSet):
     queryset = VotableItem.objects.all()
@@ -158,7 +168,7 @@ class UserView(viewsets.ModelViewSet):
         self.send_verification_email(user)
         
         # Schedule user deletion after 2 minutes
-        deletion_timer = Timer(10, self.delete_unverified_user, args=[user.id])
+        deletion_timer = Timer(180, self.delete_unverified_user, args=[user.id])
         deletion_timer.start()
         
         headers = self.get_success_headers(serializer.data)
@@ -223,7 +233,7 @@ class LoginView(APIView):
 
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+            return Response({"message": "Login successful" , 'user_id':user.id}, status=status.HTTP_200_OK)
         else:
             return Response(
                 {"error": "Invalid credentials"},
