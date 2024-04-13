@@ -260,7 +260,7 @@ class ProjectView1(viewsets.ModelViewSet):
         _id = self.request.data.get('user', None)
         if _id:
             # user_instance = CustomUser.objects.get(pk=int(_id))
-            app_form_instance = ApplicationForm.objects.get(user=int(user_instance))
+            app_form_instance = ApplicationForm.objects.get(pk=int(_id))
             if app_form_instance:
                 serializer.save(user=app_form_instance)
                 return
@@ -276,8 +276,7 @@ class ProjectView2(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         _id = self.request.data.get('user', None)
         if _id:
-            user_instance = CustomUser.objects.get(pk=int(_id))
-            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            app_form_instance = ApplicationForm.objects.get(pk=int(_id))
             if app_form_instance:
                 serializer.save(user=app_form_instance)
                 return
@@ -294,8 +293,7 @@ class ProjectView3(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         _id = self.request.data.get('user', None)
         if _id:
-            user_instance = CustomUser.objects.get(pk=int(_id))
-            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            app_form_instance = ApplicationForm.objects.get(pk=int(_id))
             if app_form_instance:
                 serializer.save(user=app_form_instance)
                 return
@@ -310,8 +308,7 @@ class ProjectView4(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         _id = self.request.data.get('user', None)
         if _id:
-            user_instance = CustomUser.objects.get(pk=int(_id))
-            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            app_form_instance = ApplicationForm.objects.get(pk=int(_id))
             if app_form_instance:
                 serializer.save(user=app_form_instance)
                 return
