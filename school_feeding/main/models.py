@@ -89,7 +89,7 @@ class ApplicationForm(models.Model):
 
 
 class Project1(models.Model):
-    team = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
     name1 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
     name2 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
     name3 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
@@ -136,7 +136,7 @@ class Project1(models.Model):
         
 
 class Project2(models.Model):
-    team = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
     
     name1 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
     name2 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
@@ -179,7 +179,7 @@ class Project2(models.Model):
         verbose_name_plural = "Համեղ և առողջարար, իմ սիրելի առողջարար բաղադրատոմսը"  
 
 class Project3(models.Model):
-    team = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
 
     name1 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
     name2 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
@@ -225,7 +225,7 @@ class Project3(models.Model):
         verbose_name_plural = "Բացահայտելով առողջ ապրելակերպի աշխարհը․ մեր հետազոտությունը"
 
 class Project4(models.Model):
-    team = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(ApplicationForm, verbose_name="Թիմ", on_delete=models.CASCADE, null=True)
 
     name1 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)
     name2 = models.CharField("Մասնակցի անուն", max_length=50, null=True, blank=True)

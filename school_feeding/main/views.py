@@ -64,6 +64,8 @@ from .models import (
     VotableItem,
     Vote,
 )
+from django.contrib.auth.decorators import login_required
+
 from .serializers import (  # PasswordChangeSerializer,
     ApplicationFormSerializer,
     ForgetPasswordSerializer,
@@ -82,21 +84,25 @@ from .serializers import (  # PasswordChangeSerializer,
 )
 
 # changes
-
 class ApplicationFormView(viewsets.ModelViewSet):
 
     queryset = ApplicationForm.objects.all()
     serializer_class = ApplicationFormSerializer
-
-    def perform_create(self, serializer):
+    
+def perform_create(self, serializer):
         _id = self.request.data.get('user', None)
         if _id:
-            user_instance = CustomUser.objects.get(pk=_id)
+            user_instance = CustomUser.objects.get(pk=int(_id))
             if user_instance:
                 serializer.save(user=user_instance)
-                return
-
+                form_instance = serializer.instance
+                form_id = form_instance.form_id  # Get the form ID
+                return Response({"message": "Form submitted successfully", 'form_id': form_id}, status=status.HTTP_201_CREATED)
+        
         serializer.save(user=self.request.user)
+        form_instance = serializer.instance
+        form_id = form_instance.form_id  # Get the form ID
+        return Response({"message": "Form submitted successfully", 'form_id': form_id}, status=status.HTTP_201_CREATED)
 
 
 class VotableItemViewSet(viewsets.ModelViewSet):
@@ -250,13 +256,33 @@ class ProjectView1(viewsets.ModelViewSet):
     queryset = Project1.objects.all()
     serializer_class = ProjectSerializer1
 
- 
+    def perform_create(self, serializer):
+        _id = self.request.data.get('user', None)
+        if _id:
+            user_instance = CustomUser.objects.get(pk=int(_id))
+            app_form_instance = ApplicationForm.objects.get(user=int(user_instance))
+            if app_form_instance:
+                serializer.save(user=app_form_instance)
+                return
+
+        serializer.save(user=self.request.user)
+
 
 
 class ProjectView2(viewsets.ModelViewSet):
     queryset = Project2.objects.all()
     serializer_class = ProjectSerializer2
 
+    def perform_create(self, serializer):
+        _id = self.request.data.get('user', None)
+        if _id:
+            user_instance = CustomUser.objects.get(pk=int(_id))
+            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            if app_form_instance:
+                serializer.save(user=app_form_instance)
+                return
+
+        serializer.save(user=self.request.user)
     
 
 
@@ -265,11 +291,35 @@ class ProjectView3(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer3
 
 
+    def perform_create(self, serializer):
+        _id = self.request.data.get('user', None)
+        if _id:
+            user_instance = CustomUser.objects.get(pk=int(_id))
+            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            if app_form_instance:
+                serializer.save(user=app_form_instance)
+                return
+
+        serializer.save(user=self.request.user)
 
 
 class ProjectView4(viewsets.ModelViewSet):
     queryset = Project4.objects.all()
     serializer_class = ProjectSerializer4
+
+    def perform_create(self, serializer):
+        _id = self.request.data.get('user', None)
+        if _id:
+            user_instance = CustomUser.objects.get(pk=int(_id))
+            app_form_instance = ApplicationForm.objects.get(user=user_instance)
+            if app_form_instance:
+                serializer.save(user=app_form_instance)
+                return
+
+        serializer.save(user=self.request.user)
+
+
+
 
     # def create(self, request, *args, **kwargs):
     #     pdf_file = request.data.get('pdf')

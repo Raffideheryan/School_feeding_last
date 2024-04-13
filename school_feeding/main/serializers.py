@@ -173,7 +173,6 @@ class ProjectSerializer1(serializers.ModelSerializer):
     def create(self, validated_data):
         pdf_file = validated_data.pop('pdf')
         word_file = validated_data.pop('word')
-        team_name = validated_data.pop('team')
 
 
         project = Project1(pdf=pdf_file, word=word_file, **validated_data)
