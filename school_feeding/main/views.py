@@ -259,7 +259,7 @@ class ProjectView1(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         _id = self.request.data.get('user', None)
         if _id:
-            user_instance = CustomUser.objects.get(pk=int(_id))
+            # user_instance = CustomUser.objects.get(pk=int(_id))
             app_form_instance = ApplicationForm.objects.get(user=int(user_instance))
             if app_form_instance:
                 serializer.save(user=app_form_instance)
