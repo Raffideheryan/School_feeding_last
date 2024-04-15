@@ -3,16 +3,11 @@ from django.urls import path
 
 from . import views
 from .views import (
-    # ChangePasswordView,
-    # PasswordResetConfirmView,
-    # PasswordResetRequestView,
     index,
     login_request,
-    # logout_request,
     register_request,
     LoginView,
     LogoutView,
-    # generate_password_reset_token
 )
 
 
