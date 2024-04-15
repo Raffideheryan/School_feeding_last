@@ -313,7 +313,7 @@ export default function Forms() {
       async function submitInfoForm() {
         try {
           const response = await fetch(
-            "http://127.0.0.1:8000/info/applicationform/",
+            "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/applicationform/",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

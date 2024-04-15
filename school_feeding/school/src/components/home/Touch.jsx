@@ -93,7 +93,7 @@ export const Touch = () => {
       };
   
       if (validationTouch()) {
-        fetch("http://127.0.0.1:8000/info/messages/", {
+        fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/messages/", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(obj),

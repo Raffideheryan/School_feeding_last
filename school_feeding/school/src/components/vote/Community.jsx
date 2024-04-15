@@ -51,17 +51,14 @@ export const Community = () => {
     e.preventDefault();
 
     if (validationNames()) {
-     
-
       const formData = new FormData();
-      const storedEmail = userState.formId
+      const storedEmail = userState.formId;
 
       formData.append("user", storedEmail);
       formData.append("name1", name1);
       formData.append("name2", name2);
       formData.append("name3", name3);
       formData.append("name4", name4);
-
 
       formData.append(`img1`, filesPhotos[0] ? filesPhotos[0] : "");
       formData.append(`img2`, filesPhotos[1] ? filesPhotos[1] : "");
@@ -74,10 +71,13 @@ export const Community = () => {
       formData.append("pdf_only", filesPdf);
       formData.append("video", filesVideo);
 
-      fetch("http://127.0.0.1:8000/info/projects4/", {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/projects4/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((res) => {
           if (res.status === 201) {
             toast.success("Հաջողությամբ Դիմել եք ծրագրին ");
@@ -90,12 +90,11 @@ export const Community = () => {
             );
           }
 
-          if(res.status===500){
+          if (res.status === 500) {
             toast.warning(
               "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
             );
-            navigate('/login')
-
+            navigate("/login");
           }
         })
         .catch((err) => {
@@ -182,57 +181,66 @@ export const Community = () => {
     return errorValidate;
   };
 
-  const validationUploadMS =  (file, buttonId) => {
+  const validationUploadMS = (file, buttonId) => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
       setErrorFiles(true);
       return;
-    }else {
+    } else {
       setErrorFiles(false);
     }
 
-     uploadFile(file, buttonId);
+    uploadFile(file, buttonId);
   };
-  const validationPresentation =  (file, buttonId) => {
+  const validationPresentation = (file, buttonId) => {
     const allowedExtensions = ["pdf", "ppt", "pptx"];
     file = file[0];
 
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF կամ PPT ձևաչափերով  ֆայլեր"
       );
       setErrorFilesPresentation(true);
       return;
-    }else {
+    } else {
       setErrorFilesPresentation(false);
     }
 
-     uploadFile(file, buttonId);
+    uploadFile(file, buttonId);
   };
   const maxFiles = 5;
-  const validationPhotos =  (file, buttonId) => {
+  const validationPhotos = (file, buttonId) => {
     if (file.length <= 5) {
       const allowedExtensions = ["jpg"];
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+        if (
+          fileExtension === undefined ||
+          !allowedExtensions.includes(fileExtension)
+        ) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG  ձևաչափով  նկարներ"
           );
@@ -243,7 +251,7 @@ export const Community = () => {
         }
       }
 
-       uploadFile(file, buttonId);
+      uploadFile(file, buttonId);
     } else if (file.length >= maxFiles) {
       toast.warning(
         `Դուք կարող եք վերբեռնել առավելագույնը ${maxFiles} լուսանկար`
@@ -256,25 +264,28 @@ export const Community = () => {
     }
   };
 
-  const validationPdf =  (file, buttonId) => {
+  const validationPdf = (file, buttonId) => {
     const allowedExtensions = ["pdf"];
     file = file[0];
 
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
-    }else {
+    } else {
       setErrorFilesPdf(false);
     }
 
-     uploadFile(file, buttonId);
+    uploadFile(file, buttonId);
   };
   const validationVideo = async (file, buttonId) => {
     file = file[0];
@@ -288,7 +299,7 @@ export const Community = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (file.type===undefined || !allowedFormats.includes(file.type)) {
+    if (file.type === undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -409,9 +420,9 @@ export const Community = () => {
   const changeisChecked = (e) => {
     setisChecked(e.target.checked);
   };
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-  },[isChecked])
+  }, [isChecked]);
 
   useEffect(() => {
     setisChecked(false);
@@ -419,59 +430,54 @@ export const Community = () => {
     setFilesVideo([]);
     setFiles([]);
     setFilesPhotos([]);
-    setFilesPresentation([])
-    setFilesPdf([])
-    setName1("")
-    setName2("")
-    setName3("")
-    setName4("")
+    setFilesPresentation([]);
+    setFilesPdf([]);
+    setName1("");
+    setName2("");
+    setName3("");
+    setName4("");
     window.scrollTo(0, document.body.scrollTo);
-   
-
   }, []);
-
-  
 
   return (
     <div className="lifestyle">
-      <img
-        src={require("../../assets/discovering.png")}
-        alt=""
-        className="children"
-      />
+      <div className="imgDiv">
+        <img
+          src={require("../../assets/imagePrograms/programs3.png")}
+          alt=""
+          className="children"
+        />
+      </div>
       <h1>«Իմ առողջ համայնքը» սոցիալական նախագիծ»  անվանակարգի</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը*</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName1(e.target.value)}
           className={error1 ? "error" : ""}
           value={name1}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName2(e.target.value)}
           className={error2 ? "error" : ""}
           value={name2}
-
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName3(e.target.value)}
           className={error3 ? "error" : ""}
           value={name3}
-
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName4(e.target.value)}
           className={error4 ? "error" : ""}
           value={name4}
-
         />
       </div>
 
@@ -480,8 +486,8 @@ export const Community = () => {
           <h2>Սոցիալական նախագծի հայեցակարգը.</h2>
 
           <span>
-            մանրամասն նկարագրություն, որը ուրվագծում է ծրագրի գաղափարը և
-            նպատակները:*
+            Մանրամասն նկարագրություն, որը ուրվագծում է ծրագրի գաղափարը և
+            նպատակները:
           </span>
         </div>
 
@@ -495,7 +501,6 @@ export const Community = () => {
                 hidden
                 ref={fileInputRefMS}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
@@ -510,7 +515,7 @@ export const Community = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք Microsoft Word ֆայլ, (երեք A4 էջից ոչ ավելի, Times
-                  New Roman 12 տառատեսակով):*
+                  New Roman 12 տառատեսակով):
                 </p>
               </h4>
             </div>
@@ -551,7 +556,7 @@ export const Community = () => {
 
       <div className="game">
         <div className="concept">
-          <h2>Իրականացման պլանի շնորհանդեսը*</h2>
+          <h2>Իրականացման պլանի շնորհանդեսը</h2>
         </div>
 
         <div
@@ -566,26 +571,24 @@ export const Community = () => {
                 hidden
                 ref={fileInputRefPresentation}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesPresentation.name}</p>
+              <p className="fileName">{filesPresentation.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք փաստաթուղթ *.pdf կամ *.ppt ձևաչափերով
-                  (առավելագույնը 10 էջ){" "}
+                  Ներբեռնեք փաստաթուղթ .pdf կամ .ppt ձևաչափերով (առավելագույնը
+                  10 էջ){" "}
                 </p>
               </h4>
             </div>
-
           </div>
 
           <div>
@@ -619,7 +622,7 @@ export const Community = () => {
 
       <div className="photos">
         <div className="concept">
-          <h2>Նախագծի գծագրեր կամ մանրապատկեր (մակետ)*</h2>
+          <h2>Նախագծի գծագրեր կամ մանրապատկեր (մակետ)</h2>
         </div>
 
         <div className={errorFilesPhotos ? "errorfiles upload" : "upload"}>
@@ -633,7 +636,6 @@ export const Community = () => {
                 ref={fileInputRefPhotos}
                 multiple
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
@@ -642,7 +644,11 @@ export const Community = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return (
+                    <p className="fileName" key={index}>
+                      {i[index] === undefined ? "" : i[index].name}
+                    </p>
+                  );
                 })}
             </div>
 
@@ -650,8 +656,8 @@ export const Community = () => {
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք գծագրերի, մանրապատկերի (մակետ)
-                  լուսանկարներ/սկանավորումներ JPG ձևաչափով (5 հատից ոչ ավելի)։
+                  Ներբեռնեք գծագրերի լուսանկարներ/ սկանավորումներ JPG ձևաչափով
+                  (5 հատից ոչ ավելի):
                 </p>
               </h4>
             </div>
@@ -673,16 +679,16 @@ export const Community = () => {
             մեթոդներ), թե ինչպես խթանել ձեր նախագիծը ձեր համայնքում:
           </p>
           <p>
-            **Խնդրում ենք պահպանել ձեր նկարներն ու մանրապատկերները մինչև
-            մրցույթի ավարտը; Ընտրող հանձնաժողովի անդամները կարող են պահանջել
-            ուղարկել դրանք գնահատման նպատակով:
+            Խնդրում ենք պահպանել ձեր նկարներն ու մանրապատկերները մինչև մրցույթի
+            ավարտը; Ընտրող հանձնաժողովի անդամները կարող են պահանջել ուղարկել
+            դրանք գնահատման նպատակով:
           </p>
         </div>
       </div>
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ*</h2>
+          <h2>Եռածալ բուկլետ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -695,26 +701,25 @@ export const Community = () => {
                 hidden
                 ref={fileInputRefPdf}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesPdf.name}</p>
+              <p className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ* (PDF
-                  ձևաչափը պարտադիր է)։
+                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
+                  ձևաչափը պարտադիր է):
                   <small>
-                    * PDF ձևաչափով եռածալ բուկլետն   A4 ֆորմատի 2 էջ ունի
-                    (բուկլետի առջևի և հետևի մասերը), որոնցից յուրաքանչյուրը
-                    բաժանված է 3 ուղղանկյուն հատվածների (սյունակների)։
+                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
+                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
+                    սյունակի բաժանված։
                   </small>
                 </p>
               </h4>
@@ -753,7 +758,7 @@ export const Community = () => {
 
       <div className="video">
         <div className="concept">
-          <h2>Տեսահոլովակ*</h2>
+          <h2>Տեսահոլովակ</h2>
         </div>
 
         <div className={errorFilesVideo ? "errorfiles upload" : "upload"}>
@@ -766,14 +771,13 @@ export const Community = () => {
                 hidden
                 ref={fileInputRefVideo}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesVideo.name}</p>
+              <p className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>
@@ -818,10 +822,12 @@ export const Community = () => {
 
       <div className="agree">
         <div className="agree-text">
-        <input type="checkbox"
-        onChange={changeisChecked}
-        checked={isChecked}
-        key={resetKey} />
+          <input
+            type="checkbox"
+            onChange={changeisChecked}
+            checked={isChecked}
+            key={resetKey}
+          />
           <span>Համաձայն եմ</span>
         </div>
         <div className="term">

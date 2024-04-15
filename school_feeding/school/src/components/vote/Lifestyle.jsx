@@ -49,8 +49,8 @@ export const Lifestyle = () => {
 
     if (validationNames()) {
       const formData = new FormData();
-      
-      const storedEmail = userState.formId
+
+      const storedEmail = userState.formId;
 
       formData.append("user", storedEmail);
 
@@ -73,14 +73,16 @@ export const Lifestyle = () => {
       formData.append("word", files);
       formData.append("pdf", filesPdf);
       formData.append("video", filesVideo);
-      
 
-      fetch("http://127.0.0.1:8000/info/projects1/", {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/projects1/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((res) => {
-          if (res.status===201) {
+          if (res.status === 201) {
             toast.success("Հաջողությամբ Դիմել եք ծրագրին ");
 
             if (userState.voteAgain.project_cat2) {
@@ -100,12 +102,11 @@ export const Lifestyle = () => {
             );
           }
 
-          if(res.status===500){
+          if (res.status === 500) {
             toast.warning(
               "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
             );
-            navigate('/login')
-
+            navigate("/login");
           }
         })
         .catch((err) => {
@@ -116,7 +117,6 @@ export const Lifestyle = () => {
 
   const validationNames = () => {
     let errorValidate = true;
-   
 
     const letterRegex1 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name1);
     const letterRegex2 = /^[\u0531-\u0556\u0561-\u0587\s]+$/u.test(name2);
@@ -196,9 +196,6 @@ export const Lifestyle = () => {
       setErrorFilesVideo(false);
     }
 
-    
-
-
     if (
       files.length === 0 &&
       filesPhotos.length === 0 &&
@@ -230,7 +227,6 @@ export const Lifestyle = () => {
       setErrorFilesVideo(false);
     }
 
-   
     return errorValidate;
   };
 
@@ -240,13 +236,16 @@ export const Lifestyle = () => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-  
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
@@ -267,7 +266,10 @@ export const Lifestyle = () => {
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+        if (
+          fileExtension === undefined ||
+          !allowedExtensions.includes(fileExtension)
+        ) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG ձևաչափով նկարներ․․."
           );
@@ -295,13 +297,16 @@ export const Lifestyle = () => {
     const allowedExtensions = ["pdf"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
 
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
@@ -323,7 +328,7 @@ export const Lifestyle = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (file.type===undefined || !allowedFormats.includes(file.type)) {
+    if (file.type === undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -462,38 +467,40 @@ export const Lifestyle = () => {
   }, []);
   return (
     <div className="lifestyle">
-      <img
-        src={require("../../assets/lifestyle.png")}
-        alt=""
-        className="children"
-      />
+      <div className="imgDiv">
+        <img
+          src={require("../../assets/imagePrograms/programs1.png")}
+          alt=""
+          className="children"
+        />
+      </div>
       <h1>«Առողջ ապրելակերպը խաղի ձևով» անվանակարգ</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը*</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName1(e.target.value)}
           className={error1 ? "error" : ""}
           value={name1}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName2(e.target.value)}
           className={error2 ? "error" : ""}
           value={name2}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName3(e.target.value)}
           className={error3 ? "error" : ""}
           value={name3}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName4(e.target.value)}
           className={error4 ? "error" : ""}
           value={name4}
@@ -502,7 +509,7 @@ export const Lifestyle = () => {
 
       <div className="game">
         <div className="concept">
-          <h2>Խաղի հայեցակարգը</h2>
+          <h2>Առողջ ապրելակերպը խաղի ձևով</h2>
           <span>Խաղի մանրամասն նկարագրությունը և  նպատակը:</span>
         </div>
 
@@ -522,7 +529,7 @@ export const Lifestyle = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{files.name}</p>
+              <p className="fileName">{files.name}</p>
             </div>
 
             <div>
@@ -530,7 +537,7 @@ export const Lifestyle = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք Microsoft Word ֆայլ, երեք A4 էջից ոչ ավելի, (Times
-                  New Roman 12 տառատեսակով)*
+                  New Roman 12 տառատեսակով)
                 </p>
               </h4>
             </div>
@@ -544,7 +551,7 @@ export const Lifestyle = () => {
         </div>
 
         <div className="info">
-          <span>* Հայեցակարգը պետք է արտացոլի.</span>
+          <span>Հայեցակարգը պետք է արտացոլի.</span>
           <ul>
             <li>
               խաղի նպատակը և պատմի, թե ինչպես է խաղը խթանում առողջ ապրելակերպը,
@@ -601,7 +608,11 @@ export const Lifestyle = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return (
+                    <p className="fileName" key={index}>
+                      {i[index] === undefined ? "" : i[index].name}
+                    </p>
+                  );
                 })}
             </div>
 
@@ -632,7 +643,7 @@ export const Lifestyle = () => {
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ*</h2>
+          <h2>Եռածալ բուկլետ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -651,20 +662,19 @@ export const Lifestyle = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesPdf.name}</p>
+              <p className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ* (PDF
+                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
                   ձևաչափը պարտադիր է)։
                   <small>
-                    {" "}
-                    *Եռածալ բուկլետը PDF ձևաչափով  երկու A4 էջ է (բուկլետի առջևի
-                    և հետևի մասերը), որոնցից յուրաքանչյուրը բաժանված է 3
-                    ուղղանկյուն հատվածների (սյունակների)
+                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
+                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
+                    սյունակի բաժանված։{" "}
                   </small>
                 </p>
               </h4>
@@ -686,12 +696,12 @@ export const Lifestyle = () => {
               առողջ ապրելակերպը:
             </li>
             <li>
-              Խաղալու համար անհրաժեշտ բոլոր նյութերի կամ գործիքների ցանկը՝
+              Խաղը խաղալու համար անհրաժեշտ բոլոր նյութերի կամ գործիքների ցանկը՝
               համոզվելով, որ դրանք պարզ են և  մատչելի։
             </li>
             <li>
-              Խաղի հստակ, քայլ առ քայլ, հեշտ կատարվող հրահանգները՝ մասնակիցների
-              համար հստակ կերպով ներկայացված:
+              Խաղը խաղալու հստակ, քայլ առ քայլ, հեշտ կատարվող հրահանգները՝
+              մասնակիցների համար հստակ կերպով ներկայացված:
             </li>
           </ul>
         </div>
@@ -699,7 +709,7 @@ export const Lifestyle = () => {
 
       <div className="video">
         <div className="concept">
-          <h2>Տեսահոլովակ*</h2>
+          <h2>Տեսահոլովակ</h2>
         </div>
 
         <div className={errorFilesVideo ? "errorfiles upload" : "upload"}>
@@ -718,7 +728,7 @@ export const Lifestyle = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesVideo.name}</p>
+              <p className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>
@@ -743,12 +753,12 @@ export const Lifestyle = () => {
           <span>Տեսահոլովակը պետք է.</span>
           <ul>
             <li>
-              արտացոլի խաղի ողջ գաղափարը (հայեցակարգը)՝  պատմելով, թե ինչպես է
+              արտացոլի խաղի ողջ գաղափարը (հայեցակարգը)` պատմելով, թե ինչպես է
               այն խթանում առողջ ապրելակերպը, ինչպես նաև ցույց տա խաղը
               գործնականում,
             </li>
             <li>ցույց տա խաղի մեխանիզմը և խաղալու հրահանգները,</li>
-            <li>ցույց տա խաղացողների ներգրավվածությունը և փոխազդեցությունը,</li>
+            <li>ցույց տա խաղացողների ներգրավվածությունը և փոխազդեցությունը:</li>
           </ul>
         </div>
       </div>

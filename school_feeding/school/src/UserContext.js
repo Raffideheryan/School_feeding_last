@@ -237,7 +237,7 @@ const[votingSchool,setVotingSchool] = useState("")
     if (isValidate()) {
       try {
 
-        const response = await fetch("http://127.0.0.1:8000/info/users/", {
+        const response = await fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/users/", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(obj),
@@ -276,7 +276,7 @@ const[votingSchool,setVotingSchool] = useState("")
       password,
     };
     if (isValidateLogin()) {
-      fetch("http://127.0.0.1:8000/login/", {
+      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),
@@ -343,7 +343,7 @@ const[votingSchool,setVotingSchool] = useState("")
     };
 
     if (isValidateForgetPass()) {
-      fetch("http://127.0.0.1:8000/api/forget_password/", {
+      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/api/forget_password/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),
@@ -381,7 +381,7 @@ const[votingSchool,setVotingSchool] = useState("")
     };
 
     if (isValidatePasswords()) {
-      fetch(`http://127.0.0.1:8000/api/new_password/${uid}/${token}/`, {
+      fetch(`https://aroxj_aprelakerpi_despan.schoolfeeding.am/api/new_password/${uid}/${token}/`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),

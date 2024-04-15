@@ -10,6 +10,15 @@
 
 .children {
   width: 100%;
+  /* height: 550px; */
+}
+
+.imgDiv{
+  display: flex;
+  flex-direction: column;
+  width: 63%;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid rgba(218, 220, 224, 1);
 }
 
 .lifestyle h1 {
@@ -86,6 +95,7 @@
   font-size: 14px;
   color: rgba(32, 33, 36, 1);
   margin-top: 20px;
+  text-align: justify;
 }
 
 .game .upload {
@@ -208,6 +218,7 @@
   line-height: 25px;
   list-style: disc;
   margin-left: 30px;
+  text-align: justify;
 }
 
 /* Photos */
@@ -239,6 +250,7 @@
   font-size: 14px;
   color: rgba(32, 33, 36, 1);
   margin-top: 20px;
+  text-align: justify;
 }
 
 .photos .upload {
@@ -264,6 +276,7 @@
   font-size: 13px;
   color: rgba(111, 108, 108, 1);
   line-height: 20px;
+  text-align: justify;
 }
 
 .photos .info p {
@@ -336,6 +349,7 @@
   line-height: 20px;
   list-style: disc;
   margin-left: 30px;
+  text-align: justify;
 }
 
 /* Video */
@@ -399,6 +413,7 @@
   line-height: 20px;
   list-style: disc;
   margin-left: 30px;
+  text-align: justify;
 }
 
 /* agree */
@@ -633,10 +648,17 @@ body.active-moidal {
   list-style: decimal;
   font-weight: 500;
   color: #000;
+  text-align: justify;
 }
 
 .modal-content ul li ul li {
   list-style: disc;
+  text-align: justify;
+
+}
+
+.modal-content p{
+  text-align: justify;
 }
 .close-modal {
   width: 30px;
@@ -691,6 +713,9 @@ body.active-moidal {
 }
 
 @media screen and (max-width: 768px) {
+  .imgDiv{
+    width: 100%;
+  }
   .lifestyle {
     justify-content: none;
   }

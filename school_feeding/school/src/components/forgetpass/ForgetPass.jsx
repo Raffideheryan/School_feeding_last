@@ -13,7 +13,7 @@ export const ForgetPass = () => {
       email: JSON.parse(email),
     };
     if (obj.email) {
-      fetch("http://127.0.0.1:8000/api/forget_password/", {
+      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/api/forget_password/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),

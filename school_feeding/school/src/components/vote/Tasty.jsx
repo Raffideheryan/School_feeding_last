@@ -3,7 +3,7 @@ import { UserContext } from "../../UserContext";
 import "./Vote.css";
 import { Terms } from "./Terms";
 import { toast } from "react-toastify";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Tasty = () => {
   const [name1, setName1] = useState("");
@@ -70,14 +70,16 @@ export const Tasty = () => {
       formData.append("word", files);
       formData.append("pdf", filesPdf);
       formData.append("video", filesVideo);
-      fetch("http://127.0.0.1:8000/info/projects2/", {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/projects2/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((res) => {
-          if (res.status===201) {
+          if (res.status === 201) {
             toast.success("Հաջողությամբ Դիմել եք ծրագրին ");
-            
 
             if (userState.voteAgain.project_cat3) {
               navigate("/discovering");
@@ -86,20 +88,19 @@ export const Tasty = () => {
             } else {
               navigate("/");
             }
-          } 
-          
+          }
+
           if (res.status === 400) {
             toast.warning(
               "pdf կամ word  ֆայլերը  չեն համապատասխանում պահանջներին"
             );
           }
 
-          if(res.status===500){
+          if (res.status === 500) {
             toast.warning(
               "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
             );
-            navigate('/login')
-
+            navigate("/login");
           }
         })
         .catch((err) => {
@@ -180,37 +181,43 @@ export const Tasty = () => {
     return errorValidate;
   };
 
-  const validationUploadMS =  (file, buttonId) => {
+  const validationUploadMS = (file, buttonId) => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
       setErrorFiles(true);
       return;
-    }else {
+    } else {
       setErrorFiles(false);
     }
 
-     uploadFile(file, buttonId);
+    uploadFile(file, buttonId);
   };
 
   const maxFiles = 10;
 
-  const validationPhotos =  (file, buttonId) => {
+  const validationPhotos = (file, buttonId) => {
     if (file.length <= 10) {
       const allowedExtensions = ["jpg"];
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+        if (
+          fileExtension === undefined ||
+          !allowedExtensions.includes(fileExtension)
+        ) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG  տեսակի նկարներ"
           );
@@ -221,7 +228,7 @@ export const Tasty = () => {
         }
       }
 
-       uploadFile(file, buttonId);
+      uploadFile(file, buttonId);
     } else if (file.length >= maxFiles) {
       toast.warning(
         `Դուք կարող եք վերբեռնել առավելագույնը ${maxFiles} լուսանկար`
@@ -234,25 +241,28 @@ export const Tasty = () => {
     }
   };
 
-  const validationPdf =  (file, buttonId) => {
+  const validationPdf = (file, buttonId) => {
     const allowedExtensions = ["pdf"];
     file = file[0];
 
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
-    }  
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
+    }
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
-    }else {
+    } else {
       setErrorFilesPdf(false);
     }
 
-   uploadFile(file, buttonId);
+    uploadFile(file, buttonId);
   };
   const validationVideo = async (file, buttonId) => {
     file = file[0];
@@ -266,7 +276,7 @@ export const Tasty = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (file.type===undefined || !allowedFormats.includes(file.type)) {
+    if (file.type === undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -383,9 +393,9 @@ export const Tasty = () => {
     setisChecked(e.target.checked);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-  },[isChecked])
+  }, [isChecked]);
 
   useEffect(() => {
     setisChecked(false);
@@ -393,56 +403,54 @@ export const Tasty = () => {
     setFilesVideo([]);
     setFiles([]);
     setFilesPhotos([]);
-    setFilesPdf([])
-    setName1("")
-    setName2("")
-    setName3("")
-    setName4("")
+    setFilesPdf([]);
+    setName1("");
+    setName2("");
+    setName3("");
+    setName4("");
     window.scrollTo(0, document.body.scrollTo);
-
-
   }, []);
 
   return (
     <div className="lifestyle">
-      <img
-        src={require("../../assets/tasty.png")}
-        alt=""
-        className="children"
-      />
+      <div className="imgDiv">
+        <img
+          src={require("../../assets/imagePrograms/programs4.png")}
+          alt=""
+          className="children"
+        />
+      </div>
+
       <h1>«Համեղ և առողջարար. իմ սիրելի առողջարար բաղադրատոմսը» անվանակարգի</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը*</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName1(e.target.value)}
           className={error1 ? "error" : ""}
           value={name1}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName2(e.target.value)}
           className={error2 ? "error" : ""}
           value={name2}
-
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName3(e.target.value)}
           className={error3 ? "error" : ""}
           value={name3}
-
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName4(e.target.value)}
           className={error4 ? "error" : ""}
           value={name4}
-
         />
       </div>
 
@@ -453,15 +461,11 @@ export const Tasty = () => {
           </h2>
 
           <span>
-            1. Առողջ բաղադրատոմսի հայեցակարգը. բաղադրատոմսի անվանումը և
-            մանրամասն նկարագրությունը (բաղադրատոմսը կարող է նախատեսված լինել
-            նախաճաշի, ճաշի, ընթրիքի համար, ներկայացնել խորտիկ, աղցան կամ
-            աղանդեր: Բաղադրատոմսը կարող է  արդեն գոյություն ունենալ, բայց այդ
-            դեպքում նշեք, թե ինչն է ձեր տարբերակը յուրահատուկ դարձնում):*{" "}
-          </span>
-          <span>
-            2. նախատեսվա լինել նախաճաշի, ճաշի, ընթրիքի համար, ներկայացնել
-            խորտիկ, աղցան կամ աղանդեր: Բաղադրատոմսը կարող է
+            Առողջ բաղադրատոմսի հայեցակարգը. բաղադրատոմսի անվանումը և մանրամասն
+            նկարագրությունը (բաղադրատոմսը կարող է նախատեսված լինել նախաճաշի,
+            ճաշի, ընթրիքի համար, ներկայացնել խորտիկ, աղցան կամ աղանդեր:
+            Բաղադրատոմսը կարող է  արդեն գոյություն ունենալ, բայց այդ դեպքում
+            նշեք, թե ինչն է ձեր տարբերակը յուրահատուկ դարձնում):{" "}
           </span>
         </div>
 
@@ -475,14 +479,13 @@ export const Tasty = () => {
                 hidden
                 ref={fileInputRefMS}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{files.name}</p>
+              <p className="fileName">{files.name}</p>
             </div>
 
             <div>
@@ -490,7 +493,7 @@ export const Tasty = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք տեքստային փաստաթուղթը (Microsoft Word ֆայլի երեք A4
-                  էջից ոչ ավելի,  Times New Roman տառատեսակի 12 չափը)*
+                  էջից ոչ ավելի,  Times New Roman տառատեսակի 12 չափը)
                 </p>
               </h4>
             </div>
@@ -537,10 +540,10 @@ export const Tasty = () => {
 
       <div className="photos">
         <div className="concept">
-          <h2> Լուսանկարներ, </h2>
+          <h2> Լուսանկարներ </h2>
           <span>
             որոնք պատկերում են բաղադրիչների ամբողջ ցանկը, երեխաներին՝ ճաշատեսակի
-            պատրաստման  ընթացքում և արդեն պատրաստի ուտեստը։*
+            պատրաստման  ընթացքում և արդեն պատրաստի ուտեստը։
           </span>
         </div>
 
@@ -555,7 +558,6 @@ export const Tasty = () => {
                 ref={fileInputRefPhotos}
                 multiple
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
@@ -564,7 +566,11 @@ export const Tasty = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return (
+                    <p className="fileName" key={index}>
+                      {i[index] === undefined ? "" : i[index].name}
+                    </p>
+                  );
                 })}
             </div>
 
@@ -596,7 +602,7 @@ export const Tasty = () => {
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ*</h2>
+          <h2>Եռածալ բուկլետ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -614,21 +620,20 @@ export const Tasty = () => {
                 alt="Upload"
                 title="Upload"
                 key={resetKey}
-
               />
-              <p  className="fileName">{filesPdf.name}</p>
+              <p className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ* (PDF
-                  ձևաչափը պարտադիր է)։
+                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
+                  ձևաչափը պարտադիր է):
                   <small>
-                    * PDF ձևաչափով եռածալ բուկլետը   A4  ֆորմատի 2 էջ ունի
-                    (բուկլետի առջևի և հետևի մասերը), որոնցից յուրաքանչյուրը
-                    բաժանված է 3 ուղղանկյուն հատվածների (սյունակների)։
+                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
+                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
+                    սյունակի բաժանված։
                   </small>
                 </p>
               </h4>
@@ -664,7 +669,7 @@ export const Tasty = () => {
 
       <div className="video">
         <div className="concept">
-          <h2>Տեսահոլովակը*</h2>
+          <h2>Տեսահոլովակը</h2>
         </div>
 
         <div className={errorFilesVideo ? "errorfiles upload" : "upload"}>
@@ -677,14 +682,13 @@ export const Tasty = () => {
                 hidden
                 ref={fileInputRefVideo}
                 key={resetKey}
-
               />
               <img
                 src={require("../../assets/upload.png")}
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesVideo.name}</p>
+              <p className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>
@@ -692,7 +696,7 @@ export const Tasty = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք տեսանյութ, որը չի գերազանցում  3 րոպեն. Տեսանյութի
-                  ձևաչափերը՝ MP4, MOV, WMV, AVI․ Ոչ ավելի, քան 1 ԳԲ.
+                  ձևաչափերը՝ MP4, MOV, WMV, AVI. Ոչ ավելի, քան 1 ԳԲ.
                 </p>
               </h4>
             </div>
@@ -724,9 +728,12 @@ export const Tasty = () => {
 
       <div className="agree">
         <div className="agree-text">
-          <input type={"checkbox"}   onChange={changeisChecked}
-        checked={isChecked}
-        key={resetKey}  />
+          <input
+            type={"checkbox"}
+            onChange={changeisChecked}
+            checked={isChecked}
+            key={resetKey}
+          />
           <span>Համաձայն եմ </span>
         </div>
         <div className="term">

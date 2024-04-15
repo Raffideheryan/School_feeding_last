@@ -9,7 +9,7 @@ export const VotingParticipate = () => {
   const [posts, setPosts] = useState([]);
   const [loadin, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(5);
   const [checkSchool, setCheckSchool] = useState(true);
 
   // context

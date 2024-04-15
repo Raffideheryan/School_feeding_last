@@ -53,7 +53,7 @@ export const Discovering = () => {
 
     if (validationNames()) {
       const formData = new FormData();
-      const storedEmail = userState.formId
+      const storedEmail = userState.formId;
 
       formData.append("user", storedEmail);
       // Append text fields
@@ -73,10 +73,13 @@ export const Discovering = () => {
       formData.append("pdf_only", filesPdf);
       formData.append("video", filesVideo);
 
-      fetch("http://127.0.0.1:8000/info/projects3/", {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/projects3/",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((res) => {
           if (res.status === 201) {
             toast.success("Հաջողությամբ Դիմել եք ծրագրին ");
@@ -94,11 +97,11 @@ export const Discovering = () => {
             );
           }
 
-          if(res.status===500){
+          if (res.status === 500) {
             toast.warning(
               "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
             );
-            navigate('/login')
+            navigate("/login");
           }
         })
         .catch((err) => {
@@ -188,12 +191,15 @@ export const Discovering = () => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել Word փաստաթուղթ (doc կամ docx):"
       );
@@ -210,12 +216,15 @@ export const Discovering = () => {
     file = file[0];
 
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning(
         "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF կամ PPT ձևաչափերով  ֆայլեր"
       );
@@ -231,12 +240,15 @@ export const Discovering = () => {
     const allowedExtensions = ["pdf"];
     file = file[0];
     let fileExtension;
-    if(file.name===undefined){
+    if (file.name === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
-    }else{
-      fileExtension =file.name.split(".").pop().toLowerCase()
+    } else {
+      fileExtension = file.name.split(".").pop().toLowerCase();
     }
-    if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+    if (
+      fileExtension === undefined ||
+      !allowedExtensions.includes(fileExtension)
+    ) {
       toast.warning("Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել PDF ֆայլ");
       setErrorFilesPdf(true);
       return;
@@ -255,7 +267,10 @@ export const Discovering = () => {
 
       for (let i = 0; i < file.length; i++) {
         const fileExtension = file[i].name.split(".").pop().toLowerCase();
-        if (fileExtension===undefined || !allowedExtensions.includes(fileExtension)) {
+        if (
+          fileExtension === undefined ||
+          !allowedExtensions.includes(fileExtension)
+        ) {
           toast.warning(
             "Ֆայլի անվավեր տեսակ: Խնդրում ենք վերբեռնել JPG  ձևաչափով  նկարներ"
           );
@@ -291,7 +306,7 @@ export const Discovering = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (file.type===undefined || !allowedFormats.includes(file.type)) {
+    if (file.type === undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
@@ -435,38 +450,40 @@ export const Discovering = () => {
 
   return (
     <div className="lifestyle">
-      <img
-        src={require("../../assets/discovering.png")}
-        alt=""
-        className="children"
-      />
+      <div className="imgDiv">
+        <img
+          src={require("../../assets/imagePrograms/programs2.png")}
+          alt=""
+          className="children"
+        />
+      </div>
       <h1>«Բացահայտելով առողջ ապրելակերպի աշխարհը. մեր հետազոտությունը»</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը*</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName1(e.target.value)}
           className={error1 ? "error" : ""}
           value={name1}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName2(e.target.value)}
           className={error2 ? "error" : ""}
           value={name2}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName3(e.target.value)}
           className={error3 ? "error" : ""}
           value={name3}
         />
         <input
           type="text"
-          placeholder="Ձեր պատասխանը"
+          placeholder="Անուն-Ազգանուն"
           onChange={(e) => setName4(e.target.value)}
           className={error4 ? "error" : ""}
           value={name4}
@@ -478,10 +495,10 @@ export const Discovering = () => {
           <h2>Հետազոտության հայեցակարգը</h2>
 
           <span>
-            հետազոտության գաղափարի և թեմայի մանրամասն նկարագրությունը, որը
+            Հետազոտության գաղափարի և թեմայի մանրամասն նկարագրությունը, որը
             կապված է առողջ ապրելակերպի հետ (առողջ սնվել, ֆիզիկական ակտիվություն,
             առօրյա առողջ սովորություններ, մտավոր և հուզական առողջություն և
-            այլն):*
+            այլն):
           </span>
         </div>
 
@@ -501,7 +518,7 @@ export const Discovering = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{files.name}</p>
+              <p className="fileName">{files.name}</p>
             </div>
 
             <div>
@@ -509,7 +526,7 @@ export const Discovering = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք Microsoft Word ֆայլ, (երեք A4 էջից ոչ ավելի, Times
-                  New Roman 12 տառատեսակով)*
+                  New Roman 12 տառատեսակով)
                 </p>
               </h4>
             </div>
@@ -528,36 +545,47 @@ export const Discovering = () => {
           <ul>
             <li>
               թե ինչ մտահոգություններ են առաջացրել հետազոտության
-              անհրաժեշտությունը,;
+              անհրաժեշտությունը,{" "}
             </li>
             <li>գաղափարի կամ խնդրի արդիականությունը,</li>
             <li>գործնական նշանակությունը,</li>
             <li>hետազոտության հիմքում դրված հիմնական հարցերը,</li>
             <li>
               ինչ մեթոդներ և գործիքներ են օգտագործվել հետազոտությունն
-              իրականացնելու համար. եզակի և ստեղծագործական մեթոդների
-              նկարագրություն, Հետազոտության մեթոդաբանության բացատրություն՝
-              ներառյալ տվյալների հավաքագրման մեթոդները, օգտագործված ժամանակակից
-              գործիքները,e used;
+              իրականացնելու համար,
             </li>
             <li>
-              ի՞նչ եզրակացություններ են արվել հետազոտության արդյունքում.
-              հետազոտությունից ստացված էական պատկերացումների նկարագրություն և
+              եզակի և ստեղծագործական մեթոդների նկարագրություն, Հետազոտության
+              մեթոդաբանության բացատրություն, ներառյալ տվյալների հավաքագրման
+              մեթոդները, օգտագործված ժամանակակից գործիքները, ինչ
+              եզրակացություններ են Microsoft Word ֆայլի երեք A4 էջից ոչ ավելի*:
+              *Times New Roman տառատեսակի 12 չափը: Ուսումնական բաղադրիչը.
+              Հետազոտության և դրա արդյունքների մեջ տեղեկատվության խորությունն ու
+              ճշգրտությունը գնահատելը նպատակ ունեն տեղեկացնել երեխաներին կամ
+              համայնքի անդամներին՝ ոգեշնչելով նրանց ձեռք բերել ավելի առողջ
+              սովորություններ և հետևել առողջ ապրելակերպին (5 միավոր):
+              Հասակակիցների և կրտսեր աշակերտների կողմից ընկալման
+              մատչելիությունը. գնահատվում է այն, թե որքան հետաքրքիր կարող են
+              լինել Հետազոտության թեման և դրա արդյունքները դպրոցական տարիքի
+              երեխաների և նրանց ծնողների համար (5 միավոր): Սոցիալական
+              նշանակություն. գնահատում, թե ինչպես են Հետազոտության արդյունքները
+              բերում որոշակի նոր պատկերացում, որը կոգեշնչի փոխել սոցիալական
+              վարքագիծը արվել Հետազոտության արդյունքում,
+            </li>
+            <li>
+              Հետազոտությունից ստացված էական պատկերացումների նկարագրություն և
               բացատրություն, թե ինչպես կարելի է Հետազոտության արդյունքները
               գործնականում կիրառել առօրյա կյանքում՝ այն ավելի առողջ դարձնելու
-              համար:
+              համար: Խնդրում ենք նշել այն ուսուցչին, ով ձեզ ուղղորդել է ձեր
+              աշխատանքի ընթացքում:
             </li>
           </ul>
-          <span>
-            Խնդրում ենք նշել այն ուսուցչին, ով ձեզ ուղղորդել է ձեր աշխատանքի
-            ընթացքում:
-          </span>
         </div>
       </div>
 
       <div className="game">
         <div className="concept">
-          <h2>Հետազոտության գործընթացը նկարագրող շնորհանդես։*</h2>
+          <h2>Հետազոտության գործընթացը նկարագրող շնորհանդես։</h2>
         </div>
 
         <div
@@ -578,15 +606,15 @@ export const Discovering = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesPresentation.name}</p>
+              <p className="fileName">{filesPresentation.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք փաստաթուղթ  *.pdf կամ *.ppt ձևաչափերով
-                  (առավելագույնը 15 էջ)
+                  Ներբեռնեք փաստաթուղթ .pdf կամ .ppt ձևաչափերով (առավելագույնը
+                  15 էջ)
                 </p>
               </h4>
             </div>
@@ -638,7 +666,11 @@ export const Discovering = () => {
               />
               {filesPhotos &&
                 [filesPhotos].map((i, index) => {
-                  return <p  className="fileName" key={index}>{i[index] === undefined ? "" : i[index].name}</p>;
+                  return (
+                    <p className="fileName" key={index}>
+                      {i[index] === undefined ? "" : i[index].name}
+                    </p>
+                  );
                 })}
             </div>
 
@@ -647,7 +679,7 @@ export const Discovering = () => {
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
                   Ներբեռնեք հետազոտության գործընթացի լուսանկարներ/սկանավորումներ
-                  JPG ձևաչափով (5 հատից ոչ ավելի)*
+                  JPG ձևաչափով (5 հատից ոչ ավելի)
                 </p>
               </h4>
             </div>
@@ -663,7 +695,7 @@ export const Discovering = () => {
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ*</h2>
+          <h2>Եռածալ բուկլետ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -682,19 +714,19 @@ export const Discovering = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesPdf.name}</p>
+              <p className="fileName">{filesPdf.name}</p>
             </div>
 
             <div>
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ* (PDF
-                  ձևաչափը պարտադիր է)։
+                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
+                  ձևաչափը պարտադիր է):
                   <small>
-                    * PDF ձևաչափով եռածալ բուկլետն   A4 ֆորմատի 2 էջ ունի
-                    (բուկլետի առջևի և հետևի մասերը), որոնցից յուրաքանչյուրը
-                    բաժանված է 3 ուղղանկյուն հատվածների (սյունակների)։
+                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
+                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
+                    սյունակի բաժանված։
                   </small>
                 </p>
               </h4>
@@ -717,9 +749,8 @@ export const Discovering = () => {
               խրախուսում առողջ ապրելակերպը,
             </li>
             <li>
-              հետազոտության մեջ օգտագործված մեթոդաբանության համառոտ
-              ակնարկը՝ներառյալ այն, թե ինչպես են տվյալները հավաքվել և
-              վերլուծվել,
+              հետազոտության մեջ օգտագործված մեթոդաբանության համառոտ ակնարկը՝
+              ներառյալ այն, թե ինչպես են տվյալները հավաքվել և վերլուծվել,
             </li>
             <li>
               հետազոտության նշանակալի արդյունքներն ու բացահայտումները պարզ և
@@ -731,7 +762,7 @@ export const Discovering = () => {
 
       <div className="video">
         <div className="concept">
-          <h2>Տեսահոլովակ*</h2>
+          <h2>Տեսահոլովակ</h2>
         </div>
 
         <div className={errorFilesVideo ? "errorfiles upload" : "upload"}>
@@ -750,7 +781,7 @@ export const Discovering = () => {
                 alt="Upload"
                 title="Upload"
               />
-              <p  className="fileName">{filesVideo.name}</p>
+              <p className="fileName">{filesVideo.name}</p>
             </div>
 
             <div>
