@@ -7,16 +7,14 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 ALLOWED_HOSTS = [
-    "www.aroxj_aprelakerpi_despan.schoolfeeding.am",
-    "127.0.0.1",
-    "localhost",
     "aroxj_aprelakerpi_despan.schoolfeeding.am",
 ]
+
 
 
 
@@ -34,10 +32,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3030",
-    "http://127.0.0.1:3000",
-    "http://localhost:8000",
+    "https://aroxj_aprelakerpi_despan.schoolfeeding.am/",
 ]
 
 
@@ -57,7 +52,7 @@ ROOT_URLCONF = "school_feeding.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "school/build"],  # todo
+        "DIRS": [BASE_DIR / "school/build"],  
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -123,21 +118,17 @@ LANGUAGES = [
     ("hy", ("Armenian")),
 ]
 
-# BASE_URL ="http://127.0.0.1/"
-# EMAIL_FROM ="testfirst0303@gmail.com"
-
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'aroxjaprelakerpidespan@gmail.com'  # dreq dzer mail@
-EMAIL_HOST_PASSWORD = 'ynqa mgyq cwwn kbdg'  # dreq dzer mail_i "app password"_@(orinak -> "asjw jinn locd knjb")
-DEFAULT_FROM_EMAIL = "aroxjaprelakerpidespan@gmail.com" # dreq dzer mail@
+EMAIL_HOST_USER = 'aroxjaprelakerpidespan@gmail.com'  
+EMAIL_HOST_PASSWORD = 'ynqa mgyq cwwn kbdg'  
+DEFAULT_FROM_EMAIL = "aroxjaprelakerpidespan@gmail.com" 
 
-# REACT_BASE_URL = 'http://127.0.0.1:3000/'
-REACT_BASE_URL = 'http://127.0.0.1:3000/'
-# REACT_BASE_URL = 'http://127.0.0.1:3000/newpass/'
+
+REACT_BASE_URL = 'https://www.aroxj_aprelakerpi_despan.schoolfeeding.am/'
+
 
 
 STATIC_URL = "static/"
@@ -150,39 +141,3 @@ STATICFILES_DIRS = [BASE_DIR / "school/build/static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Configure the logging settings
-# LOGGING = {
-#     "version": 1,
-#     "disable_existing_loggers": False,
-#     "formatters": {
-#         "file_formatter": {
-#             "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-#             "style": "{",
-#         },
-#         "console_formatter": {
-#             "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-#             "style": "{",
-#         },
-#     },
-#     "handlers": {
-#         "console": {
-#             "level": "DEBUG",
-#             "class": "logging.StreamHandler",
-#             "formatter": "console_formatter",
-#         },
-#         "file": {
-#             "level": "DEBUG",
-#             "class": "logging.FileHandler",
-#             "filename": BASE_DIR / "logs.log",
-#             "formatter": "file_formatter",
-#         },
-#     },
-#     "loggers": {
-#         "django": {
-#             "handlers": ["console", "file"],
-#             "level": "DEBUG",
-#             "propagate": True,
-#         },
-#     },
-# }
-# LOGGING["loggers"]["django.server"]["level"] = "WARNING"

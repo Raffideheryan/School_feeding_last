@@ -43,7 +43,7 @@ router.register(r"applicationform", ApplicationFormView)
 
 urlpatterns = [
     path("user/", include("main.urls")),
-    path("admin/", admin.site.urls),
+    path("A8rK5sP3tL1z/", admin.site.urls),
     path("api/auth/", include("rest_framework.urls")),
     path("info/", include(router.urls)),
     path("", include("main.urls")),
