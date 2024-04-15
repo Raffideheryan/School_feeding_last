@@ -374,7 +374,7 @@ class MessageView(viewsets.ModelViewSet):
 
 
 def download_pdf(request):
-    filename = "example.pdf"
+    filename = "dummy.pdf"
 
     file_path = os.path.join(settings.MEDIA_ROOT, "pdf", filename)
 
