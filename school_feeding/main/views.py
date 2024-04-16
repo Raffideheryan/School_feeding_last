@@ -215,7 +215,7 @@ class VerifyEmailView(APIView):
             user = CustomUser.objects.get(id=user_id)
             user.email_verified = True
             user.save()
-            return redirect("http://127.0.0.1:3000/login")
+            return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login")
         except CustomUser.DoesNotExist:
             return HttpResponse("User not found.", status=status.HTTP_404_NOT_FOUND)
 
@@ -420,7 +420,7 @@ def send_verification_email(user):
         user.verification_token = token
         user.save()
         subject = "Email Verification"
-        message = f"Please click the following link to verify your email: http://127.0.0.1:8000/verify/{token}"
+        message = f"Please click the following link to verify your email: https://aroxj_aprelakerpi_despan.schoolfeeding.am/verify/{token}"
         sender = "testfirst0303@gmail.com"
         recipient = user.email
         send_mail(subject, message, sender, [recipient])
@@ -432,7 +432,7 @@ def verify_email(request, verification_token):
     user.email_verified = True
     user.save()
     messages.success(request, "Email verification successful. You can now log in.")
-    return redirect("http://127.0.0.1:3000/login")
+    return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login")
 
 
 def login_request(request):
