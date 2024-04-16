@@ -215,7 +215,7 @@ class VerifyEmailView(APIView):
             user = CustomUser.objects.get(id=user_id)
             user.email_verified = True
             user.save()
-            return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login")
+            return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/")
         except CustomUser.DoesNotExist:
             return HttpResponse("User not found.", status=status.HTTP_404_NOT_FOUND)
 
@@ -432,7 +432,7 @@ def verify_email(request, verification_token):
     user.email_verified = True
     user.save()
     messages.success(request, "Email verification successful. You can now log in.")
-    return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login")
+    return redirect("https://aroxj_aprelakerpi_despan.schoolfeeding.am/")
 
 
 def login_request(request):
