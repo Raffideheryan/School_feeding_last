@@ -1338,6 +1338,9 @@ form textarea:focus {
     width: 90%;
     /* margin-top: 20px; */
   }
+  .particip{
+    margin-top: 20px;
+  }
   .programAboutRowText p {
     font-size: 13px;
     line-height: 15px;

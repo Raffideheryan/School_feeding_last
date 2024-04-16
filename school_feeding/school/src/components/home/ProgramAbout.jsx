@@ -1061,7 +1061,7 @@ const ProgramAbout = () => {
       </div>
       <div className="seeMoreInfo">
         <button onClick={onclickPdfFile}>Իմանալ ավելին</button>
-        <button onClick={onlickPartispate}>Մասնակցել</button>
+        <button onClick={onlickPartispate} className="particip">Մասնակցել</button>
       </div>
       <div className="scedule">
         <CountDown />
