@@ -20,7 +20,7 @@ export const VotingParticipate = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://api.slingacademy.com/v1/sample-data/photos"
+          "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
         );
 
         if (!response.ok) {
@@ -28,8 +28,8 @@ export const VotingParticipate = () => {
         }
 
         const data = await response.json();
-
-        setPosts(data.photos);
+        console.log(data);
+        setPosts(data.results);
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
@@ -45,7 +45,12 @@ export const VotingParticipate = () => {
 
   const currentPosts = posts.slice(indefOfFirstPost, indefOfLastPost);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    if(currentPage<=4){
+      debugger
+      setCurrentPage(pageNumber);
+    }
+  }
   const video = "./video.mp4";
 
   const handleButtonClicke = (e) => {
