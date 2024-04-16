@@ -59,7 +59,7 @@ class ForgetPasswordSerializer(serializers.Serializer):
 
     def send_reset_email(self, user, request):
         current_site = get_current_site(request)
-        frontend_url = "http://127.0.0.1:3000/newpass/"
+        frontend_url = "https://aroxj_aprelakerpi_despan.schoolfeeding.am/newpass/"
         reset_link = f"{frontend_url}?uidb64={urlsafe_base64_encode(force_bytes(user.pk))}&token={default_token_generator.make_token(user)}"
 
         # reset_link = reverse("new_password", kwargs={"uidb64": uid, "token": token})
