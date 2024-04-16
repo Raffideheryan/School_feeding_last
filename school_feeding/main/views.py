@@ -188,7 +188,7 @@ class UserView(viewsets.ModelViewSet):
         print("sending verification email...")
         subject = "Email Verification"
         verification_url = reverse("verify-email", kwargs={"user_id": user.id})
-        message = f"Click the link to verify your email: http://127.0.0.1:8000{verification_url}"
+        message = f"Click the link to verify your email: https://aroxj_aprelakerpi_despan.schoolfeeding.am{verification_url}"
         from_email = settings.EMAIL_HOST_USER  # Change this to your sender email
         recipient_list = [user.email]
         try:
