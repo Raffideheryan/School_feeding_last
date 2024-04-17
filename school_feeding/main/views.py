@@ -331,7 +331,42 @@ class MessageView(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
+def register_request(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            send_verification_email(user)
+            messages.success(
+                request,
+                "Registration successful. Please check your email to verify your account.",
+            )
+            return redirect("login")  # Redirect to login page
+    else:
+        form = NewUserForm()
+    return render(request, "register.html", {"form": form})
 
+
+def login_request(request):
+    if request.method == "POST":
+        form = EmailAuthenticationForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            user = authenticate(request, email=email, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f"Welcome back, {email}.")
+                return redirect("index")  # Redirect to your desired page after login
+            else:
+                messages.error(request, "Invalid email or password.")
+        else:
+            messages.error(request, "Invalid email or password.")
+    else:
+        form = EmailAuthenticationForm()
+    return render(request, "login.html", {"login_form": form})
 
 
 
