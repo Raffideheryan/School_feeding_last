@@ -19,7 +19,7 @@ from main.views import (
     forget_password,
     new_password,
     download_pdf,
-    LoginView,
+
     # PasswordResetRequestView,
     # PasswordResetConfirmView,
 )
@@ -34,7 +34,7 @@ router.register(r"projects3", ProjectView3)
 router.register(r"projects4", ProjectView4)
 router.register(r"registrations", RegistrationView)
 router.register(r"messages", MessageView)
-router.register(r"login", LoginView)
+
 # changes
 router.register(r"items", VotableItemViewSet)
 router.register(r"votes", VoteViewSet)

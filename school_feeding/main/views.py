@@ -223,6 +223,8 @@ class VerifyEmailView(APIView):
 
 
 class LoginView(APIView):
+
+
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
         password = request.data.get("password")
@@ -318,46 +320,6 @@ class ProjectView4(viewsets.ModelViewSet):
                 return
 
         serializer.save(user=self.request.user)
-
-
-
-
-    # def create(self, request, *args, **kwargs):
-    #     pdf_file = request.data.get('pdf')
-    #     word_file = request.data.get('word')
-
-    #     if pdf_file:
-    #         try:
-    #             with pdf_file.open('rb') as f:
-    #                 pdf_reader = PdfReader(f)
-    #                 num_pages = len(pdf_reader.pages)
-    #             if num_pages > 10:
-    #                 return Response({"error": "PDF file cannot have more than 10 pages."}, status=status.HTTP_400_BAD_REQUEST)
-    #             else:
-    #                 return Response({"success": "PDF file has fewer than 10 pages."}, status=status.HTTP_201_CREATED)
-    #         except Exception as e:
-    #             return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-
-    #     if word_file:
-    #         try:
-    #             with open('/tmp/uploaded_word.docx', 'wb') as destination:
-    #                 for chunk in word_file.chunks():
-    #                     destination.write(chunk)
-
-    #             doc = Document('/tmp/uploaded_word.docx')
-
-    #             num_pages = len(doc.paragraphs)
-    #             if num_pages <= 3:
-    #                 return Response({"success": "Word file has fewer than 3 pages."}, status=status.HTTP_201_CREATED)
-    #             else:
-    #                 return Response({"error": "Word file must have at least 3 pages."}, status=status.HTTP_400_BAD_REQUEST)
-
-    #         except Exception as e:
-    #             return Response({"error": f"Error: {e}"}, status=status.HTTP_400_BAD_REQUEST)
-    #         finally:
-    #             os.remove('/tmp/uploaded_word.docx')
-
-    #     return super().create(request, *args, **kwargs)
 
 
 class RegistrationView(viewsets.ModelViewSet):
