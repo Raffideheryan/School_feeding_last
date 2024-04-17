@@ -67,7 +67,7 @@ export const Login = () => {
               />
             </div>
 
-            <a href="/forgetpass">Մոռացել եք գաղտնաբառը?</a>
+            <a href="/forgetpass">Մոռացե՞լ եք գաղտնաբառը</a>
           </div>
 
           <button type={"submit"} className="loginbtn">

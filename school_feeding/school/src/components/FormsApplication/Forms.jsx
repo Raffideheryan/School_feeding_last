@@ -470,7 +470,7 @@ export default function Forms() {
           <h2 className="formTitle">Գրանցման Դաշտ</h2>
           <div className="formItem">
             <label htmlFor="region" className="formItemLabel1">
-              Մարզ*
+              Մարզ
             </label>
             <div className="select-wrapper">
               <select
@@ -496,7 +496,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="town" className="m-bottom formItemLabel1">
-              Քաղաք/Գյուղ*
+              Քաղաք/Գյուղ
             </label>
             <input
               type="text"
@@ -509,7 +509,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="school_name" className="m-bottom formItemLabel1">
-              Դպրոցի Անուն*
+              Դպրոցի Անուն
             </label>
             <input
               type="text"
@@ -525,7 +525,7 @@ export default function Forms() {
               Մեծահասակի կոնտակտային տվյալները
               <span>
                 {" "}
-                (ուսուցիչ, դպրոցի ծրագրի համակարգող) (անուն, ազգանուն)*
+                (ուսուցիչ, դպրոցի ծրագրի համակարգող) (անուն, ազգանուն)
               </span>
             </label>
             <input
@@ -552,7 +552,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="email" className="m-bottom formItemLabel1">
-              Էլեկտրոնային Հասցե*
+              Էլեկտրոնային Հասցե
             </label>
             <input
               type="text"
@@ -565,7 +565,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="phone" className="m-bottom formItemLabel1">
-              Հեռախոսահամար ձևաչափը:094555555*
+              Հեռախոսահամար ձևաչափը:094555555
             </label>
             <input
               type="text"

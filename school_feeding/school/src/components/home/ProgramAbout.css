@@ -771,6 +771,7 @@ button {
   .close-btn-program {
     width: 11px;
     height: 11px;
+    top: 0;
   }
 
   ul li .check::before {
@@ -861,10 +862,12 @@ button {
   .modalProgramAboutContent h2 {
     padding-left: 15px;
     padding-right: 15px;
-  }
+    text-align: start;
+    font-size: 13px;
+}
 
   .modalProgramAboutContent {
-    padding: 10px 15px;
+    padding: 0 15px 10px 15px;
   }
 
   .heightNone p {
@@ -1293,6 +1296,7 @@ form textarea:focus {
 
   .modalProgramAboutContentTextBlock h3 {
     font-size: 12px;
+    margin-top: 10px;
   }
 
   .modalProgramAboutContentTextBlock ol {
@@ -1362,10 +1366,13 @@ form textarea:focus {
 
 .disc li {
   font-size: 12px;
+  line-height: 25px;
+
 }
 
 .decimal li{
   font-size: 12px;
+  line-height: 25px;
 }
 }
 
@@ -1375,3 +1382,41 @@ textarea::placeholder {
   color: rgba(172, 164, 164, 1);
 
 }
+
+
+/* add styles */
+
+@media screen and (max-width:776px) {
+  .modalProgramAboutContent h2{
+    padding: 0;
+  }
+
+  .modalProgramAboutContent{
+    padding: 45px;
+  }
+}
+
+@media screen and (max-width:665px) {
+  .modalProgramAboutContent {
+    padding: 35px;
+  }
+
+  .modalProgramAboutContentTextBlock li{
+    line-height: 25px;
+    text-align: justify;
+  }
+}
+
+@media screen and (max-width:404px) {
+  .modalProgramAboutContent{
+    padding: 21px 29px 8px 16px;
+  }
+
+  .modalProgramAboutContentTextBlock p {
+    font-size: 12px;
+  }
+  .rule h4{
+    font-size: 13px;
+  }
+  
+} 
