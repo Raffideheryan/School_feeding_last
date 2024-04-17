@@ -32,7 +32,16 @@ services:
     volumes:
       - static_volume:/app/build/static
     restart: always
-      
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: always
+
 
 volumes:
   static_volume:
