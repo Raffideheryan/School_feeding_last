@@ -1356,6 +1356,17 @@ form textarea:focus {
   padding: 2px 2px;
   height: 50px;
 }
+.introducion-info p {
+  font-size: 12px;
+}
+
+.disc li {
+  font-size: 12px;
+}
+
+.decimal li{
+  font-size: 12px;
+}
 }
 
 

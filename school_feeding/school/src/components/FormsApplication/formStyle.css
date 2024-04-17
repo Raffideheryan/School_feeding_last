@@ -102,6 +102,7 @@
   --webkit-appearance: none;
   margin: 0;
   margin-top: 20px;
+  color: gray;
 }
 
 .formItem .formScoolBlock {
