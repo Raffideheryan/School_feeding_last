@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://aroxj_aprelakerpi_despan.schoolfeeding.am/",
+    "https://aroxj_aprelakerpi_despan.schoolfeeding.am",
 ]
 
 
