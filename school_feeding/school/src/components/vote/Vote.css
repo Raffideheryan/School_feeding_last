@@ -812,6 +812,13 @@ body.active-moidal {
   .term a {
     font-size: 14px;
   }
+  .modal-content ul li{
+    font-size: 12px;
+  }
+
+  .modal-content p{
+    font-size: 12px;
+  }
 }
 
 @media screen and (max-width: 555px) {
@@ -845,4 +852,6 @@ body.active-moidal {
     height: 45px;
     margin-top: 20px;
   }
+
+  
 }

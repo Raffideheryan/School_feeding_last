@@ -276,7 +276,7 @@ const[votingSchool,setVotingSchool] = useState("")
       password,
     };
     if (isValidateLogin()) {
-      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/login/", {
+      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/login/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),

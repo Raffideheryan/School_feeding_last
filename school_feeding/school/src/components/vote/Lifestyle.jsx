@@ -236,7 +236,8 @@ export const Lifestyle = () => {
     const allowedExtensions = ["doc", "docx"];
     file = file[0];
     let fileExtension;
-    if (file.name === undefined) {
+
+    if (file === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
     } else {
       fileExtension = file.name.split(".").pop().toLowerCase();
@@ -297,7 +298,7 @@ export const Lifestyle = () => {
     const allowedExtensions = ["pdf"];
     file = file[0];
     let fileExtension;
-    if (file.name === undefined) {
+    if (file === undefined) {
       toast.warning("Ներբեռնեք Փաստաթուղթը");
     } else {
       fileExtension = file.name.split(".").pop().toLowerCase();
@@ -328,7 +329,7 @@ export const Lifestyle = () => {
     const maxDurationInSeconds = 180; // 3 minutes
     const maxFileSizeInBytes = 1 * 1024 * 1024 * 1024; // 1 GB
 
-    if (file.type === undefined || !allowedFormats.includes(file.type)) {
+    if (file === undefined || !allowedFormats.includes(file.type)) {
       toast.warning(
         "Տեսանյութի անվավեր ձևաչափ: Խնդրում ենք վերբեռնել տեսանյութ MP4, MOV, WMV կամ AVI ձևաչափով"
       );
