@@ -6,6 +6,7 @@ export const Paginator = ({ postsPerPage, totalPosts ,paginate,currentPage}) => 
 
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    if(pageNumbers.length<4)
     pageNumbers.push(i);
   }
 

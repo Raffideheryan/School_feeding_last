@@ -5,6 +5,7 @@
   display: flex;
   background-color: rgba(255, 179, 0, 1);
   padding: 100px 0;
+  height: 100vh;
 }
 
 .register-all {
