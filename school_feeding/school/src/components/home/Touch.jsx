@@ -122,7 +122,7 @@ export const Touch = () => {
                 <label>Անուն</label>
                 <input
                   type="text"
-                  placeholder="Մուտքագրեք Ձեր Անունը"
+                  placeholder="Մուտքագրեք Ձեր անունը"
                   onChange={(e) => setName(e.target.value)}
                   value={name}
                   className={errorName ? "" : "error"}
@@ -132,17 +132,17 @@ export const Touch = () => {
                 <label>Էլեկտրոնային հասցե</label>
                 <input
                   type="text"
-                  placeholder="Մուտքագրեք Ձեր Էլեկտրոնային Հասցեն"
+                  placeholder="Մուտքագրեք Ձեր էլեկտրոնային հասցեն"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   className={errorEmail ? "" : "error"}
                 />
               </div>
               <div className="phone">
-            <label>Հեռախոսահամար <small>Օրինակ: 094555555</small></label>
+            <label>Հեռախոսահամար <small>(օրինակ 094555555)</small></label>
             <input
               type="tel"
-              placeholder="Մուտքագրեք Ձեր Հեռախոսահամարը"
+              placeholder="Մուտքագրեք Ձեր հեռախոսահամարը"
               onChange={(e) => setPhone(e.target.value)}
               value={(phone)}
               className={errorPhone?'':'error'}
@@ -152,7 +152,7 @@ export const Touch = () => {
 
               <div className="textarea">
                 <textarea
-                  placeholder="Մուտքագրեք Ձեր Հաղորդագրությունը`"
+                  placeholder="Մուտքագրեք Ձեր հաղորդագրությունը"
                   onChange={(e) => setMessage(e.target.value)}
                   value={message}
                   className={errorMessage?"":'error'}
@@ -163,7 +163,7 @@ export const Touch = () => {
             </form>
 
             <div className='sendmessages'>
-              <p>Կարող եք նաև կապ հաստատել մեզ հետ <a href="mailto:robkocharyan20@gmail.com">aroxjaprelakerpidespan@gmail.com</a>  էլեկտրոնային հասցեով:</p>
+              <p>Կարող եք նաև կապ հաստատել մեզ հետ <a href="mailto:robkocharyan20@gmail.com">aroxjaprelakerpidespan@gmail.com</a>  էլեկտրոնային փոստի միջոցով:</p>
             </div>
           </div>
         </div>

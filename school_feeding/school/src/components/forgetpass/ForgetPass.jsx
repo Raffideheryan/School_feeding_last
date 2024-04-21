@@ -48,7 +48,7 @@ export const ForgetPass = () => {
             <label>Էլեկտրոնային հասցե</label>
             <input
               type="text"
-              placeholder="Մուտքագրեք Ձեր Էլեկտրոնային Հասցեն"
+              placeholder="Մուտքագրեք Ձեր էլեկտրոնային հասցեն"
               onChange={(e) => userActions.setEmail(e.target.value)}
               value={userState.email}
               className={userState.errorEmail ? "error" : ""}

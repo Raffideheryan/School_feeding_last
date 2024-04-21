@@ -21,7 +21,7 @@ export const NewPass = () => {
 
             <input
               type={show ? "text" : "password"}
-              placeholder="Մուտքագրեք Նոր Գաղտնաբառը"
+              placeholder="Մուտքագրեք նոր գաղտնաբառը"
               onChange={(e) => userActions.setPassword(e.target.value)}
               value={userState.password}
               className={userState.errorPassword ? "error" : ""}
@@ -37,7 +37,7 @@ export const NewPass = () => {
             <label>Հաստատեք գաղտնաբառը</label>
             <input
               type="password"
-              placeholder="Մուտքագրեք Նոր Գաղտնաբառը"
+              placeholder="Մուտքագրեք նոր գաղտնաբառը"
               onChange={(e) => userActions.setComfirmPassword(e.target.value)}
               value={userState.comfirmPassword}
               className={userState.errorComfirmPassword ? "error" : ""}

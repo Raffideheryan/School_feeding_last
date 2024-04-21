@@ -41,7 +41,7 @@ const gotoRegister = (e)=>{
             <label>Անուն</label>
             <input
               type="text"
-              placeholder="Մուտքագրեք Ձեր Անունը"
+              placeholder="Մուտքագրեք Ձեր անունը"
               onChange={(e) => userActions.setName(e.target.value)}
               value={userState.username}
               className={userState.errorName?'error':''}
@@ -52,7 +52,7 @@ const gotoRegister = (e)=>{
             <label>Էլեկտրոնային հասցե</label>
             <input
               type="text"
-              placeholder="Մուտքագրեք Ձեր էլեկտրոնային Հասցեն"
+              placeholder="Մուտքագրեք Ձեր էլեկտրոնային հասցեն"
               onChange={(e) => userActions.setEmail(e.target.value)}
               value={userState.email}
               className={userState.errorEmail?'error':''}
@@ -60,10 +60,10 @@ const gotoRegister = (e)=>{
             />
           </div>
           <div className="phone">
-            <label>Հեռախոսահամար <small>Օրինակ: 094555555</small></label>
+            <label>Հեռախոսահամար <small>(օրինակ 094555555)</small></label>
             <input
               type="tel"
-              placeholder="Մուտքագրեք Ձեր Հեռախոսահամարը"
+              placeholder="Մուտքագրեք Ձեր հեռախոսահամարը"
               onChange={(e) => userActions.setPhone(e.target.value)}
               value={(userState.phone)}
               className={userState.errorPhone?'error':''}
@@ -75,7 +75,7 @@ const gotoRegister = (e)=>{
 
             <input
               type={show?'text':'password'}
-              placeholder="Մուտքագրեք Ձեր Գաղտնաբառը"
+              placeholder="Մուտքագրեք Ձեր գաղտնաբառը"
               onChange={(e) => userActions.setPassword(e.target.value)}
               value={userState.password}
               className={userState.errorPassword?'error':''}
@@ -91,7 +91,7 @@ const gotoRegister = (e)=>{
             <label>Հաստատեք գաղտնաբառը</label>
             <input
               type="password"
-              placeholder="Մուտքագրեք Ձեր Գաղտնաբառը "
+              placeholder="Մուտքագրեք Ձեր գաղտնաբառը "
               onChange={(e) => userActions.setComfirmPassword(e.target.value)}
               value={userState.comfirmPassword}
               className={userState.errorComfirmPassword?'error':''}
@@ -105,7 +105,7 @@ const gotoRegister = (e)=>{
           <button type={"submit"}>Գրանցվել</button>
         </form>
         <div className="signin">
-          <p>ՈՒնեք հաշիվ ? <a href="#" onClick={gotoRegister}>Մուտք</a> </p>
+          <p>ՈՒնե՞ք հաշիվ  <a href="#" onClick={gotoRegister}>Մուտք</a> </p>
         </div>
       </div>
     </div>

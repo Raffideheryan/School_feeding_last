@@ -12,8 +12,15 @@ export const VotingParticipate = () => {
   const [postsPerPage] = useState(5);
   const [checkSchool, setCheckSchool] = useState(true);
 
+  // 4 page check
+
+  const [check1,setCheck1] = useState(false)
+  const [check2,setCheck2] = useState(false)
+  const [check3,setCheck3] = useState(false)
+  const [check4,setCheck4] = useState(false)
+
   // context
-  const { userState, userActions } = useContext(UserContext);
+  // const { userState, userActions } = useContext(UserContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -46,10 +53,7 @@ export const VotingParticipate = () => {
   const currentPosts = posts.slice(indefOfFirstPost, indefOfLastPost);
 
   const paginate = (pageNumber) => {
-    if(currentPage<=4){
-      debugger
       setCurrentPage(pageNumber);
-    }
   }
   const video = "./video.mp4";
 

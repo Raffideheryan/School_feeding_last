@@ -453,28 +453,28 @@ export const Community = () => {
         <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
-          placeholder="Անուն-Ազգանուն"
+          placeholder="Անուն ազգանուն"
           onChange={(e) => setName1(e.target.value)}
           className={error1 ? "error" : ""}
           value={name1}
         />
         <input
           type="text"
-          placeholder="Անուն-Ազգանուն"
+          placeholder="Անուն ազգանուն"
           onChange={(e) => setName2(e.target.value)}
           className={error2 ? "error" : ""}
           value={name2}
         />
         <input
           type="text"
-          placeholder="Անուն-Ազգանուն"
+          placeholder="Անուն ազգանուն"
           onChange={(e) => setName3(e.target.value)}
           className={error3 ? "error" : ""}
           value={name3}
         />
         <input
           type="text"
-          placeholder="Անուն-Ազգանուն"
+          placeholder="Անուն ազգանուն"
           onChange={(e) => setName4(e.target.value)}
           className={error4 ? "error" : ""}
           value={name4}
