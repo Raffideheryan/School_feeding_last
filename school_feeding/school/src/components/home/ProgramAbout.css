@@ -8,6 +8,55 @@
   margin: auto;
 }
 
+/* changes header */
+
+.header{
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.logo{
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-left: 80px;
+}
+.see{
+  float: right;
+  margin-right: 80px;
+
+}
+
+.logo img{
+    width: 82px;
+    height: 40px;
+}
+
+.see button{
+  border: none;
+  cursor: pointer;
+  background-color: #ec8000;
+  border-radius: 5px;
+  padding: 15px 35px 15px 35px;
+  font-family: Bokonique;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffff;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 25px 10px 25px;
+}
+.loginButton{
+    /* width: 50% !important; */
+}
+
+
 /* changes */
 
 /* .programthreeimg{
@@ -298,6 +347,9 @@ input[type="radio"]:checked ~ .check::before {
   align-items: flex-end;
 }
 
+
+
+
 .programAboutRowText p,
 button {
   text-align: center;
@@ -571,6 +623,20 @@ button {
     padding: 25px 41px;
   }
 
+  /* changes */
+
+  .logo{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 35px;
+  }
+  .see{
+    float: right;
+    margin-right: 35px;
+  
+  }
+
   .modalProgramAboutContentBtnBlock {
     padding-top: 0;
   }
@@ -645,6 +711,19 @@ button {
     padding-top: 0;
   }
 
+  /* changes */
+  .logo{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 35px;
+  }
+  .see{
+    float: right;
+    margin-right: 35px;
+  
+  }
+
   .modalProgramAboutContent h2 {
     font-size: 21px;
     line-height: 30px;
@@ -705,6 +784,19 @@ button {
   /* .programthreeimg{
     height: auto;
   } */
+
+  /* changes */
+  .logo{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 30px;
+  }
+  .see{
+    float: right;
+    margin-right: 30px;
+  
+  }
 
   .modalProgramAboutContentBtnBlock {
     padding-top: 0;
@@ -857,6 +949,19 @@ button {
   .modalProgramAboutContent {
     width: 80%;
     left: 10%;
+  }
+
+  /* changes */
+  .logo{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 5px;
+  }
+  .see{
+    float: right;
+    margin-right: 5px;
+  
   }
 
   .modalProgramAboutContent h2 {
@@ -1162,13 +1267,10 @@ form textarea:focus {
   transition: all 0.5s linear;
 }
 
-.loginButton{
-  justify-content: end;
-}
-
+/* 
 .loginButton button{
   width: 200px;
-}
+} */
 /* scedule */
 
 .scedule {
@@ -1358,7 +1460,7 @@ form textarea:focus {
   width: 150px;
   font-size: 15px;
   padding: 2px 2px;
-  height: 50px;
+  height: 40px;
 }
 .introducion-info p {
   font-size: 12px;

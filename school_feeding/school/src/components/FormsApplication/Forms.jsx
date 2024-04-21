@@ -467,7 +467,7 @@ export default function Forms() {
       <div className="time-block"></div>
       <div className="formBlock">
         <form action="" onSubmit={handleSubmitAl}>
-          <h2 className="formTitle">Գրանցման Դաշտ</h2>
+          <h2 className="formTitle">Գրանցման դաշտ</h2>
           <div className="formItem">
             <label htmlFor="region" className="formItemLabel1">
               Մարզ
@@ -496,7 +496,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="town" className="m-bottom formItemLabel1">
-              Քաղաք/Գյուղ
+              Քաղաք/գյուղ
             </label>
             <input
               type="text"
@@ -509,7 +509,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="school_name" className="m-bottom formItemLabel1">
-              Դպրոցի Անուն
+              Դպրոցի անուն
             </label>
             <input
               type="text"
@@ -530,7 +530,7 @@ export default function Forms() {
             </label>
             <input
               type="text"
-              placeholder="Անուն Ազգանուն"
+              placeholder="Անուն ազգանուն"
               name="contact_person"
               className={`formItemInput1 ${errorcontact_person ? "error" : ""}`}
               value={infoForm.contact_person}
@@ -556,7 +556,7 @@ export default function Forms() {
             </label>
             <input
               type="text"
-              placeholder="Մուտքագրեք Ձեր Էլեկտրոնային Հասցեն"
+              placeholder="Մուտքագրեք ձեր էլեկտրոնային հասցեն"
               name="email"
               className={`formItemInput1 ${erroremail ? "error" : ""}`}
               value={infoForm.email}
@@ -565,11 +565,11 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="phone" className="m-bottom formItemLabel1">
-              Հեռախոսահամար ձևաչափը:094555555
+              Հեռախոսահամար ձևաչափը (օրինակ 094555555)
             </label>
             <input
               type="text"
-              placeholder="Մուտքագրեք Ձեր Հեռախոսահամարը"
+              placeholder="Մուտքագրեք ձեր հեռախոսահամարը"
               name="phone"
               className={`formItemInput1 ${errorphone ? "error" : ""}`}
               value={infoForm.phone}

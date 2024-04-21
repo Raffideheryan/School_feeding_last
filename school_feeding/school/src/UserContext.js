@@ -73,11 +73,11 @@ const[votingSchool,setVotingSchool] = useState("")
 
     if (username === null || username === "" || username.trim() === "") {
       isproccesd = false;
-      toast.warning(" Անուն դաշտը պարտադիր է․․․ ");
+      toast.warning(" Անուն դաշտը պարտադիր է ");
       setErrorName(true);
     } else if (!usernameRegexArmenianLetter && username.trim() !== "") {
       isproccesd = false;
-      toast.warning(" Անուն դաշտը պետք է պարունակի միայն Հայկական տառեր");
+      toast.warning(" Անուն դաշտը պետք է պարունակի միայն հայկական տառեր");
       setErrorName(true);
     } else if (username.trim().length <= 2) {
       isproccesd = false;
