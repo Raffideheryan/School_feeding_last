@@ -7,7 +7,7 @@ import progrmas3Img from "../../assets/imagePrograms/programs3.png";
 import progrmas4Img from "../../assets/imagePrograms/programs4.png";
 // import ReactVidioPlayer from "./ReactVidioPlayer";
 import { useNavigate } from "react-router-dom";
-import { CountDown } from "../countdown/CountDown";
+// import { CountDown } from "../countdown/CountDown";
 import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
 
@@ -1036,9 +1036,9 @@ const ProgramAbout = () => {
             Մասնակցել
           </button>
         </div>
-        <div className="scedule">
+        {/* <div className="scedule">
           <CountDown />
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useContext,useState } from "react";
 import "./formStyle.css";
 import imageMain from "../../assets/imageApplicationForm.png";
 import { useNavigate } from "react-router-dom";
-import { CountDown } from "./../countdown/CountDown";
+// import { CountDown } from "./../countdown/CountDown";
 import { toast } from "react-toastify";
 import { UserContext } from "../../UserContext";
 
@@ -462,7 +462,7 @@ export default function Forms() {
       <div className="formContainerImage">
         <img src={imageMain} alt="image" />
       </div>
-      <CountDown />
+      {/* <CountDown /> */}
       {/* <pre>{JSON.stringify(infoForm, undefined, 2)}</pre> */}
       <div className="time-block"></div>
       <div className="formBlock">
