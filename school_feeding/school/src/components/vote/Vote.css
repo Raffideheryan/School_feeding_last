@@ -252,7 +252,10 @@
   margin-top: 20px;
   text-align: justify;
 }
-
+/* changes design texts */
+.term a {
+  font-size: 18px;
+}
 .photos .upload {
   width: 90%;
   display: flex;
@@ -421,7 +424,7 @@
 .lifestyle .agree {
   display: flex;
   justify-content: space-between;
-  width: 59.5%;
+  width: 62.5%;
   align-items: center;
 
   margin-top: 20px;
@@ -463,7 +466,7 @@
 }
 
 .agree-text span {
-  font-size: 18px;
+  font-size: 9.5px;
   font-weight: 700;
   color: rgba(0, 0, 0, 1);
   letter-spacing: 1px;
@@ -472,11 +475,13 @@
 }
 
 .term {
-  /* width: 30%; */
+  width: 19%;
+  text-align:center
+
 }
 
 .term a {
-  font-size: 22px;
+  font-size: 18px;
   letter-spacing: 1px;
   text-transform: capitalize;
   color: rgba(255, 179, 0, 1);
@@ -806,7 +811,7 @@ body.active-moidal {
   }
 
   .agree-text span {
-    font-size: 14px;
+    font-size: 10px;
   }
 
   .term a {
@@ -853,7 +858,9 @@ body.active-moidal {
     margin-top: 20px;
   }
 
-  
+  .term{
+    width:30%
+  }
 }
 
 
@@ -864,6 +871,16 @@ body.active-moidal {
     line-height: 23px;
 }
 
+.agree-text span {
+  font-size: 8px;
+  line-height:15px;
+}
 
 
+}
+
+
+.changes{
+  display: flex;
+    flex-direction: column;
 }

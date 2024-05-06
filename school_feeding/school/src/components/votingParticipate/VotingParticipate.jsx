@@ -60,29 +60,104 @@ export const VotingParticipate = () => {
   const handleButtonClicke = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
+    if(currentPage === 1){
+      const formData = new FormData();
 
-    formData.append("item",video);
-    formData.append("value", 1);
-
-    fetch("http://127.0.0.1:8000/info/votes/", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    })
-      .then((res) => {
-        if (res.ok) {
-          toast.success(
-            "Դուք դիմել եք X-Դպրոցի"
-          );
-          // localStorage.removeItem("email");
-          // localStorage.setItem("name", JSON.stringify());
-        } else if (res.status === 400) {
-          toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
-        }
+      // formData.append("item",video);
+      formData.append("value", 1);
+  
+      fetch("http://127.0.0.1:8000/info/votes/", {
+        method: "POST",
+        body: JSON.stringify(formData),
       })
-      .catch((err) => {
-        toast.warning("Չհաջողվեց");
-      });
+        .then((res) => {
+          if (res.ok) {
+            toast.success(
+              "Դուք դիմել եք X-Դպրոցի"
+            );
+            // localStorage.removeItem("email");
+            // localStorage.setItem("name", JSON.stringify());
+          } else if (res.status === 400) {
+            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }
+        })
+        .catch((err) => {
+          toast.warning("Չհաջողվեց");
+        });
+    }else if(currentPage ===2){
+      const formData = new FormData();
+
+      // formData.append("item",video);
+      formData.append("value", 1);
+  
+      fetch("http://127.0.0.1:8000/info/votes/", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      })
+        .then((res) => {
+          if (res.ok) {
+            toast.success(
+              "Դուք դիմել եք X-Դպրոցի"
+            );
+            // localStorage.removeItem("email");
+            // localStorage.setItem("name", JSON.stringify());
+          } else if (res.status === 400) {
+            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }
+        })
+        .catch((err) => {
+          toast.warning("Չհաջողվեց");
+        });
+    }else if(currentPage===3){
+      const formData = new FormData();
+
+      // formData.append("item",video);
+      formData.append("value", 1);
+  
+      fetch("http://127.0.0.1:8000/info/votes/", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      })
+        .then((res) => {
+          if (res.ok) {
+            toast.success(
+              "Դուք դիմել եք X-Դպրոցի"
+            );
+            // localStorage.removeItem("email");
+            // localStorage.setItem("name", JSON.stringify());
+          } else if (res.status === 400) {
+            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }
+        })
+        .catch((err) => {
+          toast.warning("Չհաջողվեց");
+        });
+    }else if(currentPage === 4){
+      const formData = new FormData();
+
+      // formData.append("item",video);
+      formData.append("value", 1);
+  
+      fetch("http://127.0.0.1:8000/info/votes/", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      })
+        .then((res) => {
+          if (res.ok) {
+            toast.success(
+              "Դուք դիմել եք X-Դպրոցի"
+            );
+            // localStorage.removeItem("email");
+            // localStorage.setItem("name", JSON.stringify());
+          } else if (res.status === 400) {
+            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }
+        })
+        .catch((err) => {
+          toast.warning("Չհաջողվեց");
+        });
+    }
+  
   };
 
   return (

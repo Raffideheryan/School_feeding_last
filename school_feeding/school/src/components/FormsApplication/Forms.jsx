@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import "./formStyle.css";
 import imageMain from "../../assets/imageApplicationForm.png";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Forms() {
     age_cat: "",
     project_cat1: "",
     project_cat2: "",
-    user:""
+    user: "",
   });
 
   // errors
@@ -54,14 +54,13 @@ export default function Forms() {
     project_cat4: false,
   });
 
-
   const validete = (values) => {
     let errors = true;
     const regExpMail = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
     const regExpText = /^[\u0531-\u0556\u0561-\u0587\s]+$/u;
     const regExpNameUsername = /^[\u0531-\u0556\u0561-\u0587\s]+$/u;
     const regExpPhone =
-    /^(091|097|096|099|043|077|093|094|098|055|095|041|033|044)\d{6}$/;
+      /^(091|097|096|099|043|077|093|094|098|055|095|041|033|044)\d{6}$/;
     const regExpBirthDay = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
 
     // Validation region
@@ -307,13 +306,13 @@ export default function Forms() {
     e.preventDefault();
 
     if (validete(infoForm)) {
-    const storedEmail = userState.userId;
-      infoForm.user = storedEmail
+      const storedEmail = userState.userId;
+      infoForm.user = storedEmail;
       setErrorMessage(true);
       async function submitInfoForm() {
         try {
           const response = await fetch(
-            "https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/applicationform/",
+            "http://127.0.0.1:8000/info/applicationform/",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -332,19 +331,16 @@ export default function Forms() {
               navigate("/community");
             }
             userActions.setVoteAgain(infoForm);
-            userActions.setFormId(data.id)
+            userActions.setFormId(data.id);
           } else if (response.status === 400) {
             toast.warning("Այս Էլ-հասցեն գոյություն ունի համակարգում");
             setErroremail(true);
           }
-
-            
         } catch (error) {
           toast.warning(
             "Խնդրում ենք մուտք գործել համակարգ ծրագրին դիմելու համար"
           );
-          navigate('/login')
-
+          navigate("/login");
         }
       }
       submitInfoForm();
@@ -509,7 +505,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="school_name" className="m-bottom formItemLabel1">
-              Դպրոցի անուն
+              Դպրոցի անվանումը
             </label>
             <input
               type="text"
@@ -522,10 +518,9 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="contact_person" className="m-bottom formItemLabel1">
-              Մեծահասակի կոնտակտային տվյալները
+              Մեծահասակի կոնտակտային անձ*
               <span>
-                {" "}
-                (ուսուցիչ, դպրոցի ծրագրի համակարգող) (անուն, ազգանուն)
+                 (ուսուցիչ, դպրոցական նախագծերի ղեկավար) (անուն, ազգանուն)
               </span>
             </label>
             <input
@@ -552,7 +547,7 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="email" className="m-bottom formItemLabel1">
-              Էլեկտրոնային Հասցե
+              Կոնտակտային անձի էլեկտրոնային հասցեն*
             </label>
             <input
               type="text"
@@ -565,10 +560,10 @@ export default function Forms() {
           </div>
           <div className="formItem m-top">
             <label htmlFor="phone" className="m-bottom formItemLabel1">
-              Հեռախոսահամար ձևաչափը (օրինակ 094555555)
+            Կոնտակտային անձի հեռախոսահամարը* (օրինակ 094555555)
             </label>
             <input
-              type="text"
+              type="tel"
               placeholder="Մուտքագրեք ձեր հեռախոսահամարը"
               name="phone"
               className={`formItemInput1 ${errorphone ? "error" : ""}`}
@@ -579,7 +574,7 @@ export default function Forms() {
 
           <div className="formItem m-top">
             <label htmlFor="age_cat" className="formItemLabel1">
-              Ո՞ր դասարաններն են ներկայացնելու ձեր թիմը (թիմերը):
+              Ո՞ր դասարաններն է ներկայացնելու ձեր թիմը (թիմերը):
             </label>
 
             <div className="formScoolBlock">
@@ -591,7 +586,7 @@ export default function Forms() {
                   onChange={handleClassChange}
                   checked={infoForm.age_cat === "5-6 դասարան"}
                 />
-                <label htmlFor="age_cat">5-6 Դասարանները</label>
+                <label htmlFor="age_cat">5-6 դասարանները</label>
               </div>
               <div>
                 <input
@@ -601,7 +596,7 @@ export default function Forms() {
                   onChange={handleClassChange}
                   checked={infoForm.age_cat === "7-8 դասարան"}
                 />
-                <label htmlFor="age_cat">7-8 Դասարանները</label>
+                <label htmlFor="age_cat">7-8 դասարանները</label>
               </div>
               <div>
                 <input
@@ -624,7 +619,7 @@ export default function Forms() {
 
           <div className="formItem m-top">
             <label htmlFor="age_cat" className="formItemLabel1">
-              Ո՞ր Նախագծին եք նախատեսում մասնակցել:
+              Ո՞ր անվանակարգում (անվանակարգերում) եք պատրաստվում մասնակցել:*
             </label>
             <span className="programSpan"> Կարող եք ընտրել միայն 2 ծրագիր</span>
             <div className="formScoolBlock">
@@ -638,7 +633,7 @@ export default function Forms() {
                   checked={programsChecked.project_cat1}
                 />
                 <label htmlFor="project_cat1">
-                  Խաղ «Առողջ ապրելակերպ խաղային ձևով» թեմայով
+                  Խաղ «Առողջ ապրելակերպը՝ խաղի ձևով» թեմայով
                 </label>
               </div>
               <div>
@@ -666,7 +661,7 @@ export default function Forms() {
                 />
                 <label htmlFor="project_cat3">
                   Հետազոտություն «Բացահայտելով առողջ ապրելակերպի աշխարհը. մեր
-                  հետազոտությունները» թեմայով
+                  հետազոտությունը» թեմայով
                 </label>
               </div>
               <div>

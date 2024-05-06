@@ -459,7 +459,7 @@ export const Discovering = () => {
       </div>
       <h1>«Բացահայտելով առողջ ապրելակերպի աշխարհը. մեր հետազոտությունը»</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամների (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
           placeholder="Անուն-Ազգանուն"
@@ -695,7 +695,7 @@ export const Discovering = () => {
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ</h2>
+          <h2>Թռուցիկ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -721,12 +721,11 @@ export const Discovering = () => {
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
-                  ձևաչափը պարտադիր է):
+                Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ թռուցիկ՝ (PDF ձևաչափով): 
+
                   <small>
-                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
-                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
-                    սյունակի բաժանված։
+                  PDF փաստաթուղթ A4 էջի ⅓ մասի չափով (10սմ*21սմ), երկկողմանի՝ տպելու համար պատրաստ  տեսքով։
+
                   </small>
                 </p>
               </h4>
@@ -741,7 +740,7 @@ export const Discovering = () => {
         </div>
 
         <div className="info">
-          <span>Հետազոտությունը նկարագրող եռածալ բուկլետը պետք է ներառի.</span>
+          <span>Հետազոտությունը նկարագրող թռուցիկը պետք է ներառի.</span>
 
           <ul>
             <li>
@@ -824,11 +823,14 @@ export const Discovering = () => {
             checked={isChecked}
             key={resetKey}
           />
-          <span>Համաձայն եմ</span>
+         <div className="changes">
+            <span>Ես տալիս եմ համաձայնություն՝</span>
+            <span> օգտագործել  բոլոր ներբեռնված նյութերը․ </span>
+          </div>
         </div>
         <div className="term">
           <a href="#" onClick={userActions.toggleModal}>
-            Պայմաններ
+          Ավելի մանրամասն
           </a>
           <Terms />
         </div>

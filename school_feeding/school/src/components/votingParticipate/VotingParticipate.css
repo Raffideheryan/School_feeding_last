@@ -38,6 +38,7 @@
   background-color: #f3f9ec;
   height: 50px;
   width: 100%;
+  position: relative;
 }
 
 .voting-circle {
@@ -97,6 +98,15 @@
   font-size: 20px;
   letter-spacing: 1px;
   user-select: none;
+}
+
+.voting-count{
+  position: absolute;
+  color: #7ab73a;
+  font-weight: 700;
+  font-size: 25px;
+  right: 10px;
+  top: 10px;
 }
 
 /* pagination */
