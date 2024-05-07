@@ -1,0 +1,3 @@
+a="a-z0-9.-"
+b="a-z0-9._-"
+sed -i "s/${a}/${b}/g" /usr/local/lib/python3.12/site-packages/django/http/request.py
