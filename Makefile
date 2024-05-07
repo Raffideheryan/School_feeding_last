@@ -26,6 +26,10 @@ migrate:
 createsuperuser:
 	${DE} app python school_feeding/manage.py createsuperuser
 
+.PHONY: verifydomain
+verifydomain:
+	${DE} app sh script
+
 # project -----------------
 .PHONY: project
 project:

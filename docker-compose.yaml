@@ -17,8 +17,6 @@ services:
     image: postgres:latest
     container_name: postgres-db
     restart: always
-    ports:
-      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -45,4 +43,14 @@ services:
 
 volumes:
   static_volume:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /root/School_feeding_last/static_volume
   postgres_data:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /root/School_feeding_last/postgres_data

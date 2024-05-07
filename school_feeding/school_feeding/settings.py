@@ -150,4 +150,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 #STATICFILES_DIRS = [BASE_DIR / "school/build/static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CSRF_TRUSTED_ORIGINS = ['https://aroxj_aprelakerpi_despan.schoolfeeding.am']
 
