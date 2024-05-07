@@ -43,14 +43,8 @@ const { userState, userActions } = useContext(UserContext);
               <div className="voting-checkbox">
                 <span className={`voting-circle ${voting === index ? "active" : ""}`} onClick={()=>onCLickVoting(index,post.name)}></span>
                 <span className="voting-school">Դպրոց 1</span>
-              </div>
-              <div className="voting-percent">
-                <div className="voting-line">
-                  <span className="voting-green-line"></span>
-                </div>
-                <div className="voting-digit">
-                  <span className="voting-text">80%</span>
-                </div>
+                <span className="voting-count">+10</span>
+
               </div>
             </div>
           </div>

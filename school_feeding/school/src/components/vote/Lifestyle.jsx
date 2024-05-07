@@ -477,7 +477,7 @@ export const Lifestyle = () => {
       </div>
       <h1>«Առողջ ապրելակերպը խաղի ձևով» անվանակարգ</h1>
       <div className="names">
-        <h2>Լրացրե՛ք թիմի 4 անդամի (դպրոցականների) անուն-ազգանունը</h2>
+        <h2>Լրացրե՛ք թիմի 4 անդամների (դպրոցականների) անուն-ազգանունը</h2>
         <input
           type="text"
           placeholder="Անուն-Ազգանուն"
@@ -510,7 +510,7 @@ export const Lifestyle = () => {
 
       <div className="game">
         <div className="concept">
-          <h2>Առողջ ապրելակերպը խաղի ձևով</h2>
+          <h2>Խաղի հայեցակարգը</h2>
           <span>Խաղի մանրամասն նկարագրությունը և  նպատակը:</span>
         </div>
 
@@ -644,7 +644,7 @@ export const Lifestyle = () => {
 
       <div className="leaflet">
         <div className="concept">
-          <h2>Եռածալ բուկլետ</h2>
+          <h2>Թռուցիկ</h2>
         </div>
 
         <div className={errorFilesPdf ? "errorfiles upload" : "upload"}>
@@ -670,12 +670,11 @@ export const Lifestyle = () => {
               <h4>
                 Ընտրեք ֆայլը և ներբեռնեք
                 <p>
-                  Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ եռածալ բուկլետ (PDF
-                  ձևաչափը պարտադիր է)։
+                Ներբեռնեք ձևավորված՝ տպելու համար պատրաստ թռուցիկ՝ (PDF ձևաչափով): 
+
                   <small>
-                    PDF փաստաթուղթ A4 ձևաչափով՝ տպելու համար պատրաստ եռածալ
-                    բուկլետի տեսքով։ Երկկողմանի, ամեն կողմը երեք ուղղանկյուն
-                    սյունակի բաժանված։{" "}
+                  PDF փաստաթուղթ A4 էջի ⅓ մասի չափով (10սմ*21սմ), երկկողմանի՝ տպելու համար պատրաստ  տեսքով։
+
                   </small>
                 </p>
               </h4>
@@ -690,7 +689,7 @@ export const Lifestyle = () => {
         </div>
 
         <div className="info">
-          <span>Եռածալ բուկլետը պետք է ներառի․</span>
+          <span>Թռուցիկը պետք է ներառի․</span>
           <ul>
             <li>
               Խաղի հստակ նպատակները՝ ընդգծելով, թե ինչպես է այն  խրախուսում
@@ -772,11 +771,14 @@ export const Lifestyle = () => {
             checked={isChecked}
             key={resetKey}
           />
-          <span>Համաձայն եմ</span>
+         <div className="changes">
+            <span>Ես տալիս եմ համաձայնություն՝</span>
+            <span> օգտագործել  բոլոր ներբեռնված նյութերը․ </span>
+          </div>
         </div>
         <div className="term">
           <a href="#" onClick={userActions.toggleModal}>
-            Պայմաններ
+          Ավելի մանրամասն
           </a>
           <Terms />
         </div>
