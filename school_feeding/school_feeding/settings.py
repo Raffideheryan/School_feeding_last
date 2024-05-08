@@ -7,7 +7,7 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True 
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -129,19 +129,26 @@ DEFAULT_FROM_EMAIL = "aroxjaprelakerpidespan@gmail.com"
 
 REACT_BASE_URL = 'https://www.aroxj_aprelakerpi_despan.schoolfeeding.am/'
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 1000 * 1024 * 1024
-FILE_UPLOAD_MAX_MEMORY_SIZE = 1000 * 1024 * 1024
-FILE_UPLOAD_MAX_SIZE = 1000 * 1024 * 1024
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1000000000
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1000000000
+FILE_UPLOAD_MAX_SIZE = 1000000000
 
 
 
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+#STATIC_URL = "/static/"
+#STATIC_ROOT = BASE_DIR / "static"
+
+STATIC_ROOT = ''
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = ('static',)
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-STATICFILES_DIRS = [BASE_DIR / "school/build/static"]
+#STATICFILES_DIRS = [BASE_DIR / "school/build/static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CSRF_TRUSTED_ORIGINS = ['https://aroxj_aprelakerpi_despan.schoolfeeding.am']
 

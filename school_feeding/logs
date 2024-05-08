@@ -1,0 +1,38 @@
+Performing system checks...
+
+
+You have 67 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, main, sessions.
+Run 'python manage.py migrate' to apply them.
+April 22, 2024 - 20:45:18
+Django version 5.0.4, using settings 'school_feeding.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+April 22, 2024 - 20:54:43
+Django version 5.0.4, using settings 'school_feeding.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+April 22, 2024 - 21:27:46
+Django version 5.0.4, using settings 'school_feeding.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+April 22, 2024 - 21:28:36
+Django version 5.0.4, using settings 'school_feeding.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+Performing system checks...
+
+April 22, 2024 - 21:32:55
+Django version 5.0.4, using settings 'school_feeding.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
