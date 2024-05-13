@@ -38,10 +38,24 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_media:/media
+      - static_admin:/var/www/static/admin
     restart: always
 
 
 volumes:
+  static_admin:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /root/School_feeding_last/static/admin
+  static_media:
+    driver: local
+    driver_opts:
+        type: none
+        o: bind
+        device: /root/School_feeding_last/school_feeding/media
   static_volume:
     driver: local
     driver_opts:

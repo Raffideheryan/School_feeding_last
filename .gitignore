@@ -26,3 +26,6 @@ ENV/
 env.bak/
 venv.bak/
 node_modules/
+static_volume/
+postgres_data/
+school_feeding/media/
