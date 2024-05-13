@@ -33,7 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgetpass" element={<ForgetPass />} />
           <Route path="/newpass" element={<NewPass />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} /> 
           <Route path="touch" element={<Touch />} />
         </Routes>
       </div>
