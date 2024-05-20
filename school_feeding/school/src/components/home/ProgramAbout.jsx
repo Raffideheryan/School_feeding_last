@@ -215,6 +215,10 @@ const ProgramAbout = () => {
             <button onClick={handleSubmitLogeOut}>Դուրս Գալ </button>
           </div>
         )}
+
+        <div className="warning">
+          <p>ձեր նախագիծը կամ նախագծերը ներկայացնելու համար խնդրում ենք ևս մեկ անգամ լրացնել գրանցման ձևը</p>
+        </div>
       </div>
       <div className="programAbout">
         <div className="programAboutRow">
