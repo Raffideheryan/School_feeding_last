@@ -30,10 +30,10 @@ function App() {
           <Route path="/tasty" element={<Tasty />} />
           <Route path="/discovering" element={<Discovering />} />
           <Route path="/community" element={<Community />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgetpass" element={<ForgetPass />} />
-          <Route path="/newpass" element={<NewPass />} />
-          <Route path="/register" element={<Register />} /> 
+          <Route path="login" element={<Login />} />
+          <Route path="forgetpass" element={<ForgetPass />} />
+          <Route path="newpass" element={<NewPass />} />
+          <Route path="register" element={<Register />} /> 
           <Route path="touch" element={<Touch />} />
         </Routes>
       </div>
