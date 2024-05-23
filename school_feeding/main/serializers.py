@@ -150,7 +150,7 @@ class ProjectSerializer1(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 2:
+                if num_pages > 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -192,7 +192,7 @@ class ProjectSerializer2(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 2:
+                if num_pages > 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -256,7 +256,7 @@ class ProjectSerializer3(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 2:
+                if num_pages > 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
@@ -319,7 +319,7 @@ class ProjectSerializer4(serializers.ModelSerializer):
             try:
                 pdf_reader = PdfReader(value)
                 num_pages = len(pdf_reader.pages)
-                if num_pages >= 2:
+                if num_pages > 2:
                     raise serializers.ValidationError("PDF file cannot have more than 15 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing PDF file: {e}")
