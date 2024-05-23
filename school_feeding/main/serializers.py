@@ -163,7 +163,7 @@ class ProjectSerializer1(serializers.ModelSerializer):
             try:
                 doc = Document(value)
                 num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+                if num_pages >= 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -205,7 +205,7 @@ class ProjectSerializer2(serializers.ModelSerializer):
             try:
                 doc = Document(value)
                 num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+                if num_pages >= 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -268,7 +268,7 @@ class ProjectSerializer3(serializers.ModelSerializer):
             try:
                 doc = Document(value)
                 num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+                if num_pages >= 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -331,7 +331,7 @@ class ProjectSerializer4(serializers.ModelSerializer):
             try:
                 doc = Document(value)
                 num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+                if num_pages >= 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
