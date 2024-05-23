@@ -161,9 +161,16 @@ class ProjectSerializer1(serializers.ModelSerializer):
     def validate_word(self, value):
         if value:
             try:
+                # Load the Word document
                 doc = Document(value)
-                num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+
+                # Simple heuristic to estimate the number of pages
+                # Assuming that each page roughly has 30 paragraphs on average
+                avg_paragraphs_per_page = 14
+                num_paragraphs = len(doc.paragraphs)
+                estimated_pages = num_paragraphs / avg_paragraphs_per_page
+
+                if estimated_pages > 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -203,9 +210,16 @@ class ProjectSerializer2(serializers.ModelSerializer):
     def validate_word(self, value):
         if value:
             try:
+                # Load the Word document
                 doc = Document(value)
-                num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+
+                # Simple heuristic to estimate the number of pages
+                # Assuming that each page roughly has 30 paragraphs on average
+                avg_paragraphs_per_page = 14
+                num_paragraphs = len(doc.paragraphs)
+                estimated_pages = num_paragraphs / avg_paragraphs_per_page
+
+                if estimated_pages > 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -266,9 +280,16 @@ class ProjectSerializer3(serializers.ModelSerializer):
     def validate_word(self, value):
         if value:
             try:
+                # Load the Word document
                 doc = Document(value)
-                num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+
+                # Simple heuristic to estimate the number of pages
+                # Assuming that each page roughly has 30 paragraphs on average
+                avg_paragraphs_per_page = 14
+                num_paragraphs = len(doc.paragraphs)
+                estimated_pages = num_paragraphs / avg_paragraphs_per_page
+
+                if estimated_pages > 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
@@ -329,9 +350,16 @@ class ProjectSerializer4(serializers.ModelSerializer):
     def validate_word(self, value):
         if value:
             try:
+                # Load the Word document
                 doc = Document(value)
-                num_pages = len(doc.paragraphs)
-                if num_pages > 3:
+
+                # Simple heuristic to estimate the number of pages
+                # Assuming that each page roughly has 30 paragraphs on average
+                avg_paragraphs_per_page = 14
+                num_paragraphs = len(doc.paragraphs)
+                estimated_pages = num_paragraphs / avg_paragraphs_per_page
+
+                if estimated_pages > 3:
                     raise serializers.ValidationError("Word file must have at most 3 pages.")
             except Exception as e:
                 raise serializers.ValidationError(f"Error processing Word file: {e}")
