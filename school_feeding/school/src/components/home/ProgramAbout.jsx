@@ -840,7 +840,7 @@ const ProgramAbout = () => {
             </p>
             <h4>Մրցույթի փուլերը</h4>
             <p className="participateRulle">
-              <span>Փուլ 1. Գրանցում:</span>  Իրենց մասնակցության մասին հայտնելու համար թիմերից ակնկալվում է լրացնել <span className="bold">Գրանցման ձևը՝</span> մինչև 2024թ. մայիսի 15-ը։
+              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել<span className="bold">Գրանցման ձևը։</span>
             </p>
 
             <p className="participateRulle">
