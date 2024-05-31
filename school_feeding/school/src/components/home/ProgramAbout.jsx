@@ -840,7 +840,7 @@ const ProgramAbout = () => {
             </p>
             <h4>Մրցույթի փուլերը</h4>
             <p className="participateRulle">
-              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել<span className="bold">Գրանցման ձևը։</span>
+              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել <span className="bold">Գրանցման ձևը։</span>
             </p>
 
             <p className="participateRulle">
