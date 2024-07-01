@@ -6,44 +6,48 @@ import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
 
 export const VotingParticipate = () => {
+  // Context
+
+  const { userState, userActions } = useContext(UserContext);
+
   const [posts, setPosts] = useState([]);
   const [loadin, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [checkSchool, setCheckSchool] = useState(true);
 
+  // number partisipate
+const [digit,setChangeDigit] = useState()
+  // post ID
+  const [postId, setPostId] = useState("");
   // 4 page check
+// voting circle
+const [voting,setVoting] = useState(null)
 
-  const [check1,setCheck1] = useState(false)
-  const [check2,setCheck2] = useState(false)
-  const [check3,setCheck3] = useState(false)
-  const [check4,setCheck4] = useState(false)
+
 
   // context
-  // const { userState, userActions } = useContext(UserContext);
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("http://127.0.0.1:8000/info/items/");
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      setPosts(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const data = await response.json();
-        console.log(data);
-        setPosts(data.results);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
+   
     fetchPosts();
   }, []);
 
@@ -53,121 +57,197 @@ export const VotingParticipate = () => {
   const currentPosts = posts.slice(indefOfFirstPost, indefOfLastPost);
 
   const paginate = (pageNumber) => {
-      setCurrentPage(pageNumber);
-  }
-  const video = "./video.mp4";
+    setCurrentPage(pageNumber);
+  };
+
+ const addNumber = () => {
+  const updatedPosts = posts.map((post) => {
+    if (post.id === digit) {
+      return { ...post, vote_count: post.vote_count + 1 }; 
+    }
+    return post; 
+  });
+  setPosts(updatedPosts); 
+};
 
   const handleButtonClicke = (e) => {
     e.preventDefault();
+    setVoting("")
 
-    if(currentPage === 1){
-      const formData = new FormData();
+    const userId = localStorage.getItem("userId");
 
-      // formData.append("item",video);
-      formData.append("value", 1);
-  
+    if (currentPage === 1) {
+      const obj = {
+        item: `${postId}`,
+        user: userId,
+      };
+      const storedEmail = localStorage.getItem("email");
+
       fetch("http://127.0.0.1:8000/info/votes/", {
         method: "POST",
-        body: JSON.stringify(formData),
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(obj),
       })
         .then((res) => {
-          if (res.ok) {
-            toast.success(
-              "Դուք դիմել եք X-Դպրոցի"
+          const data = res.json()
+          if (res.ok && storedEmail) {
+            addNumber()
+            toast.success(`Դուք քվեարկել եք ${userState.votingSchool} դպրոցի օգտին`);
+            setPostId("");
+          } else{
+            return data;
+          }
+        })
+        .then((data)=>{
+          if (data.error === "User has already voted.") {
+            toast.warning(
+              "Դուք չեք կարող քվեարկել մեկ անգամից ավել նույն օգտահաշվով"
             );
-            // localStorage.removeItem("email");
-            // localStorage.setItem("name", JSON.stringify());
-          } else if (res.status === 400) {
-            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }else if(data.error === "User ID and item ID are required."){
+            toast.warning("Մուտք գործեք համակարգ քվեարկելու համար");
           }
         })
         .catch((err) => {
-          toast.warning("Չհաջողվեց");
+          // toast.warning("Չհաջողվեց");
         });
-    }else if(currentPage ===2){
-      const formData = new FormData();
+    } else if (currentPage === 2) {
+      const obj = {
+        item: `${postId}`,
+        user: userId,
+      };
+      const storedEmail = localStorage.getItem("email");
 
-      // formData.append("item",video);
-      formData.append("value", 1);
-  
-      fetch("http://127.0.0.1:8000/info/votes/", {
+      fetch("http://127.0.0.1:8000/info/votes2/", {
         method: "POST",
-        body: JSON.stringify(formData),
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(obj),
       })
         .then((res) => {
-          if (res.ok) {
-            toast.success(
-              "Դուք դիմել եք X-Դպրոցի"
+          const data = res.json()
+          if (res.ok && storedEmail) {
+            addNumber()
+            toast.success(`Դուք քվեարկել եք ${userState.votingSchool} դպրոցի օգտին`);
+            setPostId("");
+          } else{
+            return data;
+          }
+        })
+        .then((data)=>{
+          if (data.error === "User has already voted.") {
+            toast.warning(
+              "Դուք չեք կարող քվեարկել մեկ անգամից ավել նույն օգտահաշվով"
             );
-            // localStorage.removeItem("email");
-            // localStorage.setItem("name", JSON.stringify());
-          } else if (res.status === 400) {
-            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }else if(data.error === "User ID and item ID are required."){
+            toast.warning("Մուտք գործեք համակարգ քվեարկելու համար");
           }
         })
         .catch((err) => {
-          toast.warning("Չհաջողվեց");
+          // toast.warning("Չհաջողվեց");
         });
-    }else if(currentPage===3){
-      const formData = new FormData();
+    } else if (currentPage === 3) {
+      const obj = {
+        item: `${postId}`,
+        user: userId,
+      };
+      const storedEmail = localStorage.getItem("email");
 
-      // formData.append("item",video);
-      formData.append("value", 1);
-  
-      fetch("http://127.0.0.1:8000/info/votes/", {
+      fetch("http://127.0.0.1:8000/info/votes3/", {
         method: "POST",
-        body: JSON.stringify(formData),
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(obj),
       })
         .then((res) => {
-          if (res.ok) {
-            toast.success(
-              "Դուք դիմել եք X-Դպրոցի"
+          const data = res.json()
+          if (res.ok && storedEmail) {
+            addNumber()
+            toast.success(`Դուք քվեարկել եք ${userState.votingSchool} դպրոցի օգտին`);
+            setPostId("");
+          } else{
+            return data;
+          }
+        })
+        .then((data)=>{
+          if (data.error === "User has already voted.") {
+            toast.warning(
+              "Դուք չեք կարող քվեարկել մեկ անգամից ավել նույն օգտահաշվով"
             );
-            // localStorage.removeItem("email");
-            // localStorage.setItem("name", JSON.stringify());
-          } else if (res.status === 400) {
-            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }else if(data.error === "User ID and item ID are required."){
+            toast.warning("Մուտք գործեք համակարգ քվեարկելու համար");
           }
         })
         .catch((err) => {
-          toast.warning("Չհաջողվեց");
+          // toast.warning("Չհաջողվեց");
         });
-    }else if(currentPage === 4){
-      const formData = new FormData();
+    } else if (currentPage === 4) {
+      const obj = {
+        item: `${postId}`,
+        user: userId,
+      };
+      const storedEmail = localStorage.getItem("email");
 
-      // formData.append("item",video);
-      formData.append("value", 1);
-  
-      fetch("http://127.0.0.1:8000/info/votes/", {
+      fetch("http://127.0.0.1:8000/info/votes4/", {
         method: "POST",
-        body: JSON.stringify(formData),
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(obj),
       })
         .then((res) => {
-          if (res.ok) {
-            toast.success(
-              "Դուք դիմել եք X-Դպրոցի"
+          const data = res.json()
+          if (res.ok && storedEmail) {
+            addNumber()
+            toast.success(`Դուք քվեարկել եք ${userState.votingSchool} դպրոցի օգտին`);
+            setPostId("");
+          } else{
+            return data;
+          }
+        })
+        .then((data)=>{
+          if (data.error === "User has already voted.") {
+            toast.warning(
+              "Դուք չեք կարող քվեարկել մեկ անգամից ավել նույն օգտահաշվով"
             );
-            // localStorage.removeItem("email");
-            // localStorage.setItem("name", JSON.stringify());
-          } else if (res.status === 400) {
-            toast.warning("Դուք չեք կարող դիմել մեկ անգամից ավել նույն օգտահաշվով");
+          }else if(data.error === "User ID and item ID are required."){
+            toast.warning("Մուտք գործեք համակարգ քվեարկելու համար");
           }
         })
         .catch((err) => {
-          toast.warning("Չհաջողվեց");
+          // toast.warning("Չհաջողվեց");
         });
     }
-  
   };
 
   return (
     <div className="votingParticipate">
-      <h1>My blog</h1>
+      <h1 id="participate">Քվեարկություն</h1>
+      {
+        currentPage===1 &&(
+          <h2>Առողջ Ապրելակերպը խաղի ձևով</h2>
+        )
+      }
+      {
+         currentPage===2 &&(
+          <h2>Համեղ և առողջարար. իմ սիրելի առողջ բաղադրատոմսը</h2>
+        )
+      }
+        {
+         currentPage===3 &&(
+          <h2>Իմ առողջ համայնքը</h2>
+        )
+      }
+        {
+         currentPage===4 &&(
+          <h2>Բացահայտելով առողջ ապրելակերպի աշխարհը. մեր հետազոտությունը</h2>
+        )
+      }
+
       <Posts
         posts={currentPosts}
         loading={loadin}
         setCheckSchool={setCheckSchool}
         currentPage={currentPage}
+        setPostId={setPostId}
+        setChangeDigit={setChangeDigit}
+        setVoting={setVoting}
+        voting={voting}
       />
       <Paginator
         postsPerPage={postsPerPage}

@@ -3,64 +3,64 @@
   margin: 0;
 }
 
+/* top up */
+
+.topUp{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  color: #ec8000;
+}
+
+.topUp:hover path{
+  color: green;
+}
+
 .sectionVideo {
   width: 75%;
   margin: auto;
 }
 
+/* video */
+
+.video{
+  width: 100%;
+}
+
 /* changes header */
 
-
-.header {
+.header{
   display: inline-block;
   width: 100%;
   padding: 10px 0;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   position: sticky;
   top: 0;
   background-color: white;
   z-index: 999;
 }
 
-.logo {
+.logo{
   width: 50px;
   height: 50px;
   float: left;
   margin-left: 80px;
 }
-.see {
+.see{
   float: right;
   margin-right: 80px;
+
 }
 
-/* warning */
-
-.warning {
-  position: absolute;
-  width: 300px;
-  height: 50px;
-  border-radius: 10px;
-  color: #ec8000;
-  top: 59px;
-  right: 32px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  padding: 10px;
-}
-
-.warning p {
-  font-size: 10px;
-  line-height: 18px;
-  text-transform: capitalize;
-}
-
-.logo img {
+.logo img{
   width: 150px;
   height: 50px;
 }
 
-.see button {
+.see button{
   border: none;
   cursor: pointer;
   background-color: #ec8000;
@@ -75,9 +75,10 @@
   font-size: 14px;
   padding: 10px 25px 10px 25px;
 }
-.loginButton {
-  /* width: 50% !important; */
+.loginButton{
+    /* width: 50% !important; */
 }
+
 
 /* changes */
 
@@ -369,6 +370,9 @@ input[type="radio"]:checked ~ .check::before {
   align-items: flex-end;
 }
 
+
+
+
 .programAboutRowText p,
 button {
   text-align: center;
@@ -644,15 +648,16 @@ button {
 
   /* changes */
 
-  .logo {
+  .logo{
     width: 50px;
     height: 50px;
     float: left;
     margin-left: 35px;
   }
-  .see {
+  .see{
     float: right;
     margin-right: 35px;
+  
   }
 
   .modalProgramAboutContentBtnBlock {
@@ -730,15 +735,16 @@ button {
   }
 
   /* changes */
-  .logo {
+  .logo{
     width: 50px;
     height: 50px;
     float: left;
     margin-left: 35px;
   }
-  .see {
+  .see{
     float: right;
     margin-right: 35px;
+  
   }
 
   .modalProgramAboutContent h2 {
@@ -803,15 +809,16 @@ button {
   } */
 
   /* changes */
-  .logo {
+  .logo{
     width: 50px;
     height: 50px;
     float: left;
     margin-left: 30px;
   }
-  .see {
+  .see{
     float: right;
     margin-right: 30px;
+  
   }
 
   .modalProgramAboutContentBtnBlock {
@@ -966,22 +973,18 @@ button {
     width: 80%;
     left: 10%;
   }
-  /* warning */
-  .warning{
-    width: 264px;
-    top: 67px;
-    right: 5px;
-  }
+
   /* changes */
-  .logo {
+  .logo{
     width: 50px;
     height: 50px;
     float: left;
     margin-left: 5px;
   }
-  .see {
+  .see{
     float: right;
     margin-right: 5px;
+  
   }
 
   .modalProgramAboutContent h2 {
@@ -989,7 +992,7 @@ button {
     padding-right: 15px;
     text-align: start;
     font-size: 13px;
-  }
+}
 
   .modalProgramAboutContent {
     padding: 0 15px 10px 15px;
@@ -1100,7 +1103,7 @@ body.active-moidal {
   background-color: #ffb300;
 }
 
-.touch form {
+.touch form{
   margin-top: 50px;
 }
 
@@ -1122,7 +1125,7 @@ form textarea:focus {
   border: 1px solid rgba(255, 179, 0, 1);
 }
 
-.sendmessages {
+.sendmessages{
   width: 100%;
   padding: 10px;
   text-align: center;
@@ -1132,15 +1135,15 @@ form textarea:focus {
   line-height: 20px;
 }
 
-.sendmessages a {
+.sendmessages a{
   color: rgba(255, 179, 0, 1);
 }
 
-.sendmessages p {
+.sendmessages p{
   line-height: 30px;
 }
 
-.sendmessages a:hover {
+.sendmessages a:hover{
   color: rgba(236, 126, 0, 1);
 }
 
@@ -1177,16 +1180,16 @@ form textarea:focus {
     left: 5px;
   }
 
-  .sendmessages {
+  .sendmessages{
     padding: 0 5px;
   }
-  .sendmessages p {
+  .sendmessages p{
     line-height: 30px;
     line-height: 25px;
     font-size: 13px;
   }
 
-  .sendmessages a {
+  .sendmessages a{
     font-size: 13px;
   }
 }
@@ -1236,6 +1239,7 @@ form textarea:focus {
   margin-left: 30px;
   line-height: 30px;
   text-align: justify;
+
 }
 .decimal li {
   list-style: decimal;
@@ -1463,80 +1467,87 @@ form textarea:focus {
     width: 90%;
     /* margin-top: 20px; */
   }
-  .particip {
+  .particip{
     margin-top: 20px;
   }
   .programAboutRowText p {
     font-size: 13px;
     line-height: 15px;
-  }
-  .loginButton {
-    justify-content: end;
-    flex-direction: row;
-  }
-
-  .loginButton button {
-    width: 150px;
-    font-size: 15px;
-    padding: 2px 2px;
-    height: 40px;
-  }
-  .introducion-info p {
-    font-size: 12px;
-  }
-
-  .disc li {
-    font-size: 12px;
-    line-height: 25px;
-  }
-
-  .decimal li {
-    font-size: 12px;
-    line-height: 25px;
-  }
 }
+.loginButton{
+  justify-content: end;
+  flex-direction: row;
+}
+
+.loginButton button{
+  width: 150px;
+  font-size: 15px;
+  padding: 2px 2px;
+  height: 40px;
+}
+.introducion-info p {
+  font-size: 12px;
+}
+
+.disc li {
+  font-size: 12px;
+  line-height: 25px;
+
+}
+
+.decimal li{
+  font-size: 12px;
+  line-height: 25px;
+}
+}
+
 
 textarea::placeholder {
   font-size: 11px;
   color: rgba(172, 164, 164, 1);
+
 }
+
 
 /* add styles */
 
-@media screen and (max-width: 776px) {
-  .modalProgramAboutContent h2 {
+@media screen and (max-width:776px) {
+  .modalProgramAboutContent h2{
     padding: 0;
   }
 
-  .modalProgramAboutContent {
+  .modalProgramAboutContent{
     padding: 45px;
   }
 }
 
-@media screen and (max-width: 665px) {
+@media screen and (max-width:665px) {
   .modalProgramAboutContent {
     padding: 35px;
   }
 
-  .modalProgramAboutContentTextBlock li {
+  .modalProgramAboutContentTextBlock li{
     line-height: 25px;
     text-align: justify;
   }
 }
 
-@media screen and (max-width: 404px) {
-  .modalProgramAboutContent {
+@media screen and (max-width:404px) {
+  .modalProgramAboutContent{
     padding: 21px 29px 8px 16px;
   }
 
   .modalProgramAboutContentTextBlock p {
     font-size: 12px;
   }
-  .rule h4 {
+  .rule h4{
     font-size: 13px;
   }
-}
+  
+} 
 
-.bold {
-  font-weight: 900;
+
+
+.bold{
+  font-weight:900;
 }

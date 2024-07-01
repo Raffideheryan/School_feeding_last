@@ -31,34 +31,30 @@ const UserContextProvider = ({ children }) => {
   const [communityUpload, setCommunityUpload] = useState([]);
   const [discovering, setDiscoveringUpload] = useState([]);
 
-//  LogeOut
+  //  LogeOut
 
-const [logeOut, setLogeOut] = useState(true);
+  const [logeOut, setLogeOut] = useState(true);
 
-// voting
+  // voting
 
-const[votingSchool,setVotingSchool] = useState("")
-
+  const [votingSchool, setVotingSchool] = useState("");
 
   const navigate = useNavigate();
 
   const [voteAgain, setVoteAgain] = useState();
 
   // loginuserid
-   const [userId,setUserId]= useState("");
+  const [userId, setUserId] = useState("");
 
   //  formsApplication ID
 
-  const[formId,setFormId]=useState("")
+  const [formId, setFormId] = useState("");
 
-  
   // add localstorage user info
 
   const isValidate = () => {
     let isproccesd = true;
-    const passRegex = /^[a-zA-Z0-9]+$/.test(
-      password
-    );
+    const passRegex = /^[a-zA-Z0-9]+$/.test(password);
     const emailRegex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/.test(email);
 
     const phoneRegex =
@@ -224,7 +220,7 @@ const[votingSchool,setVotingSchool] = useState("")
     return isproccesd;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let obj = {
       username,
@@ -236,22 +232,20 @@ const[votingSchool,setVotingSchool] = useState("")
 
     if (isValidate()) {
       try {
-
-        const response = await fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/users/", {
+        const response = await fetch("http://127.0.0.1:8000/info/users/", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(obj),
         });
-      
-        if (response.ok) {
 
+        if (response.ok) {
           toast.success(
             "Մուտք գործեք էլեկտրոնային հասցեն եվ անցեք վերիֆիկացում"
           );
           localStorage.removeItem("email");
           localStorage.removeItem("password");
           localStorage.setItem("name", JSON.stringify(username));
-      
+
           setEmail("");
           setPassword("");
           setComfirmPassword("");
@@ -259,13 +253,14 @@ const[votingSchool,setVotingSchool] = useState("")
           setPhone("");
           navigate("/");
         } else if (response.status === 400) {
-          toast.warning("Այս Էլեկտրոնային հասցեն գոյություն ունի համակարգում․․․");
+          toast.warning(
+            "Այս Էլեկտրոնային հասցեն գոյություն ունի համակարգում․․․"
+          );
           setErrorEmail(true);
         }
       } catch (error) {
         toast.warning("Չհաջողվեց");
-      } 
-      
+      }
     }
   };
 
@@ -276,47 +271,49 @@ const[votingSchool,setVotingSchool] = useState("")
       password,
     };
     if (isValidateLogin()) {
-      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/login/", {
+      fetch("http://127.0.0.1:8000/info/login/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),
       })
         .then((res) => {
-          const data =  res.json();
-
-           if (res.ok) {
-            setLogeOut(false)
+          const data = res.json();
+          if (res.ok) {
+            setLogeOut(false);
             toast.success("Հաջողվեց");
             navigate("/");
             setEmail("");
-            setPassword("")
+            setPassword("");
             if (e.target[2].checked) {
               localStorage.setItem("email", JSON.stringify(email));
               localStorage.setItem("password", JSON.stringify(password));
-            }else{
+            } else {
               localStorage.setItem("email", JSON.stringify(email));
             }
-          }else if(res.status === 401){
-            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում Կամ ստուգեք մուտքագրված տվյալների ճշտությունը")
-            setEmail("")
-            setPassword("")
-          }else if(res.status===404) {
+            return data;
+          } else if (res.status === 401) {
+            toast.warning(
+              "Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում Կամ ստուգեք մուտքագրված տվյալների ճշտությունը"
+            );
+            setEmail("");
+            setPassword("");
+          } else if (res.status === 404) {
             toast.warning(" Տվյալները սխալ են․․․ ");
             setErrorPassword(true);
             setErrorEmail(true);
-            setEmail("")
-            setPassword("")
+            setEmail("");
+            setPassword("");
           }
-        }).then((data)=>{
-          setUserId(data.user_id)
+        })
+        .then((data) => {
+          setUserId(data.user_id);
+          localStorage.setItem("userId", JSON.stringify(data.user_id));
         })
         .catch((err) => {
           // toast.warning("Չհաջողվեց");
         });
     }
   };
-
-
 
   useEffect(() => {
     const storedPassword = localStorage.getItem("password");
@@ -326,13 +323,11 @@ const[votingSchool,setVotingSchool] = useState("")
       setEmail(JSON.parse(storedEmail));
       setPassword(JSON.parse(storedPassword));
       setRememberMe(true);
-      setLogeOut(false)
-
-    }else if(storedEmail){
-      setLogeOut(false)
-    }else if(!(storedEmail)){
-      setLogeOut(true)
-
+      setLogeOut(false);
+    } else if (storedEmail) {
+      setLogeOut(false);
+    } else if (!storedEmail) {
+      setLogeOut(true);
     }
   }, []);
 
@@ -343,7 +338,7 @@ const[votingSchool,setVotingSchool] = useState("")
     };
 
     if (isValidateForgetPass()) {
-      fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/api/forget_password/", {
+      fetch("http://127.0.0.1:8000/api/forget_password/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),
@@ -356,8 +351,8 @@ const[votingSchool,setVotingSchool] = useState("")
             setEmail("");
           } else if (res.status === 400) {
             toast.warning("Գրեք համակարգում արդեն գրանցված Էլեկտրոնային հասցե");
-          }else if(res.status === 401){
-            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում")
+          } else if (res.status === 401) {
+            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում");
           }
         })
         .catch((err) => {
@@ -381,7 +376,7 @@ const[votingSchool,setVotingSchool] = useState("")
     };
 
     if (isValidatePasswords()) {
-      fetch(`https://aroxj_aprelakerpi_despan.schoolfeeding.am/api/new_password/${uid}/${token}/`, {
+      fetch(`http://127.0.0.1:8000/api/new_password/${uid}/${token}/`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(obj),
@@ -390,7 +385,7 @@ const[votingSchool,setVotingSchool] = useState("")
           if (res.ok) {
             toast.success("Մուտք Գործեք Համակարգ օգտագործելով նոր Գաղտնաբառը");
             navigate("/login");
-            setPassword("")
+            setPassword("");
           }
         })
         .catch((err) => {
@@ -402,15 +397,13 @@ const[votingSchool,setVotingSchool] = useState("")
   // Modal func
 
   const toggleModal = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setModal(!modal);
   };
 
   const togleModalHome = () => {
     setModalHome(!modal);
   };
-
-  
 
   return (
     <UserContext.Provider
@@ -438,7 +431,7 @@ const[votingSchool,setVotingSchool] = useState("")
           logeOut,
           votingSchool,
           userId,
-          formId
+          formId,
         },
         userActions: {
           setName,
@@ -465,7 +458,7 @@ const[votingSchool,setVotingSchool] = useState("")
           setUserId,
           setFormId,
           setErrorPassword,
-          setErrorEmail
+          setErrorEmail,
         },
       }}
     >

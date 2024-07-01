@@ -1,23 +1,26 @@
 import React,{useState,useEffect, useContext} from "react";
 import { UserContext } from "../../UserContext";
 // import { DefaultPlayer as Video } from "react-html5video";
-import ReactVidioPlayer from './../home/ReactVidioPlayer';
+import ReactVidioPlayer from '../home/ReactVidioPlayer';
 import video from "./video.mp4";
 import './VotingParticipate.css'
 
 
-export const Posts = ({ posts, loading,setCheckSchool,currentPage }) => {
-  const [voting,setVoting] = useState(null)
+export const Posts = ({ posts, loading,setCheckSchool,currentPage,setPostId,setChangeDigit,setVoting,voting }) => {
+  // const [voting,setVoting] = useState(null)
 // context 
 
 const { userState, userActions } = useContext(UserContext);
+const [allCount,setAllCount] = useState(0)
 
-
-  const onCLickVoting = (index,name)=>{
+  const onCLickVoting = (index,id,name,vote_count)=>{
     setVoting(index);
     setCheckSchool(false)
     userActions.setVotingSchool(name)
+    setPostId(id)
+    setChangeDigit(id)
   }
+
 
   useEffect(()=>{
     setVoting(null)
@@ -27,23 +30,29 @@ const { userState, userActions } = useContext(UserContext);
   },[currentPage])
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2>Տվյալների բեռնում...</h2>;
   }
+let b = 0;
+let a  = posts.map((i)=>{
+    b+=i.vote_count;
+  })
 
 
   return (
+    <>
     <div className="posts">
       {posts.map((post,index) => {
+
         return (
           <div key={post.id} className="post">
             <div className="post-video">
-            <ReactVidioPlayer videoPath={video} />
+            <ReactVidioPlayer videoPath={post.video} />
             </div>
             <div className="post-voting">
               <div className="voting-checkbox">
-                <span className={`voting-circle ${voting === index ? "active" : ""}`} onClick={()=>onCLickVoting(index,post.name)}></span>
-                <span className="voting-school">Դպրոց 1</span>
-                <span className="voting-count">+10</span>
+                <span className={`voting-circle ${voting === index ? "active" : ""}`} onClick={()=>onCLickVoting(index,post.id,post.school_name,post.vote_count)}></span>
+                <span className="voting-school">{post.school_name}</span>
+                <span className="voting-count">{post.vote_count}</span>
 
               </div>
             </div>
@@ -51,5 +60,10 @@ const { userState, userActions } = useContext(UserContext);
         );
       })}
     </div>
+      <div className="countAll">
+        <p>Ընդհանուր քանակ {b}</p>
+      </div>
+
+    </>
   );
 };

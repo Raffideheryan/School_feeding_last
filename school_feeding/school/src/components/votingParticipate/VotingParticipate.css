@@ -6,7 +6,11 @@
   padding: 20px 150px;
   margin-top: 20px;
 }
-
+.votingParticipate h2{
+  margin-top: 10px;
+  text-align: center;
+  color: #ec8000;
+}
 .posts {
   display: flex;
   flex-wrap: wrap;
@@ -55,15 +59,13 @@
   transition: all 0.5s linear;
 }
 
-
-
 .voting-school {
   color: #7ab73a;
   font-weight: 100;
-  font-size: 18px;
   letter-spacing: 1px;
   margin-left: 10px;
-  width: 90%;
+  width: 50%;
+  font-size: 13px;
 }
 
 /* voting-percent */
@@ -100,7 +102,7 @@
   user-select: none;
 }
 
-.voting-count{
+.voting-count {
   position: absolute;
   color: #7ab73a;
   font-weight: 700;
@@ -112,10 +114,10 @@
 /* pagination */
 
 .pagination {
-    width: 25%;
-    max-width: 180px;
-    margin-top: 50px;
-    user-select: none;
+  width: 25%;
+  max-width: 180px;
+  margin-top: 50px;
+  user-select: none;
 }
 
 .pagination ul {
@@ -144,175 +146,186 @@
   transition: all 0.5s linear;
 } */
 
-
-
-
-
 /* .button */
 
-.vote{
-    margin-top: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.vote {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .vote .button {
-    border: none;
-    cursor: pointer;
-    background-color: #ec8000;
-    border-radius: 5px;
-    padding: 15px 35px 15px 35px;
-    font-family: Bokonique;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    color: #ffff;
-    text-transform: capitalize;
-    font-size: 14px;
-    padding: 10px 25px 10px 25px;
-    width: 30%;
-    letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  background-color: #ec8000;
+  border-radius: 5px;
+  padding: 15px 35px 15px 35px;
+  font-family: Bokonique;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffff;
+  text-transform: capitalize;
+  font-size: 14px;
+  padding: 10px 25px 10px 25px;
+  width: 30%;
+  letter-spacing: 1px;
+}
+
+.vote .button:hover {
+  background-color: #feb100;
+  transition: all 0.5s linear;
+}
+
+.vote .disabled {
+  border: none;
+  cursor: pointer;
+  background-color: gray;
+  border-radius: 5px;
+  padding: 15px 35px 15px 35px;
+  font-family: Bokonique;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffff;
+  text-transform: capitalize;
+  font-size: 14px;
+  padding: 10px 25px 10px 25px;
+  width: 30%;
+  letter-spacing: 1px;
+}
+
+.vote .disabled:hover {
+  background-color: gray;
+  transition: all 0.5s linear;
+}
+
+/* active */
+
+.active {
+  background-color: #7ab73a;
+  color: #fff !important;
+}
+
+
+/* count */
+
+.countAll{
+
+  margin-top: 10px;
+  font-size: 20px;
+  color: #ec8000;
+  user-select: none;
+}
+/* css  media */
+
+@media screen and (max-width: 1094px) {
+  .voting-count {
+    font-size: 20px;
+    top: 14px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .rh5v-Overlay_inner {
+    background-color: #ffb300 !important;
+    width: 40px !important;
+  }
+
+  .rh5v-Overlay_inner {
+    height: 38px !important;
+  }
+
+  .rh5v-Overlay_icon {
+    width: 25px;
+    left: 62% !important;
+  }
+
+  .vote .button {
+    width: 40% !important;
+  }
+
+  .pagination {
+    width: 35%;
+  }
+
+  .votingParticipate {
+    padding: 20px 95px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .votingParticipate {
+    padding: 20px 40px;
+  }
+  .voting-circle {
+    width: 25px;
+  }
+
+  .vote .button {
+    width: 70% !important;
+  }
+
+  .pagination {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 664px) {
+  .votingParticipate {
+    padding: 20px 0px;
+  }
+  .voting-school{
+    font-size: 10px;
+  }
+  .voting-circle{
+    margin-left: 5px;
   }
   
-  .vote .button:hover {
-    background-color: #feb100;
-    transition: all 0.5s linear;
+  .vote {
+    margin-top: 20px;
+  }
+  .vote .button {
+    width: 70% !important;
   }
 
-  .vote .disabled {
-    border: none;
-    cursor: pointer;
-    background-color: gray;
-    border-radius: 5px;
-    padding: 15px 35px 15px 35px;
-    font-family: Bokonique;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    color: #ffff;
-    text-transform: capitalize;
-    font-size: 14px;
-    padding: 10px 25px 10px 25px;
-    width: 30%;
-    letter-spacing: 1px;
+  .pagination {
+    margin-top: 30px;
   }
-  
-  .vote .disabled:hover {
-    background-color: gray;
-    transition: all 0.5s linear;
+}
+
+@media screen and (max-width: 468px) {
+.votingParticipate h2{
+
+font-size: 15px;
+}
+  .votingParticipate {
+    padding: 20px 5px;
   }
 
-  /* active */
-
-  .active{
-    background-color: #7ab73a;
-    color: #fff !important;
+  .posts {
+    flex-direction: column;
+    align-items: center;
+  }
+  .post {
+    width: 90%;
+  }
+  .voting-circle {
+    width: 25px;
   }
 
-
-
-
-
-  /* css  media */
-
-  @media screen and (max-width:824px) {
-    .rh5v-Overlay_inner {
-        background-color: #ffb300 !important;
-        width: 40px !important;
-    }
-
-    .rh5v-Overlay_inner {
-        height: 38px !important;
-
-    }
-
-    .rh5v-Overlay_icon {
-        width: 25px;
-        left: 62% !important;
-    }
-    
-    .vote .button{
-        width: 40% !important;
-    }
-
-    .pagination {
-        width: 35%;
-
-    }
+  .voting-line {
+    width: 85%;
+  }
+  .vote {
+    margin-top: 20px;
+  }
+  .vote .button {
+    width: 70% !important;
   }
 
-  @media screen and (max-width:768px) {
-    .votingParticipate {
-        padding: 20px 80px;
-    }
-    .voting-circle {
-        width: 30px;
-    }
-    
-    .vote .button{
-        width: 70% !important;
-    }
-
-    .pagination {
-        width: 70%;
-
-    }
+  .pagination {
+    margin-top: 30px;
   }
-
-
-  @media screen and (max-width:599px) {
-    .votingParticipate {
-        padding: 20px;
-    }
-    .voting-circle {
-        width: 30px;
-    }
-    .vote{
-        margin-top: 20px;
-    }
-    .vote .button{
-        width: 70% !important;
-    }
-
-    .pagination {
-        margin-top: 30px;
-
-    }
-  }
-
-
-
-  
-  @media screen and (max-width:450px) {
-    .votingParticipate {
-        padding: 20px 5px;
-    }
-
-    .posts {
-        flex-direction: column;
-        align-items: center;
-    }
-    .post{
-        width: 90%;
-    }
-    .voting-circle {
-        width: 25px;
-    }
-
-    .voting-line {
-        width: 85%;
-
-    }
-    .vote{
-        margin-top: 20px;
-    }
-    .vote .button{
-        width: 70% !important;
-    }
-
-    .pagination {
-        margin-top: 30px;
-
-    }
-  }
+}

@@ -10,18 +10,18 @@ export const Paginator = ({ postsPerPage, totalPosts ,paginate,currentPage}) => 
     pageNumbers.push(i);
   }
 
-  useEffect(()=>{
-    window.scrollTo(0,0);
-    // setCheckSchool(true)
+  // useEffect(()=>{
+  //   window.scrollTo(0,1700);
+  //   // setCheckSchool(true)
 
-  },[currentPage])
+  // },[currentPage])
 
 
   return (
     <nav  className="pagination">
       <ul>
         {pageNumbers.map((number) => {
-          return <li key={number} onClick={()=>paginate(number)}  className={number === currentPage ? "active" : ""}>
+          return <li key={number} href={"participate"} onClick={()=>paginate(number)}  className={number === currentPage ? "active" : ""}>
            {number}
           </li>;
         })}

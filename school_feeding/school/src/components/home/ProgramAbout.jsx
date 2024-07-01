@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 // import { CountDown } from "../countdown/CountDown";
 import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
+import { VotingParticipate } from './../votingParticipate/VotingParticipate';
+import { BiArrowToTop } from "react-icons/bi";
+
 
 const ProgramAbout = () => {
   const [all, setAll] = useState(false);
@@ -32,6 +35,10 @@ const ProgramAbout = () => {
     program4: false,
   });
 
+  // back to top
+
+  const[backToTop,setBackToTop] = useState(false)
+
   useEffect(() => {
     const storedPassword = localStorage.getItem("password");
     const storedEmail = localStorage.getItem("email");
@@ -48,7 +55,22 @@ const ProgramAbout = () => {
       localStorage.removeItem("userId");
 
     }
+
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>100){
+        setBackToTop(true)
+      }else{
+        setBackToTop(false)
+      }
+    })
   }, []);
+
+  const scrollUp = ()=>{
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    })
+  }
 
   useEffect(() => {
     // localStorage.removeItem("password");
@@ -202,6 +224,11 @@ const ProgramAbout = () => {
 
   return (
     <>
+    {backToTop &&(
+
+    <BiArrowToTop className="topUp" onClick={scrollUp} />
+    )}
+
       <div className="header">
         <div className="logo">
           <img src={require("../../assets/logo.png")} />
@@ -215,10 +242,6 @@ const ProgramAbout = () => {
             <button onClick={handleSubmitLogeOut}>Դուրս Գալ </button>
           </div>
         )}
-
-        <div className="warning">
-          <p>ձեր նախագիծը կամ նախագծերը ներկայացնելու համար խնդրում ենք ևս մեկ անգամ լրացնել գրանցման ձևը</p>
-        </div>
       </div>
       <div className="programAbout">
         <div className="programAboutRow">
@@ -840,7 +863,7 @@ const ProgramAbout = () => {
             </p>
             <h4>Մրցույթի փուլերը</h4>
             <p className="participateRulle">
-              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել <span className="bold">Գրանցման ձևը։</span>
+              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել <span className="bold"> Գրանցման ձևը։</span>
             </p>
 
             <p className="participateRulle">
@@ -1041,7 +1064,9 @@ const ProgramAbout = () => {
             Մասնակցել
           </button>
         </div>
-        
+        <div className="scedule">
+          <VotingParticipate />
+        </div> 
       </div>
     </>
   );
