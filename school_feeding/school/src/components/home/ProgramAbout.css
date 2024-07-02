@@ -969,6 +969,10 @@ button {
 }
 
 @media screen and (max-width: 450px) {
+
+  .topUp{
+    right: 0;
+  }
   .modalProgramAboutContent {
     width: 80%;
     left: 10%;

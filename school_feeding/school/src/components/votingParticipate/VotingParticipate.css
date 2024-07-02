@@ -6,7 +6,7 @@
   padding: 20px 150px;
   margin-top: 20px;
 }
-.votingParticipate h2{
+.votingParticipate h2 {
   margin-top: 10px;
   text-align: center;
   color: #ec8000;
@@ -208,11 +208,9 @@
   color: #fff !important;
 }
 
-
 /* count */
 
-.countAll{
-
+.countAll {
   margin-top: 10px;
   font-size: 20px;
   color: #ec8000;
@@ -276,13 +274,13 @@
   .votingParticipate {
     padding: 20px 0px;
   }
-  .voting-school{
+  .voting-school {
     font-size: 10px;
   }
-  .voting-circle{
+  .voting-circle {
     margin-left: 5px;
   }
-  
+
   .vote {
     margin-top: 20px;
   }
@@ -296,10 +294,13 @@
 }
 
 @media screen and (max-width: 468px) {
-.votingParticipate h2{
+  .votingParticipate h2 {
+    font-size: 15px;
+  }
 
-font-size: 15px;
-}
+  .vote .disabled{
+    width: 50%;
+  }
   .votingParticipate {
     padding: 20px 5px;
   }
