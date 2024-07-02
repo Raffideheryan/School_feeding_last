@@ -10,9 +10,53 @@ from .models import (
     Project4,
     Registration,
     Team,
+    VotableItem,
+    Vote,
+    Vote2,
+    Vote3,
+    Vote4
 )
 
+#changes
 
+#admin.site.register(VotableItem, VotableAdmin)
+
+@admin.register(VotableItem)
+class VoteItemAdmin(admin.ModelAdmin):
+    list_display = ["school_name", "video", "vote_count"]
+    list_filter = ["school_name","video", "vote_count"]
+    search_fields = ["school_name", "video"]
+    ordering = ["school_name"]
+
+@admin.register(Vote)
+class VoteAdmin(admin.ModelAdmin):
+    list_display = ["user", "item"]
+    list_filter = ["user","item"]
+    search_fields = ["user", "item"]
+    ordering = ["user"]
+
+@admin.register(Vote2)
+class VoteAdmin2(admin.ModelAdmin):
+    list_display = ["user", "item"]
+    list_filter = ["user","item"]
+    search_fields = ["user", "item"]
+    ordering = ["user"]
+
+
+@admin.register(Vote3)
+class VoteAdmin3(admin.ModelAdmin):
+    list_display = ["user", "item"]
+    list_filter = ["user","item"]
+    search_fields = ["user", "item"]
+    ordering = ["user"]
+
+
+@admin.register(Vote4)
+class VoteAdmin4(admin.ModelAdmin):
+    list_display = ["user", "item"]
+    list_filter = ["user","item"]
+    search_fields = ["user", "item"]
+    ordering = ["user"]
 
 
 
