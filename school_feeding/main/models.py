@@ -306,41 +306,123 @@ class Message(models.Model):
 
 
 class VotableItem(models.Model):
-    word = models.FileField("word ")
-    img1 = models.ImageField("Նկար 1", null=True, blank=True)
-    img2 = models.ImageField("Նկար 2", null=True, blank=True)
-    img3 = models.ImageField("Նկար 3", null=True, blank=True)
-    img4 = models.ImageField("Նկար 4", null=True, blank=True)
-    img5 = models.ImageField("Նկար 5", null=True, blank=True)
-    img6 = models.ImageField("Նկար 6", null=True, blank=True)
-    img7 = models.ImageField("Նկար 7", null=True, blank=True)
-    img8 = models.ImageField("Նկար 8", null=True, blank=True)
-    img9 = models.ImageField("Նկար 9", null=True, blank=True)
-    img10 = models.ImageField("Նկար 10", null=True, blank=True)
-    pdf = models.FileField("pdf")
+    
     video = models.FileField(
-        "Video",
+        "Վիդեո",
         upload_to="videos/",
         validators=[
             utils.validate_video_size,
             FileExtensionValidator(allowed_extensions=["mp4", "avi", "wmv", "mov"]),
         ],
     )
-    team_cat = models.CharField(
-        "Խմբի տեսակ", choices=utils.CLASS_CHOICES, null=True, blank=True
-    )
-    project_cat = models.CharField("Պրոեկտի տեսակ", choices=utils.CATEGORY_CHOICES)
     school_name = models.CharField("Դպրոց", null=True, blank=True)
+    vote_count = models.IntegerField("Քվեարկողների քանակ",default=0)  # New field to track vote count
+    order_index = models.IntegerField(default=0)
+
 
     def __str__(self) -> str:
-        return str(self.project_cat)
+        return str(self.school_name)
 
+    class Meta:
+        verbose_name = "Քվեարկության առարկա"
+        verbose_name_plural = "Քվեարկության առարկա"
 
 
 class Vote(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    item = models.ForeignKey(VotableItem, on_delete=models.CASCADE)
-    value = models.IntegerField()
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Օգտատեր")
+    item = models.ForeignKey(VotableItem, on_delete=models.CASCADE, verbose_name="Քվեարկված դպրոց")
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.item.vote_count += 1
+            self.item.save()
+        super().save(*args, **kwargs)
+
+
+    def delete(self, *args, **kwargs):
+        self.item.vote_count -= 1
+        self.item.save()
+        super().delete(*args, **kwargs)
+
 
     def __str__(self) -> str:
         return str(self.item)
+
+    class Meta:
+        verbose_name = "Քվեարկություն"
+        verbose_name_plural = "Քվեարկություն Էջ N1"
+
+
+class Vote2(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Օգտատեր")
+    item = models.ForeignKey(VotableItem, on_delete=models.CASCADE, verbose_name="Քվեարկված դպրոց")
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.item.vote_count += 1
+            self.item.save()
+        super().save(*args, **kwargs)
+
+
+    def delete(self, *args, **kwargs):
+        self.item.vote_count -= 1
+        self.item.save()
+        super().delete(*args, **kwargs)
+
+
+    def __str__(self) -> str:
+        return str(self.item)
+
+    class Meta:
+        verbose_name = "Քվեարկություն"
+        verbose_name_plural = "Քվեարկություն Էջ N2"
+
+
+class Vote3(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Օգտատեր")
+    item = models.ForeignKey(VotableItem, on_delete=models.CASCADE, verbose_name="Քվեարկված դպրոց")
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.item.vote_count += 1
+            self.item.save()
+        super().save(*args, **kwargs)
+
+
+    def delete(self, *args, **kwargs):
+        self.item.vote_count -= 1
+        self.item.save()
+        super().delete(*args, **kwargs)
+
+
+    def __str__(self) -> str:
+        return str(self.item)
+
+    class Meta:
+        verbose_name = "Քվեարկություն"
+        verbose_name_plural = "Քվեարկություն Էջ N3"
+
+
+class Vote4(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Օգտատեր")
+    item = models.ForeignKey(VotableItem, on_delete=models.CASCADE, verbose_name="Քվեարկված դպրոց")
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.item.vote_count += 1
+            self.item.save()
+        super().save(*args, **kwargs)
+
+
+    def delete(self, *args, **kwargs):
+        self.item.vote_count -= 1
+        self.item.save()
+        super().delete(*args, **kwargs)
+
+
+    def __str__(self) -> str:
+        return str(self.item)
+
+    class Meta:
+        verbose_name = "Քվեարկություն"
+        verbose_name_plural = "Քվեարկություն Էջ N4"

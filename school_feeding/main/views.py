@@ -63,6 +63,9 @@ from .models import (
     Team,
     VotableItem,
     Vote,
+    Vote2,
+    Vote3,
+    Vote4
 )
 from django.contrib.auth.decorators import login_required
 
@@ -81,6 +84,9 @@ from .serializers import (  # PasswordChangeSerializer,
     UserSerializer,
     VotableItemSerializer,
     VoteSerializer,
+    VoteSerializer2,
+    VoteSerializer3,
+    VoteSerializer4
 )
 from django.contrib.auth.decorators import login_required
 # from django.utils.decorators import method_decorator
@@ -107,16 +113,151 @@ def perform_create(self, serializer):
         form_id = form_instance.form_id  # Get the form ID
         return Response({"message": "Form submitted successfully", 'form_id': form_id}, status=status.HTTP_201_CREATED)
 
-
-# @method_decorator(login_required, name='dispatch')
+#voting changes
 class VotableItemViewSet(viewsets.ModelViewSet):
-    queryset = VotableItem.objects.all()
+    queryset = VotableItem.objects.all().order_by('id')[:20]
     serializer_class = VotableItemSerializer
+    basename = 'votableitem'
 
-# @method_decorator(login_required, name='dispatch')
+
 class VoteViewSet(viewsets.ModelViewSet):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
+
+
+    def create(self, request, *args, **kwargs):
+        user_id = request.data.get('user', None)
+        item_id = request.data.get('item', None)
+
+        # Check if both user ID and item ID are provided
+        if not user_id or not item_id:
+            return Response({'error': 'User ID and item ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_instance = CustomUser.objects.get(pk=int(user_id))
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has already voted
+        existing_vote = Vote.objects.filter(user=user_instance).exists()
+        if existing_vote:
+            return Response({'error': 'User has already voted.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has voted for a different item
+        if Vote.objects.filter(user=user_instance, item_id=item_id).exists():
+            return Response({'error': 'User has already voted for a different item.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the vote
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class VoteViewSet2(viewsets.ModelViewSet):
+    queryset = Vote2.objects.all()
+    serializer_class = VoteSerializer2
+
+
+    def create(self, request, *args, **kwargs):
+        user_id = request.data.get('user', None)
+        item_id = request.data.get('item', None)
+
+        # Check if both user ID and item ID are provided
+        if not user_id or not item_id:
+            return Response({'error': 'User ID and item ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_instance = CustomUser.objects.get(pk=int(user_id))
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has already voted
+        existing_vote = Vote2.objects.filter(user=user_instance).exists()
+        if existing_vote:
+            return Response({'error': 'User has already voted.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has voted for a different item
+        if Vote2.objects.filter(user=user_instance, item_id=item_id).exists():
+            return Response({'error': 'User has already voted for a different item.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the vote
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class VoteViewSet3(viewsets.ModelViewSet):
+    queryset = Vote3.objects.all()
+    serializer_class = VoteSerializer3
+
+
+    def create(self, request, *args, **kwargs):
+        user_id = request.data.get('user', None)
+        item_id = request.data.get('item', None)
+
+        # Check if both user ID and item ID are provided
+        if not user_id or not item_id:
+            return Response({'error': 'User ID and item ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_instance = CustomUser.objects.get(pk=int(user_id))
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has already voted
+        existing_vote = Vote3.objects.filter(user=user_instance).exists()
+        if existing_vote:
+            return Response({'error': 'User has already voted.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has voted for a different item
+        if Vote3.objects.filter(user=user_instance, item_id=item_id).exists():
+            return Response({'error': 'User has already voted for a different item.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the vote
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class VoteViewSet4(viewsets.ModelViewSet):
+    queryset = Vote4.objects.all()
+    serializer_class = VoteSerializer4
+
+
+    def create(self, request, *args, **kwargs):
+        user_id = request.data.get('user', None)
+        item_id = request.data.get('item', None)
+
+        # Check if both user ID and item ID are provided
+        if not user_id or not item_id:
+            return Response({'error': 'User ID and item ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            user_instance = CustomUser.objects.get(pk=int(user_id))
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has already voted
+        existing_vote = Vote4.objects.filter(user=user_instance).exists()
+        if existing_vote:
+            return Response({'error': 'User has already voted.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check if the user has voted for a different item
+        if Vote4.objects.filter(user=user_instance, item_id=item_id).exists():
+            return Response({'error': 'User has already voted for a different item.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create the vote
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 @api_view(["POST"])

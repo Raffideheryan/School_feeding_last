@@ -25,6 +25,9 @@ from .models import (  # PasswordReset,; PasswordResetConfirm,
     Team,
     VotableItem,
     Vote,
+    Vote2,
+    Vote3,
+    Vote4,
 )
 
 from PyPDF2 import PdfReader
@@ -402,4 +405,22 @@ class VotableItemSerializer(serializers.ModelSerializer):
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
+        fields = "__all__"
+
+
+class VoteSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Vote2
+        fields = "__all__"
+
+
+class VoteSerializer3(serializers.ModelSerializer):
+    class Meta:
+        model = Vote3
+        fields = "__all__"
+
+
+class VoteSerializer4(serializers.ModelSerializer):
+    class Meta:
+        model = Vote4
         fields = "__all__"
