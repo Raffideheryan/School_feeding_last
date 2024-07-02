@@ -19,12 +19,14 @@ from .models import (
 
 #changes
 
-@admin.register(VotableItem)
-class VoteItemAdmin(admin.ModelAdmin):
-    list_display = ["school_name", "video", "vote_count"]
-    list_filter = ["school_name","video", "vote_count"]
-    search_fields = ["school_name", "video"]
-    ordering = ["school_name"]
+admin.site.register(VotableItem, VotableAdmin)
+
+#@admin.register(VotableItem)
+#class VoteItemAdmin(admin.ModelAdmin):
+    #list_display = ["school_name", "video", "vote_count"]
+    #list_filter = ["school_name","video", "vote_count"]
+    #search_fields = ["school_name", "video"]
+    #ordering = ["school_name"]
 
 @admin.register(Vote)
 class VoteAdmin(admin.ModelAdmin):
