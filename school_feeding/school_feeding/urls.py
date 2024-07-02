@@ -19,6 +19,9 @@ from main.views import (
     forget_password,
     new_password,
     download_pdf,
+    VoteViewSet2,
+    VoteViewSet3,
+    VoteViewSet4,
 
     # PasswordResetRequestView,
     # PasswordResetConfirmView,
@@ -36,8 +39,14 @@ router.register(r"registrations", RegistrationView)
 router.register(r"messages", MessageView)
 
 # changes
+# changes
 router.register(r"items", VotableItemViewSet)
 router.register(r"votes", VoteViewSet)
+router.register(r"votes2", VoteViewSet2)
+router.register(r"votes3", VoteViewSet3)
+router.register(r"votes4", VoteViewSet4)
+
+
 router.register(r"applicationform", ApplicationFormView)
 # router.register(r"password-reset/", PasswordResetRequestView)
 # router.register(r"password-reset/confirm/<uidb64>/<token>/", PasswordResetConfirmView)
