@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   background-color: #f3f9ec;
-  height: 50px;
+  height: 60px;
   width: 100%;
   position: relative;
 }
@@ -64,7 +64,7 @@
   font-weight: 100;
   letter-spacing: 1px;
   margin-left: 10px;
-  width: 50%;
+  width: 60%;
   font-size: 13px;
 }
 
@@ -77,6 +77,11 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+}
+
+
+.rh5v-DefaultPlayer_controls {
+  width: 100%;
 }
 
 .voting-line {
@@ -223,6 +228,11 @@
     font-size: 20px;
     top: 14px;
   }
+
+  .voting-school{
+    font-size: 10px;
+    line-height: 15px; 
+  }
 }
 
 @media screen and (max-width: 880px) {
@@ -298,7 +308,7 @@
     font-size: 15px;
   }
 
-  .vote .disabled{
+  .vote .disabled {
     width: 50%;
   }
   .votingParticipate {
