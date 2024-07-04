@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 // import { CountDown } from "../countdown/CountDown";
 import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
-import { VotingParticipate } from './../votingParticipate/VotingParticipate';
+import { VotingParticipate } from "./../votingParticipate/VotingParticipate";
 import { BiArrowToTop } from "react-icons/bi";
-
 
 const ProgramAbout = () => {
   const [all, setAll] = useState(false);
@@ -37,7 +36,7 @@ const ProgramAbout = () => {
 
   // back to top
 
-  const[backToTop,setBackToTop] = useState(false)
+  const [backToTop, setBackToTop] = useState(false);
 
   useEffect(() => {
     const storedPassword = localStorage.getItem("password");
@@ -53,24 +52,23 @@ const ProgramAbout = () => {
     } else if (!storedEmail) {
       userActions.setLogeOut(true);
       localStorage.removeItem("userId");
-
     }
 
-    window.addEventListener('scroll',()=>{
-      if(window.scrollY>100){
-        setBackToTop(true)
-      }else{
-        setBackToTop(false)
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 100) {
+        setBackToTop(true);
+      } else {
+        setBackToTop(false);
       }
-    })
+    });
   }, []);
 
-  const scrollUp = ()=>{
+  const scrollUp = () => {
     window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    })
-  }
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     // localStorage.removeItem("password");
@@ -224,10 +222,7 @@ const ProgramAbout = () => {
 
   return (
     <>
-    {backToTop &&(
-
-    <BiArrowToTop className="topUp" onClick={scrollUp} />
-    )}
+      {backToTop && <BiArrowToTop className="topUp" onClick={scrollUp} />}
 
       <div className="header">
         <div className="logo">
@@ -242,7 +237,18 @@ const ProgramAbout = () => {
             <button onClick={handleSubmitLogeOut}>Դուրս Գալ </button>
           </div>
         )}
+
+        <div className="warning">
+          <p>
+            Հարգելի օգտատեր, քվեարկելու համար խնդրում ենք պարտադիր գրանցվել, իսկ
+            եթե արդեն գրանցվել եք՝ խնդրում ենք մուտք գործել Ձեր հաշիվ (account),
+            այնուհետև քվեարկել Ձեր նախընտրած մասնակցի օգտին։ Հարկ է նշել նաև, որ
+            կարող եք քվեարկել միայն մեկ մասնակցի օգտին։ Հարցերի դեպքում կարող եք
+            զանգահարել +37455475656 հեռախոսահամարով։
+          </p>
+        </div>
       </div>
+
       <div className="programAbout">
         <div className="programAboutRow">
           <div className="programAboutRowItem">
@@ -467,7 +473,6 @@ const ProgramAbout = () => {
                       Մասնակից թիմը պետք է ներկայացնի խաղի նախագիծ, որը
                       կպարունակի հետևյալ նյութերը.
                     </h3>
-                    
 
                     <div className="countsMembers">
                       <div className="membersOne">
@@ -523,7 +528,6 @@ const ProgramAbout = () => {
               </div>
             )}
           </div>
-          
         </div>
         <div className="programAboutRow">
           <div className="programAboutRowItem">
@@ -863,22 +867,28 @@ const ProgramAbout = () => {
             </p>
             <h4>Մրցույթի փուլերը</h4>
             <p className="participateRulle">
-              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ թիմերից ակնկալվում է լրացնել <span className="bold"> Գրանցման ձևը։</span>
+              <span>Փուլ 1. Գրանցում:</span> Հայտադիմումը լրացնելուց առաջ
+              թիմերից ակնկալվում է լրացնել{" "}
+              <span className="bold"> Գրանցման ձևը։</span>
             </p>
 
             <p className="participateRulle">
               <span>
                 Փուլ 2. Նախագծի ներկայացում` հայտադիմումը լրացնելու միջոցով:
               </span>{" "}
-              Թիմերից ակնկալվում է ներկայացնել իրենց նախագծերը՝ համապատասխան ձևաչափով լրացնելով հայտադիմումը՝ մինչև 2024թ. հունիսի 15-ը: 
+              Թիմերից ակնկալվում է ներկայացնել իրենց նախագծերը՝ համապատասխան
+              ձևաչափով լրացնելով հայտադիմումը՝ մինչև 2024թ. հունիսի 15-ը:
             </p>
             <p className="participateRulle">
-              <span>Փուլ 3. Որակավորման փուլ: </span>Ընտրող հանձնաժողովը կդիտարկի ստացված նախագծերը և կհայտարարի յուրաքանչյուր անվանակարգում 5 լավագույններին մինչև 2024թ. հուլիսի 1-ը: 
-
+              <span>Փուլ 3. Որակավորման փուլ: </span>Ընտրող հանձնաժողովը
+              կդիտարկի ստացված նախագծերը և կհայտարարի յուրաքանչյուր
+              անվանակարգում 5 լավագույններին մինչև 2024թ. հուլիսի 1-ը:
             </p>
             <p className="participateRulle">
               <span>Փուլ 4. Քվեարկության փուլ։ </span>
-              Որակավորված նախագծերը կհրապարակվեն մրցույթի կայքում, որից հետո Հայաստանի բոլոր դպրոցականները կկարողանան առցանց քվեարկել իրենց նախընտրած նախագծի համար մինչև 2024թ. հուլիսի 7-ը: 
+              Որակավորված նախագծերը կհրապարակվեն մրցույթի կայքում, որից հետո
+              Հայաստանի բոլոր դպրոցականները կկարողանան առցանց քվեարկել իրենց
+              նախընտրած նախագծի համար մինչև 2024թ. հուլիսի 7-ը:
             </p>
           </div>
           <div className="introducion-info">
@@ -955,15 +965,15 @@ const ProgramAbout = () => {
               <li>
                 «Բացահայտելով առողջ ապրելակերպի աշխարհը. մեր հետազոտությունը» և
                 «Իմ առողջ համայնքը» նախագծերի հայտադիմումը պետք է պարունակի
-                հայեցակարգ, շնորհանդես, լուսանկարներ, թռուցիկ և
-                տեսանյութ:
+                հայեցակարգ, շնորհանդես, լուսանկարներ, թռուցիկ և տեսանյութ:
               </li>
             </ul>
 
             <p className="participateRulle">
-              Նախագծի հիմնական գաղափարները պետք է ձևավորված լինեն թռուցիկի մեջ՝ PDF ձևաչափով (նյութը տպելու կարիք չկա): Այս պահանջը
-              վերաբերում է բոլոր չորս անվանակարգերին։ Այս ձևաչափով նյութը
-              կազմակերպված կերպով ներկայացնելու տեսողականորեն գրավիչ միջոց է։
+              Նախագծի հիմնական գաղափարները պետք է ձևավորված լինեն թռուցիկի մեջ՝
+              PDF ձևաչափով (նյութը տպելու կարիք չկա): Այս պահանջը վերաբերում է
+              բոլոր չորս անվանակարգերին։ Այս ձևաչափով նյութը կազմակերպված կերպով
+              ներկայացնելու տեսողականորեն գրավիչ միջոց է։
             </p>
           </div>
 
@@ -1021,11 +1031,16 @@ const ProgramAbout = () => {
               գնահատականից։
             </p>
             <p>
-            Որակավորված 20 նախագծերը կհրապարակվեն մրցույթի վեբկայքում և Հայաստանի բոլոր դպրոցականները կկարողանան առցանց քվեարկել իրենց նախընտրած նախագծի համար։ Քվեարկությունը կանցկացվի ըստ առցանց քվեարկության կանոնների։  
+              Որակավորված 20 նախագծերը կհրապարակվեն մրցույթի վեբկայքում և
+              Հայաստանի բոլոր դպրոցականները կկարողանան առցանց քվեարկել իրենց
+              նախընտրած նախագծի համար։ Քվեարկությունը կանցկացվի ըստ առցանց
+              քվեարկության կանոնների։
             </p>
 
             <p className="evaluate">
-            Ըստ ընտրող հանձնաժողովի գնահատականի և առցանց քվեարկության արդյունքների՝ կորոշվեն 4 լավագույն նախագծերը (1 թիմ յուրաքանչյուր անվանակարգից, ընդամենը 16 հոգի)։
+              Ըստ ընտրող հանձնաժողովի գնահատականի և առցանց քվեարկության
+              արդյունքների՝ կորոշվեն 4 լավագույն նախագծերը (1 թիմ յուրաքանչյուր
+              անվանակարգից, ընդամենը 16 հոգի)։
             </p>
           </div>
 
@@ -1066,7 +1081,7 @@ const ProgramAbout = () => {
         </div>
         <div className="scedule">
           <VotingParticipate />
-        </div> 
+        </div>
       </div>
     </>
   );
