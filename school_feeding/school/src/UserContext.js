@@ -221,6 +221,7 @@ const UserContextProvider = ({ children }) => {
   };
 
   const handleSubmit = async (e) => {
+    debugger
     e.preventDefault();
     let obj = {
       username,

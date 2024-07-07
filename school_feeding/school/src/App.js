@@ -14,27 +14,24 @@ import ProgramAbout from "./components/home/ProgramAbout";
 import { Touch } from "./components/home/Touch";
 import Forms from "./components/FormsApplication/Forms";
 import { VotingParticipate } from './components/votingParticipate/VotingParticipate';
-// WDS_SOCKET_HOST=127.0.0.1 CHOKIDAR_USEPOLLING=true WATCHPACK_POLLING=true
 
 function App() {
-
   return (
     <div className="App">
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
       <div className="routes">
         <Routes>
-          {/* <Route path="/" element={<VotingParticipate />} /> */}
-          <Route path="/" element={<ProgramAbout />} /> 
+          <Route path="/" element={<ProgramAbout />} />
           <Route path="/forms" element={<Forms />} />
           <Route path="/lifestyle" element={<Lifestyle />} />
           <Route path="/tasty" element={<Tasty />} />
           <Route path="/discovering" element={<Discovering />} />
           <Route path="/community" element={<Community />} />
-          <Route path="login" element={<Login />} />
-          <Route path="forgetpass" element={<ForgetPass />} />
-          <Route path="newpass" element={<NewPass />} />
-          <Route path="register" element={<Register />} />
-          <Route path="touch" element={<Touch />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgetpass" element={<ForgetPass />} />
+          <Route path="/newpass" element={<NewPass />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/touch" element={<Touch />} />
         </Routes>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Paginator } from "./Paginator";
 import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
 import { ClockLoader } from "react-spinners";
+import { useNavigate } from 'react-router-dom';
 
 export const VotingParticipate = () => {
   // Context
@@ -16,6 +17,9 @@ export const VotingParticipate = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
   const [checkSchool, setCheckSchool] = useState(true);
+
+  const navigate = useNavigate();
+
 
   // number partisipate
   const [digit, setChangeDigit] = useState();
@@ -38,7 +42,6 @@ export const VotingParticipate = () => {
       }
 
       const data = await response.json();
-      console.log(data);
       setPosts(data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -107,8 +110,11 @@ export const VotingParticipate = () => {
             toast.warning(
               "Դուք չեք կարող քվեարկել մեկ անգամից ավել նույն օգտահաշվով"
             );
+            navigate('/')
+
           } else if (data.error === "User ID and item ID are required.") {
             toast.warning("Մուտք գործեք համակարգ քվեարկելու համար");
+            navigate('/login')
           }
         })
         .catch((err) => {
