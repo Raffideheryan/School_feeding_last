@@ -238,7 +238,7 @@ const ProgramAbout = () => {
           </div>
         )}
 
-        <div className="warning">
+        {/* <div className="warning">
           <p>
             Հարգելի օգտատեր, քվեարկելու համար խնդրում ենք պարտադիր գրանցվել, իսկ
             եթե արդեն գրանցվել եք՝ խնդրում ենք մուտք գործել Ձեր հաշիվ (account),
@@ -246,7 +246,7 @@ const ProgramAbout = () => {
             կարող եք քվեարկել միայն մեկ մասնակցի օգտին։ Հարցերի դեպքում կարող եք
             զանգահարել +37455475656 հեռախոսահամարով։
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="programAbout">
@@ -1075,13 +1075,13 @@ const ProgramAbout = () => {
         </div>
         <div className="seeMoreInfo">
           <button onClick={onclickPdfFile}>Իմանալ ավելին</button>
-          <button onClick={onlickPartispate} className="particip">
+          <button onClick={onlickPartispate} className="particip" disabled={true}>
             Մասնակցել
           </button>
         </div>
-        <div className="scedule">
+        {/* <div className="scedule">
           <VotingParticipate />
-        </div>
+        </div> */}
       </div>
     </>
   );

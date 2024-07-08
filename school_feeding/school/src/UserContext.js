@@ -221,7 +221,6 @@ const UserContextProvider = ({ children }) => {
   };
 
   const handleSubmit = async (e) => {
-    debugger
     e.preventDefault();
     let obj = {
       username,
@@ -264,7 +263,6 @@ const UserContextProvider = ({ children }) => {
       }
     }
   };
-
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     let obj = {
@@ -274,47 +272,52 @@ const UserContextProvider = ({ children }) => {
     if (isValidateLogin()) {
       fetch("https://aroxj_aprelakerpi_despan.schoolfeeding.am/info/login/", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          
+        },
         body: JSON.stringify(obj),
       })
         .then((res) => {
-          const data = res.json();
           if (res.ok) {
-            setLogeOut(false);
-            toast.success("Հաջողվեց");
-            navigate("/");
-            setEmail("");
-            setPassword("");
-            if (e.target[2].checked) {
-              localStorage.setItem("email", JSON.stringify(email));
-              localStorage.setItem("password", JSON.stringify(password));
-            } else {
-              localStorage.setItem("email", JSON.stringify(email));
-            }
-            return data;
-          } else if (res.status === 401) {
-            toast.warning(
-              "Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում Կամ ստուգեք մուտքագրված տվյալների ճշտությունը"
-            );
-            setEmail("");
-            setPassword("");
-          } else if (res.status === 404) {
-            toast.warning(" Տվյալները սխալ են․․․ ");
-            setErrorPassword(true);
-            setErrorEmail(true);
-            setEmail("");
-            setPassword("");
+            return res.json();
+          } else {
+            return res.json().then((data) => {
+              throw new Error(data.message || "An error occurred");
+            });
           }
         })
         .then((data) => {
+          setLogeOut(false);
+          toast.success("Հաջողվեց");
+          navigate("/");
+          setEmail("");
+          setPassword("");
+          if (e.target[2].checked) {
+            localStorage.setItem("email", JSON.stringify(email));
+            localStorage.setItem("password", JSON.stringify(password));
+          } else {
+            localStorage.setItem("email", JSON.stringify(email));
+          }
           setUserId(data.user_id);
           localStorage.setItem("userId", JSON.stringify(data.user_id));
         })
         .catch((err) => {
-          // toast.warning("Չհաջողվեց");
+          if (err.message === "Unauthorized") {
+            toast.warning("Խնդրում ենք անցեք Էլեկտրոնային հասցեի վերիֆիկացում Կամ ստուգեք մուտքագրված տվյալների ճշտությունը");
+          } else if (err.message === "Not Found") {
+            toast.warning("Տվյալները սխալ են․․․");
+            setErrorPassword(true);
+            setErrorEmail(true);
+          } else {
+            toast.warning("Չհաջողվեց");
+          }
+          setEmail("");
+          setPassword("");
         });
     }
   };
+  
 
   useEffect(() => {
     const storedPassword = localStorage.getItem("password");
